@@ -8,7 +8,7 @@ export function SiteFooter() {
       <Container className="grid grid-cols-1 gap-12 py-14 md:grid-cols-12 md:gap-10 md:py-16">
         <div className="md:col-span-5">
           <p className="font-display text-2xl font-bold tracking-tight">
-            {site.school.name}
+            {site.school.shortName}
           </p>
           <p className="mt-2 text-sm leading-6 text-white/60">
             {site.school.city}, FL

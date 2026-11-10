@@ -49,13 +49,16 @@ export type Review = {
 
 const priceNote = "Current partner-site price. Confirm at checkout.";
 
-const phoneDisplay = "(407) 555-0198";
-const phoneTel = "+14075550198";
-const email = "admissions@monaschool.com";
-const schoolName = "Mona School";
+const phoneDisplay = "555-010-2040";
+const phoneTel = "+15550102040";
+const email = "hello@example-school.test";
+const schoolName = "Real Estate & International Business Institute";
+const schoolShortName = "REIB Institute";
 const city = "Orlando";
 const dbprSchoolLicense = "Pending approval";
 const dbprProviderNumber = "Pending approval";
+const logoSrc = "/brand/school-logo.jpg";
+const logoAlt = "REIB Institute";
 
 /** Class Made Easy partner school id from the partner dashboard. */
 const partnerSchool = "40";
@@ -321,30 +324,27 @@ export function getCourse(slug: string): Course | undefined {
   return courses.find((course) => course.slug === slug);
 }
 
-const headerCourse = getCourse("63-hour-online");
-
-if (!headerCourse) {
-  throw new Error("Header enroll slug must match a course in this file.");
-}
-
 export const site = {
   school: {
     name: schoolName,
+    shortName: schoolShortName,
     city,
     phoneDisplay,
     phoneTel,
     email,
-    address: `1200 Orange Avenue, ${city}, FL 32801`,
+    logoSrc,
+    logoAlt,
+    address: `${city}, FL`,
     hours: "Mon–Fri, 9:00 a.m.–5:00 p.m. ET",
     dbprSchoolLicense,
     dbprProviderNumber,
     licenseLine: `DBPR school license: ${dbprSchoolLicense}. Course provider number: ${dbprProviderNumber}.`,
     description:
-      "Florida real estate pre-license, post-license, continuing education, reactivation, and exam prep. Classroom, Zoom, and self-paced online. Enrollment opens on Class Made Easy.",
+      "Florida real estate pre-license, post-license, continuing education, reactivation, and exam prep. Self-paced online courses with enrollment on Class Made Easy.",
   },
   headerCta: {
-    label: "Enroll",
-    href: headerCourse.enrollUrl,
+    label: "View courses",
+    href: "/courses",
   },
   nav: [
     { label: "Courses", href: "/courses" },
@@ -427,27 +427,32 @@ export const site = {
   },
   home: {
     metaTitle: "Florida real estate license courses",
+    heroBadge: "Florida real estate school",
     heroEyebrow: `${city}, Florida`,
-    heroTitle: "Florida sales associate courses",
+    heroTitle: schoolName,
     heroBody:
-      "Classroom and Zoom weeks, or self-paced online. Pre-license, post-license, and continuing education. Enroll opens on the partner site.",
-    heroPrimary: "Browse courses",
+      "Pre-license, post-license, continuing education, and exam prep. Self-paced online courses with checkout on the partner site.",
+    heroPrimary: "View courses",
     heroSecondary: "Licensing steps",
-    heroImage: "/images/hero-open-home.jpg",
+    heroImage: "/images/hero-banner.jpg",
     heroImageAlt:
-      "Bright open-concept living room and kitchen with floor-to-ceiling glass and a wood accent wall.",
+      "Adult students in a classroom working on laptops during a real estate course session.",
     heroFeatures: [
       {
-        title: "Classroom",
-        body: `Live FREC I weeks in ${city}, with matching Zoom seats.`,
+        title: "DBPR / FREC approved",
+        body: "State-approved courses",
       },
       {
-        title: "Zoom",
-        body: "Join the live class from home on the same schedule.",
+        title: "100% online",
+        body: "Self-paced, any device",
       },
       {
-        title: "Online",
-        body: "Self-paced video, quizzes, and the end-of-course exam.",
+        title: "Instant certificate",
+        body: "Download on completion",
+      },
+      {
+        title: "Smart Text & narration",
+        body: "Study the way you like",
       },
     ],
     pathEyebrow: "Real estate paths",

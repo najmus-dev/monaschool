@@ -42,7 +42,7 @@ export async function generateMetadata({
 function CourseFallback() {
   return (
     <div className="relative bg-brand">
-      <Container className="pb-10 pt-[calc(6.75rem+2.5rem)] md:pb-14 md:pt-[calc(6.75rem+3rem)]">
+      <Container className="pb-10 pt-[calc(4.75rem+2.5rem)] md:pb-14 md:pt-[calc(4.75rem+3rem)]">
         <p className="text-base text-white/75">{site.ui.loadingCourse}</p>
       </Container>
     </div>
@@ -80,7 +80,7 @@ async function CourseContent({ params }: CoursePageProps) {
           className="absolute inset-0 bg-[linear-gradient(180deg,rgb(10_53_82/0.82)_0%,rgb(10_53_82/0.88)_55%,rgb(10_53_82/0.94)_100%)]"
           aria-hidden
         />
-        <Container className="relative pb-10 pt-[calc(6.75rem+2.5rem)] md:pb-14 md:pt-[calc(6.75rem+3rem)]">
+        <Container className="relative pb-10 pt-[calc(4.75rem+2.5rem)] md:pb-14 md:pt-[calc(4.75rem+3rem)]">
           <nav aria-label={site.ui.breadcrumb} className="text-sm text-white/65">
             <ol className="flex flex-wrap items-center gap-2">
               <li>

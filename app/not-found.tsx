@@ -5,7 +5,7 @@ import { Container } from "@/components/container";
 export default function NotFound() {
   return (
     <div className="relative bg-brand text-footer-text">
-      <Container className="pb-16 pt-[calc(6.75rem+2.5rem)] md:pb-24 md:pt-[calc(6.75rem+3.5rem)]">
+      <Container className="pb-16 pt-[calc(4.75rem+2.5rem)] md:pb-24 md:pt-[calc(4.75rem+3.25rem)]">
         <p className="text-sm font-semibold uppercase tracking-[0.12em] text-accent">
           404
         </p>

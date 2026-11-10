@@ -6,13 +6,12 @@ export function HomePaths() {
   return (
     <section
       aria-labelledby="home-paths-heading"
-      className="relative z-0 bg-paper pt-28 sm:pt-32 md:pt-36"
+      className="relative z-0 bg-paper"
     >
       <h2 id="home-paths-heading" className="sr-only">
         {site.home.pathTitle}
       </h2>
 
-      {/* Paper pad above photos: overlapping Classroom / Zoom / Online cards land here */}
       <div className="grid grid-cols-1 border-t border-line lg:grid-cols-2">
         {site.home.paths.map((path) => (
           <article

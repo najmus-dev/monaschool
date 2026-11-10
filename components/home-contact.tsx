@@ -56,11 +56,11 @@ export function HomeContact() {
         <div className="relative min-h-[16rem] sm:min-h-[20rem] lg:min-h-full lg:py-10 lg:pr-8">
           <div className="relative h-full min-h-[16rem] overflow-hidden bg-band sm:min-h-[20rem] [clip-path:polygon(0_0,100%_0,100%_100%,8%_100%)] lg:min-h-[28rem] lg:[clip-path:polygon(10%_0,100%_0,100%_100%,0_100%)]">
             <Image
-              src="/images/contact-home.jpg"
-              alt="Modern Florida home with a pool — the market sales associates help clients navigate."
+              src="/images/classroom.jpg"
+              alt="Adult students studying together with laptops — the same classroom energy as our courses."
               fill
               sizes="(min-width: 1024px) 48vw, 100vw"
-              className="object-cover object-[55%_40%]"
+              className="object-cover object-[center_30%]"
             />
             <div
               className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgb(10_53_82/0.28)_100%)]"

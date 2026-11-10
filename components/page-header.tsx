@@ -33,8 +33,7 @@ export function PageHeader({
         <div className="absolute inset-0 bg-brand" aria-hidden />
       )}
 
-      {/* Fixed header is 6.75rem; pad past it so title never sits under the nav */}
-      <Container className="relative pb-14 pt-[calc(6.75rem+2.5rem)] text-center md:pb-20 md:pt-[calc(6.75rem+3.5rem)]">
+      <Container className="relative pb-14 pt-[calc(4.75rem+2.5rem)] text-center md:pb-20 md:pt-[calc(4.75rem+3.25rem)]">
         <h1
           className={`mx-auto max-w-4xl font-display text-3xl font-bold tracking-tight text-balance md:text-5xl md:leading-[1.1] ${
             image ? "text-brand" : "text-white"
