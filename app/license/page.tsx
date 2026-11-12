@@ -25,7 +25,7 @@ export default function LicensePage() {
           {
             title: "Earn your Florida real estate license",
             body: "Start with the 63-hour pre-license course, then follow the DBPR application and state exam steps below.",
-            href: "/courses#get-licensed",
+            href: "/florida-real-estate",
             cta: site.ui.getLicensed,
             image: "/images/path-earn-home.jpg",
             imageAlt: "Modern Florida home with a pool and tropical landscaping.",
@@ -33,7 +33,7 @@ export default function LicensePage() {
           {
             title: "Renew your license the easy way",
             body: "Use the 45-hour post-license course for the first renewal, or 14-hour continuing education after that.",
-            href: "/courses#renew",
+            href: "/florida-real-estate",
             cta: site.ui.renewLicense,
             image: "/images/path-renew-study.jpg",
             imageAlt: "A professional preparing for work in a bright office.",
@@ -129,7 +129,7 @@ export default function LicensePage() {
                           key={course.slug}
                           href={`/courses/${course.slug}`}
                         >
-                          {course.linkLabel}
+                          {course.title}
                         </TextLink>
                       ))}
                     </p>

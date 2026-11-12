@@ -1,10 +1,9 @@
-import Image from "next/image";
 import { Container } from "./container";
 
 export function PageHeader({
   title,
   lede,
-  image = "/images/courses-band.jpg",
+  eyebrow = "Cherkaoui Institute",
 }: {
   title: string;
   lede: string;
@@ -12,41 +11,14 @@ export function PageHeader({
   image?: string | null;
 }) {
   return (
-    <div className="relative overflow-hidden border-b border-line">
-      {image ? (
-        <>
-          <Image
-            src={image}
-            alt=""
-            fill
-            sizes="100vw"
-            className="object-cover object-[50%_40%]"
-            aria-hidden
-            priority={false}
-          />
-          <div
-            className="absolute inset-0 bg-[linear-gradient(180deg,rgb(255_255_255/0.55)_0%,rgb(255_255_255/0.72)_50%,rgb(255_255_255/0.88)_100%)]"
-            aria-hidden
-          />
-        </>
-      ) : (
-        <div className="absolute inset-0 bg-brand" aria-hidden />
-      )}
-
-      <Container className="relative pb-14 pt-[calc(4.75rem+2.5rem)] text-center md:pb-20 md:pt-[calc(4.75rem+3.25rem)]">
-        <h1
-          className={`mx-auto max-w-4xl font-display text-3xl font-bold tracking-tight text-balance md:text-5xl md:leading-[1.1] ${
-            image ? "text-brand" : "text-white"
-          }`}
-        >
+    <div className="relative overflow-hidden border-b border-line/50 section-wash">
+      <Container className="relative pb-12 pt-[calc(5.75rem+2.75rem)] md:pb-16 md:pt-[calc(5.75rem+3.5rem)]">
+        <p className="text-sm font-semibold text-accent">{eyebrow}</p>
+        <h1 className="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight text-brand text-balance md:text-5xl md:leading-[1.12]">
           {title}
         </h1>
-        <div className="mx-auto mt-5 h-0.5 w-16 bg-accent" aria-hidden />
-        <p
-          className={`mx-auto mt-5 max-w-2xl text-base leading-relaxed md:text-lg md:leading-8 ${
-            image ? "text-muted" : "text-white/80"
-          }`}
-        >
+        <div className="dot-rule mt-6 max-w-sm" aria-hidden />
+        <p className="mt-6 max-w-2xl text-base leading-7 text-muted md:text-lg md:leading-8">
           {lede}
         </p>
       </Container>

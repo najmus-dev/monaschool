@@ -1,32 +1,35 @@
 @import "tailwindcss";
 
 /*
-  Refined Mona School system after design audit.
-  Cool coastal education: white paper, deep navy brand, one clay CTA.
-  Shape: controls 6px, media 4px (sharper, less soft-template).
-  Layers: header 30, mobile menu 40, skip 50.
+  REIB Institute visual system
+  Inspired by premium school sites (soft section washes, rounded media, serif display)
+  Brand from REIB brief: navy, warm white, restrained bronze — not forest-green copy.
 */
 
 :root {
-  --paper: #f7f9fb;
-  --surface: #ffffff;
-  --band: #edf3f8;
-  --ink: #102334;
-  --muted: #526578;
-  --line: #d7e0ea;
+  --paper: #f6f3ee;
+  --surface: #fffcf8;
+  --band: #e8eef4;
+  --mist: #dce7f0;
+  --ink: #0f2433;
+  --muted: #5a6b7a;
+  --line: #d5dde6;
   --stroke: #7a90a5;
   --brand: #0a3552;
   --brand-hover: #082a41;
-  --accent: #e08a1e;
-  --accent-hover: #c97412;
+  --brand-soft: #143f5c;
+  --accent: #c9852a;
+  --accent-hover: #b07220;
   --accent-ink: #ffffff;
-  --accent-soft: #fff3e3;
+  --accent-soft: #f7edd9;
   --price: #7d5800;
   --footer: #0a3552;
   --footer-text: #eef3f7;
   --footer-muted: #b7c7d6;
   --danger: #9b2c2c;
-  --shadow: 0 1px 1px rgb(16 35 52 / 0.04), 0 18px 40px rgb(16 35 52 / 0.06);
+  --shadow: 0 1px 1px rgb(16 35 52 / 0.04), 0 22px 48px rgb(16 35 52 / 0.08);
+  --radius-media: 1.35rem;
+  --radius-panel: 1.1rem;
   color-scheme: light;
 }
 
@@ -34,12 +37,14 @@
   --color-paper: var(--paper);
   --color-surface: var(--surface);
   --color-band: var(--band);
+  --color-mist: var(--mist);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-line: var(--line);
   --color-stroke: var(--stroke);
   --color-brand: var(--brand);
   --color-brand-hover: var(--brand-hover);
+  --color-brand-soft: var(--brand-soft);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
   --color-accent-ink: var(--accent-ink);
@@ -51,8 +56,8 @@
   --color-danger: var(--danger);
   --font-sans: var(--font-source-sans);
   --font-display: var(--font-source-serif);
-  --radius-control: 6px;
-  --radius-card: 4px;
+  --radius-control: 999px;
+  --radius-card: var(--radius-panel);
   --shadow-card: var(--shadow);
 }
 
@@ -71,8 +76,46 @@ body {
   font-family: var(--font-source-serif), Georgia, "Times New Roman", serif;
 }
 
+.media-frame {
+  overflow: hidden;
+  border-radius: var(--radius-media);
+}
+
+.section-wash {
+  background:
+    radial-gradient(ellipse 80% 60% at 100% 0%, rgb(10 53 82 / 0.06), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 0% 100%, rgb(201 133 42 / 0.07), transparent 50%),
+    var(--paper);
+}
+
+.section-mist {
+  background:
+    linear-gradient(180deg, rgb(220 231 240 / 0.85), rgb(232 238 244 / 0.95));
+}
+
+.section-brand {
+  background:
+    radial-gradient(ellipse 70% 80% at 85% 20%, rgb(255 255 255 / 0.08), transparent 45%),
+    linear-gradient(145deg, #0a3552 0%, #0d4264 48%, #082a41 100%);
+}
+
+.dot-rule {
+  height: 1px;
+  background-image: radial-gradient(circle, rgb(10 53 82 / 0.28) 1px, transparent 1.5px);
+  background-size: 8px 1px;
+  background-repeat: repeat-x;
+  background-position: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-hero-copy],
+  [data-hero-card] {
+    opacity: 0;
+  }
+}
+
 section[id] {
-  scroll-margin-top: 5.5rem;
+  scroll-margin-top: 6.5rem;
 }
 
 summary {

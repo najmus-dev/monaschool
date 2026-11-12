@@ -1,48 +1,65 @@
 import Link from "next/link";
-import type { Course } from "@/content/site";
-import { site } from "@/content/site";
+import type { Course, DeliveryFormat } from "@/content/site";
+import { coursePriceLabel, site } from "@/content/site";
 
-export function CourseCard({ course }: { course: Course }) {
+function shortTag(course: Course) {
+  if (course.floridaTopic === "get-license") return "PRE";
+  if (course.floridaTopic === "sales-post-license") return "POST";
+  if (course.floridaTopic === "become-broker") return "BRK";
+  if (course.floridaTopic === "broker-post-license") return "BPM";
+  if (course.floridaTopic === "continuing-education") return "CE";
+  if (course.floridaTopic === "reactivation") return "REA";
+  return "FRE";
+}
+
+export function CourseCard({
+  course,
+  highlightFormat,
+}: {
+  course: Course;
+  highlightFormat?: DeliveryFormat | "all";
+}) {
+  const formatSummary =
+    highlightFormat && highlightFormat !== "all"
+      ? (course.formats.find((item) => item.format === highlightFormat)
+          ?.formatLabel ?? course.formats.map((item) => item.formatLabel).join(" · "))
+      : course.formats.map((item) => item.formatLabel).join(" · ");
+
   return (
-    <article className="flex h-full flex-col rounded-lg border border-line/70 bg-surface px-6 py-8 text-center shadow-[0_12px_32px_rgb(10_53_82/0.07)] md:px-8 md:py-9">
-      <h2 className="font-display text-[1.4rem] font-bold leading-snug tracking-tight text-brand">
-        <Link
-          href={`/courses/${course.slug}`}
-          className="transition-colors hover:text-accent"
-        >
-          {course.linkLabel}
-        </Link>
-      </h2>
+    <article className="group relative flex h-full min-h-[16.5rem] flex-col overflow-hidden rounded-[1rem] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.05)] ring-1 ring-black/[0.04] transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(0,0,0,0.1)]">
+      <div className="flex flex-1 flex-col px-6 pb-5 pt-6">
+        <span className="inline-flex size-8 items-center justify-center rounded-[0.3rem] bg-[#0f766e] text-[0.62rem] font-bold uppercase tracking-[0.04em] text-white">
+          {shortTag(course)}
+        </span>
 
-      <div className="mx-auto mt-4 h-px w-14 bg-line" aria-hidden />
+        <h2 className="mt-4 font-sans text-[1.12rem] font-bold leading-snug tracking-[-0.015em] text-[#222222]">
+          {course.title}
+        </h2>
 
-      <p className="mt-4 flex-1 text-[0.95rem] leading-7 text-muted">
-        {course.summary}
-      </p>
-
-      <p className="mt-6 font-display text-[1.85rem] font-bold tabular-nums leading-none tracking-tight text-brand">
-        {course.priceLabel}
-      </p>
-      <p className="mt-2 text-xs text-muted">{course.priceNote}</p>
-
-      <div className="mt-8 grid gap-3">
-        <Link
-          href={`/courses/${course.slug}`}
-          className="inline-flex h-12 items-center justify-center gap-1 rounded-md bg-accent px-4 text-sm font-bold uppercase tracking-[0.04em] text-ink transition-colors hover:bg-accent-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-        >
-          {site.ui.viewDetails}
-          <span aria-hidden>›</span>
-        </Link>
-        <a
-          href={course.enrollUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex h-10 items-center justify-center text-sm font-semibold text-brand underline decoration-brand/25 underline-offset-4 hover:decoration-brand"
-        >
-          {site.ui.enroll}
-          <span className="sr-only"> (opens partner site)</span>
-        </a>
+        <p className="mt-3 text-[0.88rem] leading-6 text-[#888888]">
+          {formatSummary}
+        </p>
       </div>
+
+      <div className="relative z-10 mt-auto">
+        <div className="flex items-center justify-between gap-3 bg-[#ef5633] px-5 py-3.5 text-white transition-opacity duration-200 group-hover:opacity-0">
+          <p className="min-w-0 truncate text-[0.84rem] font-medium">
+            {course.hoursLabel}
+          </p>
+          <p className="shrink-0 text-[0.95rem] font-bold tabular-nums">
+            {coursePriceLabel(course)}
+          </p>
+        </div>
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-[#ef5633] text-[0.9rem] font-bold text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+          {site.ui.viewDetails}
+        </div>
+      </div>
+
+      <Link
+        href={`/courses/${course.slug}`}
+        className="absolute inset-0 z-20"
+        aria-label={`${site.ui.viewDetails}: ${course.title}`}
+      />
     </article>
   );
 }
@@ -50,30 +67,41 @@ export function CourseCard({ course }: { course: Course }) {
 export function CourseGrid({
   courses,
   className = "",
+  highlightFormat = "all",
 }: {
   courses: Course[];
   className?: string;
+  highlightFormat?: DeliveryFormat | "all";
 }) {
   if (courses.length === 0) {
-    return <p className="mt-8 text-base text-muted">{site.ui.emptyCourses}</p>;
+    return (
+      <p className="mt-8 text-base text-[#746C66]">{site.ui.emptyCourses}</p>
+    );
   }
 
   const cols =
     courses.length === 1
-      ? "sm:grid-cols-1 max-w-md mx-auto"
+      ? "grid-cols-1 max-w-[22rem]"
       : courses.length === 2
-        ? "sm:grid-cols-2 max-w-3xl mx-auto"
-        : courses.length === 3
-          ? "sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto"
-          : "sm:grid-cols-2 xl:grid-cols-3";
+        ? "sm:grid-cols-2 max-w-3xl"
+        : "sm:grid-cols-2 xl:grid-cols-3";
 
   return (
-    <div
-      className={`mt-12 grid grid-cols-1 items-stretch gap-6 ${cols} ${className}`}
-    >
-      {courses.map((course) => (
-        <CourseCard key={course.slug} course={course} />
-      ))}
+    <div>
+      <p className="mt-8 text-[0.92rem] text-[#746C66]">
+        Showing {courses.length} result{courses.length === 1 ? "" : "s"}
+      </p>
+      <div
+        className={`mt-5 grid grid-cols-1 items-stretch gap-5 ${cols} ${className}`}
+      >
+        {courses.map((course) => (
+          <CourseCard
+            key={course.slug}
+            course={course}
+            highlightFormat={highlightFormat}
+          />
+        ))}
+      </div>
     </div>
   );
 }

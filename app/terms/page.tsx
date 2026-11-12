@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import { HomeQuestions } from "@/components/home-questions";
+import {
+  PolicyFooterLinks,
+  PolicySections,
+} from "@/components/policy-sections";
+import { SimplePageHero } from "@/components/simple-page-hero";
 import { site } from "@/content/site";
-import { Container } from "@/components/container";
-import { PageHeader } from "@/components/page-header";
-import { PlaceholderNote } from "@/components/placeholder-note";
 
 export const metadata: Metadata = {
   title: site.terms.title,
@@ -12,25 +15,28 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <>
-      <PageHeader title={site.terms.title} lede={site.terms.lede} />
-      <div className="bg-paper">
-        <Container className="max-w-3xl py-14 md:py-20">
-          <PlaceholderNote>{site.terms.note}</PlaceholderNote>
-          <div className="mt-8 border-y border-line">
-            {site.terms.sections.map((section) => (
-              <section
-                key={section.heading}
-                className="border-b border-line py-7 last:border-b-0"
-              >
-                <h2 className="text-xl font-bold text-brand">{section.heading}</h2>
-                <p className="mt-3 text-base leading-relaxed text-muted">
-                  {section.body}
-                </p>
-              </section>
-            ))}
-          </div>
-        </Container>
-      </div>
+      <SimplePageHero
+        breadcrumb="Terms"
+        label="Policies"
+        title={site.terms.title}
+        lede={site.terms.lede}
+      />
+
+      <section className="bg-white">
+        <div className="mx-auto w-full max-w-[90rem] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
+          <article className="mx-auto max-w-[46rem]">
+            <PolicySections sections={site.terms.sections} />
+            <PolicyFooterLinks
+              links={[
+                { href: "/privacy", label: "Read privacy" },
+                { href: "/contact", label: "Contact the school" },
+              ]}
+            />
+          </article>
+        </div>
+      </section>
+
+      <HomeQuestions />
     </>
   );
 }

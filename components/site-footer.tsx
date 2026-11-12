@@ -1,110 +1,118 @@
+import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/content/site";
 import { Container } from "./container";
 
+const columns = [
+  {
+    title: "Company",
+    links: [
+      { label: "About us", href: "/about" },
+      { label: "Contact", href: "/contact" },
+      { label: "FAQ", href: "/faq" },
+      { label: "Student login", href: site.ui.studentLoginHref, external: true },
+    ],
+  },
+  {
+    title: "Learn",
+    links: [
+      { label: "Florida Real Estate", href: "/florida-real-estate" },
+      { label: "Professional Development", href: "/professional-development" },
+      { label: "International Business", href: "/international-business" },
+    ],
+  },
+  {
+    title: "Policies",
+    links: [
+      { label: "Privacy", href: "/privacy" },
+      { label: "Terms", href: "/terms" },
+    ],
+  },
+] as const;
+
 export function SiteFooter() {
   return (
-    <footer className="mt-auto border-t border-white/10 bg-brand text-footer-text">
-      <Container className="grid grid-cols-1 gap-12 py-14 md:grid-cols-12 md:gap-10 md:py-16">
-        <div className="md:col-span-5">
-          <p className="font-display text-2xl font-bold tracking-tight">
-            {site.school.shortName}
-          </p>
-          <p className="mt-2 text-sm leading-6 text-white/60">
-            {site.school.city}, FL
-          </p>
-          <p className="mt-6 max-w-[40ch] border-l-2 border-accent pl-4 text-sm leading-6 text-white/75">
-            {site.school.licenseLine}
-          </p>
-        </div>
-
-        <div className="md:col-span-3">
-          <h2 className="text-[0.68rem] font-bold uppercase tracking-[0.16em] text-accent">
-            {site.ui.footerContact}
-          </h2>
-          <ul className="mt-5 grid gap-3 text-sm">
-            <li>
-              <a
-                className="font-semibold text-footer-text transition-colors hover:text-accent"
-                href={`tel:${site.school.phoneTel}`}
-              >
-                {site.school.phoneDisplay}
-              </a>
-            </li>
-            <li>
-              <a
-                className="font-semibold text-footer-text transition-colors hover:text-accent"
-                href={`mailto:${site.school.email}`}
-              >
-                {site.school.email}
-              </a>
-            </li>
-            <li className="leading-6 text-white/60">{site.school.address}</li>
-          </ul>
-        </div>
-
-        <div className="grid gap-10 sm:grid-cols-2 md:col-span-4">
-          <div>
-            <h2 className="text-[0.68rem] font-bold uppercase tracking-[0.16em] text-accent">
-              {site.ui.footerExplore}
-            </h2>
-            <ul className="mt-5 grid gap-2.5 text-sm">
-              <li>
+    <footer className="relative mt-auto bg-[#1a1a1a]">
+      <div className="relative mx-auto max-w-[92rem] px-3 pb-3 sm:px-4 lg:px-5">
+        <div className="rounded-t-[1.75rem] bg-white px-6 pb-10 pt-12 sm:px-10 sm:pt-14 md:px-14">
+          <Container className="!px-0">
+            <div className="grid grid-cols-1 gap-12 md:grid-cols-[minmax(0,1.1fr)_minmax(0,2fr)] md:gap-10">
+              <div>
                 <Link
-                  className="text-white/80 transition-colors hover:text-accent"
                   href="/"
+                  className="inline-flex"
+                  aria-label={`${site.school.name}, home`}
                 >
-                  {site.ui.homeLink}
+                  <Image
+                    src={site.school.logoSrc}
+                    alt={site.school.logoAlt}
+                    width={360}
+                    height={96}
+                    unoptimized
+                    className="h-10 w-auto"
+                  />
                 </Link>
-              </li>
-              {site.nav.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    className="text-white/80 transition-colors hover:text-accent"
-                    href={item.href}
+                <p className="mt-5 max-w-[28ch] text-sm leading-6 text-black/65">
+                  {site.school.tagline} {site.school.city}, Florida.
+                </p>
+                <div className="mt-5 space-y-1 text-sm text-black/70">
+                  <a
+                    href={`tel:${site.school.phoneTel}`}
+                    className="block font-semibold text-black hover:underline"
                   >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h2 className="text-[0.68rem] font-bold uppercase tracking-[0.16em] text-accent">
-              {site.ui.footerLegal}
-            </h2>
-            <ul className="mt-5 grid gap-2.5 text-sm">
-              {site.legalNav.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    className="text-white/80 transition-colors hover:text-accent"
-                    href={item.href}
+                    {site.school.phoneDisplay}
+                  </a>
+                  <a
+                    href={`mailto:${site.school.email}`}
+                    className="block hover:underline"
                   >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <a
-                  className="text-white/80 transition-colors hover:text-accent"
-                  href={site.ui.studentLoginHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {site.ui.studentLogin}
-                  <span className="sr-only"> (opens partner site)</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </Container>
+                    {site.school.email}
+                  </a>
+                </div>
+              </div>
 
-      <div className="border-t border-white/10 bg-brand-hover/40">
-        <Container className="py-4 text-sm leading-6 text-white/55">
-          Course video, exams, and payment open on Class Made Easy. Enroll and
-          student login use this school&apos;s partner links.
-        </Container>
+              <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
+                {columns.map((column) => (
+                  <div key={column.title}>
+                    <h2 className="text-[0.72rem] font-bold uppercase tracking-[0.14em] text-black/45">
+                      {column.title}
+                    </h2>
+                    <ul className="mt-4 grid gap-2.5">
+                      {column.links.map((link) => (
+                        <li key={link.label}>
+                          {"external" in link && link.external ? (
+                            <a
+                              href={link.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-[0.95rem] font-medium text-black transition-colors hover:text-black/55"
+                            >
+                              {link.label}
+                            </a>
+                          ) : (
+                            <Link
+                              href={link.href}
+                              className="text-[0.95rem] font-medium text-black transition-colors hover:text-black/55"
+                            >
+                              {link.label}
+                            </Link>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-12 border-t border-black/10 pt-6 text-xs leading-6 text-black/50">
+              <p>
+                © 2026 {site.school.shortName}. {site.school.licenseLine}
+              </p>
+              <p className="mt-2">{site.school.hours}</p>
+            </div>
+          </Container>
+        </div>
       </div>
     </footer>
   );
