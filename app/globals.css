@@ -2,32 +2,31 @@
 
 /*
   REIB Institute visual system
-  Inspired by premium school sites (soft section washes, rounded media, serif display)
-  Brand from REIB brief: navy, warm white, restrained bronze — not forest-green copy.
+  Colors from client logo kit: deep navy (#002448) + metallic gold (#C08430).
 */
 
 :root {
   --paper: #f6f3ee;
   --surface: #fffcf8;
-  --band: #e8eef4;
-  --mist: #dce7f0;
-  --ink: #0f2433;
+  --band: #eef2f6;
+  --mist: #e2eaf1;
+  --ink: #001830;
   --muted: #5a6b7a;
   --line: #d5dde6;
   --stroke: #7a90a5;
-  --brand: #0a3552;
-  --brand-hover: #082a41;
-  --brand-soft: #143f5c;
-  --accent: #c9852a;
-  --accent-hover: #b07220;
-  --accent-ink: #ffffff;
-  --accent-soft: #f7edd9;
+  --brand: #002448;
+  --brand-hover: #001830;
+  --brand-soft: #003054;
+  --accent: #c08430;
+  --accent-hover: #b47824;
+  --accent-ink: #001830;
+  --accent-soft: #f3e6c8;
   --price: #7d5800;
-  --footer: #0a3552;
+  --footer: #001830;
   --footer-text: #eef3f7;
   --footer-muted: #b7c7d6;
   --danger: #9b2c2c;
-  --shadow: 0 1px 1px rgb(16 35 52 / 0.04), 0 22px 48px rgb(16 35 52 / 0.08);
+  --shadow: 0 1px 1px rgb(0 24 48 / 0.04), 0 22px 48px rgb(0 24 48 / 0.08);
   --radius-media: 1.35rem;
   --radius-panel: 1.1rem;
   color-scheme: light;
@@ -83,25 +82,25 @@ body {
 
 .section-wash {
   background:
-    radial-gradient(ellipse 80% 60% at 100% 0%, rgb(10 53 82 / 0.06), transparent 55%),
-    radial-gradient(ellipse 50% 40% at 0% 100%, rgb(201 133 42 / 0.07), transparent 50%),
+    radial-gradient(ellipse 80% 60% at 100% 0%, rgb(0 36 72 / 0.06), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 0% 100%, rgb(192 132 48 / 0.08), transparent 50%),
     var(--paper);
 }
 
 .section-mist {
   background:
-    linear-gradient(180deg, rgb(220 231 240 / 0.85), rgb(232 238 244 / 0.95));
+    linear-gradient(180deg, rgb(226 234 241 / 0.85), rgb(238 242 246 / 0.95));
 }
 
 .section-brand {
   background:
     radial-gradient(ellipse 70% 80% at 85% 20%, rgb(255 255 255 / 0.08), transparent 45%),
-    linear-gradient(145deg, #0a3552 0%, #0d4264 48%, #082a41 100%);
+    linear-gradient(145deg, #002448 0%, #003054 48%, #001830 100%);
 }
 
 .dot-rule {
   height: 1px;
-  background-image: radial-gradient(circle, rgb(10 53 82 / 0.28) 1px, transparent 1.5px);
+  background-image: radial-gradient(circle, rgb(0 36 72 / 0.28) 1px, transparent 1.5px);
   background-size: 8px 1px;
   background-repeat: repeat-x;
   background-position: center;

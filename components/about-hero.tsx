@@ -4,7 +4,7 @@ import { site } from "@/content/site";
 function SectionMark() {
   return (
     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
-      <path d="M0 0H12L0 12V0Z" fill="#FFD400" />
+      <path d="M0 0H12L0 12V0Z" fill="#C08430" />
     </svg>
   );
 }
@@ -28,7 +28,7 @@ export function AboutHero() {
           aria-hidden
         />
 
-        <div className="relative mx-auto flex min-h-[18rem] w-full max-w-[90rem] items-center px-4 py-16 pt-[calc(5.75rem+1.25rem)] sm:min-h-[20rem] sm:px-6 sm:py-16 sm:pt-[calc(5.75rem+1.5rem)] md:min-h-[22rem] lg:min-h-[24rem] lg:px-8">
+        <div className="relative mx-auto flex min-h-[18rem] w-full max-w-[90rem] items-end px-4 pb-12 pt-[calc(5.75rem+3.25rem)] sm:min-h-[20rem] sm:px-6 sm:pb-14 sm:pt-[calc(5.75rem+3.75rem)] md:min-h-[22rem] lg:min-h-[24rem] lg:px-8 lg:pb-16">
           <div className="max-w-[40rem]">
             <div className="flex items-center gap-2.5">
               <SectionMark />

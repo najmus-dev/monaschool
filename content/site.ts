@@ -55,14 +55,13 @@ const phoneDisplay = "(407) 947-5746";
 const phoneTel = "+14079475746";
 /** Replace with the school inbox Mona wants on the site before launch. */
 const email = "hello@example-school.test";
-const schoolName = "Cherkaoui Institute";
-const schoolShortName = "Cherkaoui Institute";
+const schoolName = "Real Estate & International Business Institute";
+const schoolShortName = "REIB Institute";
 const city = "Orlando";
 const dbprSchoolLicense = "Pending approval";
 const dbprProviderNumber = "Pending approval";
-const logoSrc =
-  "/cherkaoui-institute-logo-kit/cherkaoui-institute-logo/1-horizontal-primary.svg";
-const logoAlt = "Cherkaoui Institute";
+const logoSrc = "/institute-logos/REIB_Institute_Full_Logo.jpg";
+const logoAlt = "REIB Institute";
 const tagline = "Where Education Opens Markets.";
 
 export const site = {
@@ -120,12 +119,12 @@ export const site = {
     chooseFormat: "Choose format",
     fromPrice: "From",
     groupTraining: "Request Group Training",
-    learnWithReib: "Learn with Cherkaoui Institute",
+    learnWithReib: "Learn with REIB Institute",
     orgTrainingTitle: "Training for organizations",
     orgTrainingBody:
       "Brokerages, companies, and professional groups can request tailored sessions.",
     emptyCategoryCourses:
-      "No course pages are listed here yet. Cherkaoui Institute will publish classes once descriptions, instructors, dates, and fees are confirmed—without placeholder or Coming soon listings.",
+      "No course pages are listed here yet. REIB Institute will publish classes once descriptions, instructors, dates, and fees are confirmed—without placeholder or Coming soon listings.",
     topicsLabel: "Topics",
     filterAll: "All topics",
     filterFormatAll: "All formats",
@@ -222,7 +221,7 @@ export const site = {
     upcomingTitle: "Upcoming live classes",
     upcomingEmpty: "No live sessions are scheduled yet. Request dates for the course you need.",
     learnEyebrow: "The institute",
-    learnTitle: "Learn with Cherkaoui Institute",
+    learnTitle: "Learn with REIB Institute",
     learnBody:
       "Practical education for careers and businesses — Florida licensing when you need it, and specialty business development as programs are confirmed.",
     learnCta: "About the institute",
@@ -251,7 +250,7 @@ export const site = {
   },
   reviews: {
     title: "What students say",
-    lede: "Sample quotes for page layout only. They are not feedback from real Cherkaoui Institute students.",
+    lede: "Sample quotes for page layout only. They are not feedback from real REIB Institute students.",
     note: "These quotes are placeholders for design. Replace them when the school has reviews it is allowed to publish.",
     homeCount: 4,
     items: [
@@ -303,7 +302,7 @@ export const site = {
     introLabel: "The institute",
     introTitle: "Clear paths for every stage",
     introBody:
-      "Cherkaoui Institute focuses on practical Florida real estate education—published hour courses, flexible formats, and enrollment that opens on the partner site when you are ready.",
+      "REIB Institute focuses on practical Florida real estate education—published hour courses, flexible formats, and enrollment that opens on the partner site when you are ready.",
     introImage: "/images/bright-office.jpg",
     introImageAlt: "Professionals collaborating in a bright office",
     highlights: [
@@ -320,7 +319,7 @@ export const site = {
         label: "Hour continuing education for renewals",
       },
     ],
-    whyTitle: "Why students choose Cherkaoui Institute",
+    whyTitle: "Why students choose REIB Institute",
     whyLede:
       "Clear Florida hour paths, multiple study formats, and enrollment that opens on the partner course site.",
     valuesLabel: "Our approach",

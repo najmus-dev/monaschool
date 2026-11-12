@@ -13,7 +13,7 @@ const cards = [
     href: `mailto:${site.school.email}`,
     value: site.school.email,
     Icon: EnvelopeSimpleIcon,
-    tone: "#FFD400",
+    tone: "#C08430",
   },
   {
     key: "phone",
@@ -22,7 +22,7 @@ const cards = [
     href: `tel:${site.school.phoneTel}`,
     value: site.school.phoneDisplay,
     Icon: PhoneIcon,
-    tone: "#7B6BB0",
+    tone: "#002448",
   },
   {
     key: "location",
@@ -31,7 +31,7 @@ const cards = [
     href: "/about",
     value: site.school.address,
     Icon: MapPinIcon,
-    tone: "#3f78d4",
+    tone: "#3d5a73",
   },
 ] as const;
 

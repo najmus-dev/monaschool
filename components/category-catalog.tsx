@@ -57,7 +57,7 @@ export function CategoryCatalog({
 
   return (
     <div>
-      <div className="rounded-[0.75rem] border border-[#f0d978] bg-[#FFEFB9] p-3 sm:p-4">
+      <div className="rounded-[0.75rem] border border-[#D4B06A] bg-[#F3E6C8] p-3 sm:p-4">
         <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div className="min-w-0 flex-1 md:max-w-[20rem]">
             <label

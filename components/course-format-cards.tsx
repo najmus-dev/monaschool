@@ -110,7 +110,7 @@ export function CourseFormatCards({ course }: { course: Course }) {
                     href={option.enrollUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-[0.3rem] bg-[#FFD400] px-4 text-[0.9rem] font-bold text-black transition-colors hover:bg-black hover:text-white"
+                    className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-[0.3rem] bg-[#002448] px-4 text-[0.9rem] font-bold text-white transition-colors hover:bg-black"
                   >
                     {site.ui.enroll}
                     <ArrowSquareOutIcon size={15} weight="bold" aria-hidden />
@@ -119,7 +119,7 @@ export function CourseFormatCards({ course }: { course: Course }) {
                 ) : (
                   <a
                     href={`/contact?interest=course-question&course=${encodeURIComponent(course.slug)}&format=${encodeURIComponent(option.formatLabel)}`}
-                    className="inline-flex h-11 w-full items-center justify-center rounded-[0.3rem] bg-[#ADA9D5] px-4 text-[0.9rem] font-bold text-black transition-colors hover:bg-black hover:text-white"
+                    className="inline-flex h-11 w-full items-center justify-center rounded-[0.3rem] bg-[#8FA3B8] px-4 text-[0.9rem] font-bold text-black transition-colors hover:bg-black hover:text-white"
                   >
                     {site.ui.requestDates}
                   </a>

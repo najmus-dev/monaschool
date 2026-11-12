@@ -34,7 +34,7 @@ const menuSections: {
     href: "/florida-real-estate",
     lede: "Your pathway into a Florida real estate career — and the education to keep it current.",
     hasPanel: true,
-    tone: "#ebe4f5",
+    tone: "#dce6ef",
     columns: [
       {
         heading: "Start or advance",
@@ -81,7 +81,7 @@ const menuSections: {
     href: "/professional-development",
     lede: "Practical programs that build capability for careers and teams.",
     hasPanel: true,
-    tone: "#f6d4d0",
+    tone: "#ebe4d4",
     columns: [
       {
         heading: "Skill areas",
@@ -123,7 +123,7 @@ const menuSections: {
     href: "/international-business",
     lede: "Education for cross-border work, selling, and market entry.",
     hasPanel: true,
-    tone: "#d7eaf7",
+    tone: "#d4e3ee",
     columns: [
       {
         heading: "Focus areas",
@@ -173,7 +173,7 @@ const menuSections: {
     href: "/about",
     lede: "Where education opens markets.",
     hasPanel: true,
-    tone: "#ffe566",
+    tone: "#f0e4c8",
     columns: [
       {
         heading: "The institute",
@@ -203,7 +203,7 @@ const menuSections: {
     cta: {
       label: "About us",
       href: "/about",
-      body: "Learn how Cherkaoui Institute supports licensing, advancement, and specialty business education.",
+      body: "Learn how REIB Institute supports licensing, advancement, and specialty business education.",
     },
   },
   {
@@ -212,7 +212,7 @@ const menuSections: {
     href: "/contact",
     lede: "Ask about a course, group training, or partnership.",
     hasPanel: false,
-    tone: "#ffd400",
+    tone: "#e2eaf1",
     columns: [],
     cta: {
       label: "Send a message",
@@ -277,10 +277,10 @@ export function SiteHeader() {
   return (
     <header className="pointer-events-none fixed inset-x-0 top-0 z-50">
       <div className="pointer-events-auto mx-auto w-full max-w-[92rem] px-3 pt-3 sm:px-4 sm:pt-4 lg:px-5">
-        <div className="relative flex h-[4.1rem] items-center justify-between gap-3 rounded-[1.75rem] bg-white/90 px-4 shadow-[0_10px_30px_rgba(0,0,0,0.12)] backdrop-blur-2xl sm:h-[4.5rem] sm:px-6">
+        <div className="relative flex h-[5.25rem] items-center justify-between gap-3 rounded-t-[1.75rem] rounded-b-none bg-white/90 px-4 shadow-[0_10px_30px_rgba(0,0,0,0.12)] backdrop-blur-2xl sm:h-[5.75rem] sm:px-6">
           <button
             type="button"
-            className="inline-flex h-11 items-center gap-3 bg-transparent px-0 text-[1rem] font-medium text-black"
+            className="inline-flex h-11 shrink-0 items-center gap-3 bg-transparent px-0 text-[1rem] font-medium text-black"
             aria-expanded={menuOpen}
             aria-controls={panelId}
             onClick={() => setMenuOpen((value) => !value)}
@@ -302,17 +302,17 @@ export function SiteHeader() {
 
           <Link
             href="/"
-            className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
             aria-label={`${site.school.name}, home`}
           >
             <Image
-              src={site.school.logoSrc}
-              alt={site.school.logoAlt}
-              width={360}
-              height={96}
+              src="/institute-logos/REIB_Formal_Institutional_Logo.png"
+              alt=""
+              width={333}
+              height={203}
               priority
               unoptimized
-              className="h-9 w-auto sm:h-10"
+              className="h-14 w-auto max-w-[min(48vw,10.5rem)] object-contain object-center sm:h-[3.85rem] sm:max-w-[12.5rem] md:h-16 md:max-w-[14rem]"
             />
           </Link>
 
@@ -321,7 +321,7 @@ export function SiteHeader() {
               href={site.ui.studentLoginHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex size-10 items-center justify-center rounded-full text-[#111111] transition-colors hover:bg-[#ffd400]/hover:text-black"
+              className="inline-flex size-10 items-center justify-center rounded-full text-[#111111] transition-colors hover:bg-[#002448]/10 hover:text-[#002448]"
               aria-label={site.ui.studentLogin}
             >
               <StudentIcon size={22} weight="regular" aria-hidden />
@@ -329,7 +329,7 @@ export function SiteHeader() {
             <Link
               href="/contact"
               aria-label="Contact"
-              className="inline-flex h-10 items-center gap-2 rounded-full bg-[#111111] px-4 text-[0.9rem] font-medium text-white transition-colors hover:bg-[#ffd400] hover:text-black sm:px-5"
+              className="inline-flex h-10 items-center gap-2 rounded-full bg-[#002448] px-4 text-[0.9rem] font-medium text-white transition-colors hover:bg-black sm:px-5"
             >
               <EnvelopeSimpleIcon size={17} weight="bold" aria-hidden />
               <span className="hidden sm:inline">Contact</span>

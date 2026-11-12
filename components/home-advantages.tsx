@@ -3,11 +3,11 @@ function BriefcaseIcon() {
     <svg width="96" height="96" viewBox="0 0 48 48" fill="none" aria-hidden>
       <path
         d="M16 18V14.5C16 12.567 17.567 11 19.5 11H28.5C30.433 11 32 12.567 32 14.5V18"
-        stroke="#FFD400"
+        stroke="#C08430"
         strokeWidth="2.2"
         strokeLinecap="round"
       />
-      <rect x="9" y="18" width="30" height="22" rx="3" fill="#FFD400" />
+      <rect x="9" y="18" width="30" height="22" rx="3" fill="#C08430" />
       <path
         d="M9 26H39"
         stroke="#F7F4EC"
@@ -21,17 +21,17 @@ function BriefcaseIcon() {
 function PeopleIcon() {
   return (
     <svg width="96" height="96" viewBox="0 0 48 48" fill="none" aria-hidden>
-      <circle cx="29.5" cy="16" r="5.5" stroke="#FFD400" strokeWidth="2.2" />
+      <circle cx="29.5" cy="16" r="5.5" stroke="#C08430" strokeWidth="2.2" />
       <path
         d="M38.5 34.5C38.5 29.8056 34.6944 26 30 26C28.7606 26 27.5905 26.266 26.545 26.741"
-        stroke="#FFD400"
+        stroke="#C08430"
         strokeWidth="2.2"
         strokeLinecap="round"
       />
-      <circle cx="19" cy="17" r="6.5" fill="#FFD400" />
+      <circle cx="19" cy="17" r="6.5" fill="#C08430" />
       <path
         d="M8 36.5C8 30.701 12.701 26 18.5 26C24.299 26 29 30.701 29 36.5"
-        fill="#FFD400"
+        fill="#C08430"
       />
     </svg>
   );
@@ -46,19 +46,19 @@ function LearningIcon() {
         width="32"
         height="26"
         rx="3"
-        stroke="#FFD400"
+        stroke="#C08430"
         strokeWidth="2.2"
       />
-      <rect x="14" y="16" width="20" height="14" rx="1.5" fill="#FFD400" />
+      <rect x="14" y="16" width="20" height="14" rx="1.5" fill="#C08430" />
       <path
         d="M18 42H30"
-        stroke="#FFD400"
+        stroke="#C08430"
         strokeWidth="2.2"
         strokeLinecap="round"
       />
       <path
         d="M24 36V42"
-        stroke="#FFD400"
+        stroke="#C08430"
         strokeWidth="2.2"
         strokeLinecap="round"
       />
@@ -71,25 +71,25 @@ function GrowthIcon() {
     <svg width="96" height="96" viewBox="0 0 48 48" fill="none" aria-hidden>
       <path
         d="M10 38V28"
-        stroke="#FFD400"
+        stroke="#C08430"
         strokeWidth="3.2"
         strokeLinecap="round"
       />
       <path
         d="M19 38V22"
-        stroke="#FFD400"
+        stroke="#C08430"
         strokeWidth="3.2"
         strokeLinecap="round"
       />
       <path
         d="M28 38V16"
-        stroke="#FFD400"
+        stroke="#C08430"
         strokeWidth="3.2"
         strokeLinecap="round"
       />
       <path
         d="M35.8 8.6L37.1 12.2L40.9 12.5L37.9 15L38.9 18.7L35.8 16.7L32.7 18.7L33.7 15L30.7 12.5L34.5 12.2L35.8 8.6Z"
-        fill="#FFD400"
+        fill="#C08430"
       />
     </svg>
   );
@@ -98,7 +98,7 @@ function GrowthIcon() {
 function SectionMark() {
   return (
     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
-      <path d="M0 0H12L0 12V0Z" fill="#FFD400" />
+      <path d="M0 0H12L0 12V0Z" fill="#C08430" />
     </svg>
   );
 }
@@ -133,7 +133,7 @@ export function HomeAdvantages() {
         <div className="flex items-center gap-2.5">
           <SectionMark />
           <p className="text-[0.8rem] font-bold uppercase tracking-[0.12em] text-black">
-            Choose Cherkaoui Institute
+            Choose REIB Institute
           </p>
         </div>
 

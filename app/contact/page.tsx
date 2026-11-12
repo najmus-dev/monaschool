@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 function SectionMark() {
   return (
     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
-      <path d="M0 0H12L0 12V0Z" fill="#FFD400" />
+      <path d="M0 0H12L0 12V0Z" fill="#C08430" />
     </svg>
   );
 }

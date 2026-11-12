@@ -1,3 +1,4 @@
+import { ArrowRightIcon } from "@phosphor-icons/react/ssr";
 import Image from "next/image";
 import Link from "next/link";
 import type { Course } from "@/content/site";
@@ -13,7 +14,7 @@ import { HomeQuestions } from "./home-questions";
 function SectionMark() {
   return (
     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
-      <path d="M0 0H12L0 12V0Z" fill="#FFD400" />
+      <path d="M0 0H12L0 12V0Z" fill="#C08430" />
     </svg>
   );
 }
@@ -90,7 +91,7 @@ export function CourseLanding({ course }: { course: Course }) {
             aria-hidden
           />
 
-          <div className="relative mx-auto flex min-h-[18rem] w-full max-w-[90rem] items-center px-4 py-14 pt-[calc(5.75rem+1.25rem)] sm:min-h-[20rem] sm:px-6 md:min-h-[22rem] lg:min-h-[24rem] lg:px-8">
+          <div className="relative mx-auto flex min-h-[18rem] w-full max-w-[90rem] items-end px-4 pb-12 pt-[calc(5.75rem+3.25rem)] sm:min-h-[20rem] sm:px-6 sm:pb-14 sm:pt-[calc(5.75rem+3.75rem)] md:min-h-[22rem] lg:min-h-[24rem] lg:px-8 lg:pb-16">
             <div className="max-w-[42rem]">
               <nav
                 aria-label={site.ui.breadcrumb}
@@ -128,10 +129,10 @@ export function CourseLanding({ course }: { course: Course }) {
               </p>
               <a
                 href="#formats"
-                className="mt-6 inline-flex h-11 items-center gap-2 rounded-[0.25rem] bg-[#FFD400] px-5 text-[0.9rem] font-bold text-black transition-colors hover:bg-white"
+                className="mt-6 inline-flex h-11 items-center gap-2 rounded-[0.25rem] bg-white px-5 text-[0.9rem] font-bold text-[#002448] transition-colors hover:bg-[#C08430] hover:text-[#001830]"
               >
                 Find out more
-                <span aria-hidden>→</span>
+                <ArrowRightIcon size={16} weight="bold" aria-hidden />
               </a>
             </div>
           </div>
@@ -148,7 +149,7 @@ export function CourseLanding({ course }: { course: Course }) {
             {lowest.replace(/^From\s+/i, "")}. {site.ui.priceIntro}
           </p>
           {course.certificateNote ? (
-            <p className="mt-6 border-l-[3px] border-[#FFD400] pl-4 text-[0.95rem] leading-7 text-[#746C66]">
+            <p className="mt-6 border-l-[3px] border-[#C08430] pl-4 text-[0.95rem] leading-7 text-[#746C66]">
               {course.certificateNote}
             </p>
           ) : null}
@@ -190,29 +191,29 @@ export function CourseLanding({ course }: { course: Course }) {
                 </p>
               </li>
             ))}
-            <li className="flex min-h-[11.5rem] flex-col justify-between rounded-[1.15rem] bg-[#FFD400] px-6 py-7">
+            <li className="flex min-h-[11.5rem] flex-col justify-between rounded-[1.15rem] bg-[#002448] px-6 py-7">
               <div>
-                <h3 className="font-sans text-[1.15rem] font-bold text-black">
+                <h3 className="font-sans text-[1.15rem] font-bold text-white">
                   Ready to get started?
                 </h3>
-                <p className="mt-3 text-[0.95rem] leading-7 text-black/75">
+                <p className="mt-3 text-[0.95rem] leading-7 text-white/75">
                   Choose a format below. Enrollment, video, and payment open on
                   the partner site.
                 </p>
               </div>
               <a
                 href="#formats"
-                className="mt-6 inline-flex items-center gap-2 self-end text-[0.92rem] font-bold text-black"
+                className="mt-6 inline-flex items-center gap-2 self-end text-[0.92rem] font-bold text-white transition-colors hover:text-[#C08430]"
               >
                 Find out more
-                <span aria-hidden>→</span>
+                <ArrowRightIcon size={16} weight="bold" aria-hidden />
               </a>
             </li>
           </ul>
         </div>
       </section>
 
-      <section className="bg-[#EEEEEE]">
+      <section className="bg-[#eef2f6]">
         <div className="mx-auto w-full max-w-[90rem] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
           <div className="flex items-center gap-2.5">
             <SectionMark />
@@ -235,7 +236,7 @@ export function CourseLanding({ course }: { course: Course }) {
                 className="rounded-[1.15rem] bg-white px-6 py-7 shadow-[0_8px_24px_rgba(0,0,0,0.04)]"
               >
                 <span
-                  className="mb-5 block h-1 w-8 rounded-full bg-[#FFD400]"
+                  className="mb-5 block h-1 w-8 rounded-full bg-[#C08430]"
                   aria-hidden
                 />
                 <h3 className="font-sans text-[1.08rem] font-bold leading-snug text-black">
@@ -243,37 +244,35 @@ export function CourseLanding({ course }: { course: Course }) {
                 </h3>
               </li>
             ))}
-            <li className="flex min-h-[11rem] flex-col justify-between rounded-[1.15rem] bg-[#FFD400] px-6 py-7">
-              <p className="text-[1.15rem] font-bold leading-snug text-black">
+            <li className="flex min-h-[11rem] flex-col justify-between rounded-[1.15rem] bg-[#002448] px-6 py-7">
+              <p className="text-[1.15rem] font-bold leading-snug text-white">
                 Compare formats and enroll when you are ready
               </p>
               <a
                 href="#formats"
-                className="mt-8 inline-flex size-11 items-center justify-center rounded-full bg-black text-white transition-colors hover:bg-white hover:text-black"
+                className="mt-8 inline-flex size-11 items-center justify-center rounded-full bg-white text-[#002448] transition-colors hover:bg-[#C08430] hover:text-[#001830]"
                 aria-label="Jump to formats"
               >
-                <span aria-hidden className="text-lg leading-none">
-                  →
-                </span>
+                <ArrowRightIcon size={18} weight="bold" aria-hidden />
               </a>
             </li>
           </ul>
         </div>
       </section>
 
-      <section className="bg-[#FFD400]">
+      <section className="bg-[#002448]">
         <div className="mx-auto grid w-full max-w-[90rem] grid-cols-1 items-center gap-10 px-4 py-14 sm:px-6 md:gap-14 md:py-16 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-16 lg:px-8">
           <div className="max-w-[34rem]">
-            <h2 className="font-sans text-[2.1rem] font-bold tracking-[-0.02em] text-black sm:text-[2.5rem]">
+            <h2 className="font-sans text-[2.1rem] font-bold tracking-[-0.02em] text-white sm:text-[2.5rem]">
               Ready for the next step?
             </h2>
-            <p className="mt-4 text-[1.05rem] leading-7 text-black/75">
+            <p className="mt-4 text-[1.05rem] leading-7 text-white/75">
               Pick the format that fits your schedule. Tuition follows the
               school fee schedule and is confirmed on the partner site.
             </p>
             <a
               href="#formats"
-              className="mt-8 inline-flex h-11 items-center rounded-[0.25rem] bg-black px-5 text-[0.88rem] font-bold text-white transition-colors hover:bg-white hover:text-black"
+              className="mt-8 inline-flex h-11 items-center rounded-[0.25rem] bg-white px-5 text-[0.88rem] font-bold text-[#002448] transition-colors hover:bg-[#C08430] hover:text-[#001830]"
             >
               {site.ui.chooseFormat}
             </a>
@@ -340,7 +339,7 @@ export function CourseLanding({ course }: { course: Course }) {
                   key={item}
                   className="flex gap-3 text-[0.95rem] leading-7 text-[#746C66]"
                 >
-                  <span className="mt-2.5 size-1.5 shrink-0 rounded-full bg-[#FFD400]" />
+                  <span className="mt-2.5 size-1.5 shrink-0 rounded-full bg-[#C08430]" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -373,9 +372,9 @@ export function CourseLanding({ course }: { course: Course }) {
                         {item.benefit}
                       </p>
                     </div>
-                    <div className="flex items-center justify-between bg-[#ef5633] px-5 py-3.5 text-[0.88rem] font-bold text-white transition-colors group-hover:bg-[#d94828]">
+                    <div className="flex items-center justify-between bg-[#002448] px-5 py-3.5 text-[0.88rem] font-bold text-white transition-colors group-hover:bg-[#003054]">
                       <span>{site.ui.viewDetails}</span>
-                      <span aria-hidden>→</span>
+                      <ArrowRightIcon size={16} weight="bold" aria-hidden />
                     </div>
                   </Link>
                 </li>

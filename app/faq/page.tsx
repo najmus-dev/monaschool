@@ -33,7 +33,7 @@ export default function FaqPage() {
               <div className="flex flex-wrap gap-3">
                 <Link
                   href="/florida-real-estate"
-                  className="inline-flex h-11 items-center rounded-[0.3rem] bg-black px-5 text-[0.86rem] font-bold text-white transition-colors hover:bg-[#FFD400] hover:text-black"
+                  className="inline-flex h-11 items-center rounded-[0.3rem] bg-[#002448] px-5 text-[0.86rem] font-bold text-white transition-colors hover:bg-black"
                 >
                   {site.ui.seeCourses}
                 </Link>

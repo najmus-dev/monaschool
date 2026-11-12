@@ -3,7 +3,7 @@ import Link from "next/link";
 function SectionMark() {
   return (
     <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden>
-      <path d="M0 0H12L0 12V0Z" fill="#FFD400" />
+      <path d="M0 0H12L0 12V0Z" fill="#C08430" />
     </svg>
   );
 }

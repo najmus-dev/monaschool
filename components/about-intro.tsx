@@ -5,7 +5,7 @@ import { site } from "@/content/site";
 function SectionMark() {
   return (
     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
-      <path d="M0 0H12L0 12V0Z" fill="#FFD400" />
+      <path d="M0 0H12L0 12V0Z" fill="#C08430" />
     </svg>
   );
 }
@@ -61,7 +61,7 @@ export function AboutIntro() {
           <div className="mt-10">
             <Link
               href="/florida-real-estate"
-              className="inline-flex h-11 items-center rounded-[0.25rem] bg-black px-5 text-[0.88rem] font-bold text-white transition-colors hover:bg-[#FFD400] hover:text-black"
+              className="inline-flex h-11 items-center rounded-[0.25rem] bg-[#002448] px-5 text-[0.88rem] font-bold text-white transition-colors hover:bg-black"
             >
               Explore Florida Real Estate
             </Link>

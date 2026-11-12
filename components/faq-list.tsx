@@ -25,7 +25,7 @@ export function FaqList({ items }: { items: FaqItem[] }) {
             </span>
 
             <span
-              className="relative mt-0.5 inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-black/15 bg-white text-black transition-colors group-open:border-[#FFD400] group-open:bg-[#FFD400]"
+              className="relative mt-0.5 inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-black/15 bg-white text-black transition-colors group-open:border-[#002448] group-open:bg-[#002448] group-open:text-white"
               aria-hidden
             >
               <span className="absolute h-[1.5px] w-3.5 bg-current" />

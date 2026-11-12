@@ -165,7 +165,7 @@ export function ContactForm() {
         <div className="mt-5 flex flex-wrap gap-3">
           <a
             href={mailto}
-            className="inline-flex h-10 items-center gap-2 rounded-full bg-[#FFD400] px-5 text-[0.88rem] font-bold text-black transition-colors hover:bg-black hover:text-white"
+            className="inline-flex h-10 items-center gap-2 rounded-full bg-[#002448] px-5 text-[0.88rem] font-bold text-white transition-colors hover:bg-black"
           >
             {site.ui.openEmail}
             <ArrowSquareOutIcon size={16} weight="bold" aria-hidden />
@@ -383,7 +383,7 @@ export function ContactForm() {
       <div className="pt-2">
         <button
           type="submit"
-          className="inline-flex h-10 items-center rounded-[0.35rem] bg-[#FFD400] px-5 text-[0.9rem] font-bold text-white transition-colors hover:bg-black"
+          className="inline-flex h-10 items-center rounded-[0.35rem] bg-[#002448] px-5 text-[0.9rem] font-bold text-white transition-colors hover:bg-black"
         >
           Submit
         </button>

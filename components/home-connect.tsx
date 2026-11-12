@@ -61,7 +61,7 @@ export function HomeConnect() {
 
   return (
     <section className="bg-[#F8F5F0]">
-      <div className="mx-auto grid w-full max-w-[90rem] grid-cols-1 items-start gap-10 px-4 py-16 sm:px-6 md:gap-12 md:py-20 lg:grid-cols-[minmax(0,0.45fr)_minmax(0,0.55fr)] lg:items-stretch lg:gap-x-16 lg:px-8 lg:py-24 xl:gap-x-20">
+      <div className="mx-auto grid w-full max-w-[90rem] grid-cols-1 items-start gap-10 px-4 py-16 sm:px-6 md:gap-12 md:py-20 lg:grid-cols-[minmax(0,0.48fr)_minmax(0,0.52fr)] lg:items-stretch lg:gap-x-20 lg:px-8 lg:py-24 xl:gap-x-24">
         <div className="relative aspect-[4/5] w-full overflow-hidden rounded-br-[4.5rem] rounded-tr-[4.5rem] sm:aspect-[926/1024] lg:aspect-auto lg:h-full lg:min-h-0">
           <Image
             src="/images/leo-cussen-stay-connected-laptop-website-926x1024.jpg"
@@ -72,7 +72,7 @@ export function HomeConnect() {
           />
         </div>
 
-        <div className="w-full min-w-0 max-w-[34rem] lg:justify-self-end">
+        <div className="w-full min-w-0 max-w-[36rem]">
           <div className="flex items-center gap-2.5">
             <svg
               width="12"
@@ -81,7 +81,7 @@ export function HomeConnect() {
               fill="none"
               aria-hidden
             >
-              <path d="M0 0H12L0 12V0Z" fill="#FFD400" />
+              <path d="M0 0H12L0 12V0Z" fill="#C08430" />
             </svg>
             <p className="text-[0.8rem] font-bold uppercase tracking-[0.12em] text-black">
               Newsletter
@@ -210,7 +210,7 @@ export function HomeConnect() {
 
             <button
               type="submit"
-              className="mt-6 inline-flex h-10 items-center bg-black px-5 text-[0.82rem] font-bold text-white transition-colors hover:bg-[#FFD400] hover:text-black"
+              className="mt-6 inline-flex h-10 items-center bg-[#002448] px-5 text-[0.82rem] font-bold text-white transition-colors hover:bg-black"
             >
               Submit
             </button>

@@ -19,8 +19,8 @@ const pathCards = [
     headline: "Florida licensing for every stage of your career",
     body: "Pre-license, renewals, broker education, and continuing education — with formats you can compare on one page.",
     ctaLabel: "Explore courses",
-    line: "#ffd400",
-    lineTrack: "rgba(255, 212, 0, 0.28)",
+    line: "#C08430",
+    lineTrack: "rgba(192, 132, 48, 0.28)",
   },
   {
     code: "PD",
@@ -30,8 +30,8 @@ const pathCards = [
     headline: "Practical skills that move careers forward",
     body: "AI for business, sales, negotiation, communication, and leadership — livestream and in person.",
     ctaLabel: "View programs",
-    line: "#e23b3b",
-    lineTrack: "rgba(226, 59, 59, 0.22)",
+    line: "#002448",
+    lineTrack: "rgba(0, 36, 72, 0.22)",
   },
   {
     code: "IB",
@@ -41,19 +41,8 @@ const pathCards = [
     headline: "Learn to work and sell across markets",
     body: "Cross-cultural communication, international selling, market entry, and working with global clients.",
     ctaLabel: "Explore IB",
-    line: "#3f78d4",
-    lineTrack: "rgba(63, 120, 212, 0.22)",
-  },
-  {
-    code: "CI",
-    title: site.school.shortName,
-    href: "/about",
-    video: "/videos/5529096-hd_1920_1080_30fps.mp4",
-    headline: "Education for every stage of your career",
-    body: site.home.heroBody,
-    ctaLabel: "About us",
-    line: "#8b7cc8",
-    lineTrack: "rgba(139, 124, 200, 0.28)",
+    line: "#B47824",
+    lineTrack: "rgba(180, 120, 36, 0.24)",
   },
 ] as const;
 
@@ -191,7 +180,7 @@ export function HomeHero() {
             ref={(node) => {
               videoRefs.current[index] = node;
             }}
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+            className={`absolute inset-0 h-full w-full object-cover brightness-[0.88] contrast-[1.08] saturate-[1.05] transition-opacity duration-700 ${
               index === activeCard ? "opacity-100" : "opacity-0"
             }`}
             muted
@@ -205,37 +194,37 @@ export function HomeHero() {
           </video>
         ))}
         <div
-          className="absolute inset-0 bg-[linear-gradient(100deg,#ffd400_0%,#ffd400_22%,rgba(255,212,0,0.72)_38%,rgba(245,245,245,0.78)_58%,rgba(245,245,245,0.35)_78%,transparent_100%)]"
+          className="absolute inset-0 bg-[linear-gradient(105deg,rgba(0,24,48,0.95)_0%,rgba(0,36,72,0.8)_28%,rgba(0,36,72,0.4)_48%,transparent_72%)]"
           aria-hidden
         />
         <div
-          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08)_0%,transparent_24%,rgba(0,0,0,0.18)_100%)]"
+          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.28)_0%,transparent_32%,rgba(0,0,0,0.35)_100%)]"
           aria-hidden
         />
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[92rem] flex-col justify-between px-4 pb-5 pt-[6.5rem] sm:px-6 sm:pb-7 sm:pt-[7rem] lg:px-8 lg:pt-[7.5rem]">
+      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[92rem] flex-col justify-between px-4 pb-5 pt-[9rem] sm:px-6 sm:pb-7 sm:pt-[10rem] lg:px-8 lg:pt-[10.75rem]">
         <div
           ref={copyRef}
-          className="max-w-[46rem] pt-2 sm:pt-6 lg:max-w-[52rem]"
+          className="max-w-[46rem] pt-4 sm:pt-8 lg:max-w-[52rem]"
           data-hero-copy
         >
           <h1
             data-slide-copy
-            className="max-w-[20ch] font-sans text-[1.9rem] font-semibold uppercase leading-[1.08] tracking-[-0.02em] text-black sm:text-[2.45rem] sm:leading-[1.05] md:text-[2.85rem] md:leading-[1.05] lg:text-[3.1rem]"
+            className="max-w-[28ch] font-sans text-[1.55rem] font-semibold uppercase leading-[1.12] tracking-[-0.02em] text-white sm:text-[1.95rem] sm:leading-[1.1] md:text-[2.2rem] md:leading-[1.08] lg:text-[2.35rem]"
           >
             {activeSlide.headline}
           </h1>
           <p
             data-slide-copy
-            className="mt-4 max-w-[48ch] font-sans text-[1rem] font-normal leading-[1.65] text-black sm:max-w-[54ch] sm:text-[1.05rem] sm:leading-[1.7]"
+            className="mt-4 max-w-[48ch] font-sans text-[1rem] font-normal leading-[1.65] text-white/90 sm:max-w-[54ch] sm:text-[1.05rem] sm:leading-[1.7]"
           >
             {activeSlide.body}
           </p>
           <div data-slide-copy className="mt-5">
             <Link
               href={activeSlide.href}
-              className="inline-flex h-[2.4rem] items-center rounded-[0.35rem] bg-black px-4 text-[0.88rem] font-semibold text-white transition-colors hover:bg-[#ffd400] hover:text-black"
+              className="inline-flex h-[2.4rem] items-center rounded-[0.35rem] bg-white px-4 text-[0.88rem] font-semibold text-[#001830] transition-colors hover:bg-[#C08430]"
             >
               {activeSlide.ctaLabel}
             </Link>
@@ -243,28 +232,28 @@ export function HomeHero() {
         </div>
 
         <ul
-          className="mt-14 grid grid-cols-1 gap-2.5 sm:grid-cols-2 xl:grid-cols-4 xl:gap-3"
+          className="mt-14 grid w-full grid-cols-1 gap-3 sm:mt-16 sm:grid-cols-3 sm:gap-3.5 lg:mt-[4.5rem] lg:gap-4"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
           {pathCards.map((card, index) => {
             const active = activeCard === index;
             return (
-              <li key={card.code} data-hero-card>
+              <li key={card.code} data-hero-card className="min-w-0">
                 <button
                   type="button"
                   onClick={() => goToCard(index)}
                   aria-pressed={active}
-                  className={`relative flex min-h-[6.75rem] w-full flex-col justify-between overflow-hidden rounded-xl px-5 py-4 text-left transition-all duration-300 ${
+                  className={`relative flex w-full flex-col overflow-hidden rounded-2xl px-5 pb-4 pt-3.5 text-left transition-all duration-300 sm:px-5 sm:pb-4 sm:pt-3.5 ${
                     active
                       ? "bg-[#f7f7f7] shadow-[0_12px_28px_rgba(0,0,0,0.12)]"
-                      : "bg-white/55 backdrop-blur-md hover:bg-white"
+                      : "bg-white/60 backdrop-blur-md hover:bg-white"
                   }`}
                 >
-                  <p className="text-[0.78rem] font-bold uppercase tracking-[0.08em] text-black">
+                  <p className="text-[0.75rem] font-bold uppercase tracking-[0.1em] text-black/70">
                     {card.code}
                   </p>
-                  <p className="max-w-[14ch] text-[1.05rem] font-medium leading-snug text-black">
+                  <p className="mt-5 whitespace-nowrap text-[0.98rem] font-semibold leading-none text-black sm:mt-6 sm:text-[1.05rem] lg:text-[1.1rem]">
                     {card.title}
                   </p>
 

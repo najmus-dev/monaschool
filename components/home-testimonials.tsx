@@ -7,7 +7,7 @@ import { site } from "@/content/site";
 function SectionMark() {
   return (
     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
-      <path d="M0 0H12L0 12V0Z" fill="#FFD400" />
+      <path d="M0 0H12L0 12V0Z" fill="#C08430" />
     </svg>
   );
 }
@@ -16,10 +16,10 @@ function QuoteMarks() {
   return (
     <div className="flex items-start gap-[2px]" aria-hidden>
       <svg width="16" height="16" viewBox="0 0 12 12" fill="none">
-        <path d="M0 0H12L0 12V0Z" fill="#FFD400" />
+        <path d="M0 0H12L0 12V0Z" fill="#C08430" />
       </svg>
       <svg width="16" height="16" viewBox="0 0 12 12" fill="none">
-        <path d="M0 0H12L0 12V0Z" fill="#FFD400" />
+        <path d="M0 0H12L0 12V0Z" fill="#C08430" />
       </svg>
     </div>
   );

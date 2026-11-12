@@ -3,7 +3,7 @@ import { Container } from "./container";
 export function PageHeader({
   title,
   lede,
-  eyebrow = "Cherkaoui Institute",
+  eyebrow = "REIB Institute",
 }: {
   title: string;
   lede: string;

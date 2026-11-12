@@ -32,7 +32,7 @@ const columns = [
 
 export function SiteFooter() {
   return (
-    <footer className="relative mt-auto bg-[#1a1a1a]">
+    <footer className="relative mt-auto bg-[#001830]">
       <div className="relative mx-auto max-w-[92rem] px-3 pb-3 sm:px-4 lg:px-5">
         <div className="rounded-t-[1.75rem] bg-white px-6 pb-10 pt-12 sm:px-10 sm:pt-14 md:px-14">
           <Container className="!px-0">
@@ -44,12 +44,11 @@ export function SiteFooter() {
                   aria-label={`${site.school.name}, home`}
                 >
                   <Image
-                    src={site.school.logoSrc}
+                    src="/institute-logos/REIB_Institute_Full_Logo.jpg"
                     alt={site.school.logoAlt}
                     width={360}
-                    height={96}
-                    unoptimized
-                    className="h-10 w-auto"
+                    height={140}
+                    className="h-14 w-auto"
                   />
                 </Link>
                 <p className="mt-5 max-w-[28ch] text-sm leading-6 text-black/65">
