@@ -13,6 +13,12 @@ const category = getLearningCategory("professional-development");
 export const metadata: Metadata = {
   title: category?.pageTitle ?? "Professional Development",
   description: category?.pageLede,
+  alternates: { canonical: "/professional-development" },
+  openGraph: {
+    title: category?.pageTitle ?? "Professional Development",
+    description: category?.pageLede,
+    url: "/professional-development",
+  },
 };
 
 export default function ProfessionalDevelopmentPage() {

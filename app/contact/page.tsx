@@ -9,6 +9,12 @@ import { site } from "@/content/site";
 export const metadata: Metadata = {
   title: site.contact.title,
   description: site.contact.lede,
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: site.contact.title,
+    description: site.contact.lede,
+    url: "/contact",
+  },
 };
 
 function SectionMark() {

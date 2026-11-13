@@ -1,7 +1,14 @@
+"use client";
+
+import { useRef } from "react";
 import type { FaqItem } from "@/content/site";
 import { site } from "@/content/site";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 export function FaqList({ items }: { items: FaqItem[] }) {
+  const rootRef = useRef<HTMLDivElement>(null);
+  useScrollReveal(rootRef, { y: 16, stagger: 0.05 });
+
   if (items.length === 0) {
     return (
       <p className="mt-8 text-base text-[#746C66]">{site.ui.emptyFaq}</p>
@@ -9,10 +16,11 @@ export function FaqList({ items }: { items: FaqItem[] }) {
   }
 
   return (
-    <div>
+    <div ref={rootRef}>
       {items.map((item, index) => (
         <details
           key={item.question}
+          data-reveal
           className="group border-b border-black/10 first:border-t first:border-black/10"
         >
           <summary className="flex cursor-pointer list-none items-start gap-4 py-6 text-left outline-none transition-colors marker:content-none sm:gap-6 sm:py-7 [&::-webkit-details-marker]:hidden">

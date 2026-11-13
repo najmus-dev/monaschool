@@ -1,8 +1,13 @@
 "use client";
 
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { site } from "@/content/site";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 function SectionMark() {
   return (
@@ -28,10 +33,57 @@ function QuoteMarks() {
 const reviews = site.reviews.items;
 
 export function HomeTestimonials() {
+  const rootRef = useRef<HTMLElement>(null);
   const scrollerRef = useRef<HTMLUListElement>(null);
   const [index, setIndex] = useState(0);
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(true);
+
+  useGSAP(
+    () => {
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced) return;
+
+      const heading = gsap.utils.toArray<HTMLElement>(
+        "[data-testimonial-heading]",
+        rootRef.current,
+      );
+      const cards = gsap.utils.toArray<HTMLElement>(
+        "[data-testimonial-card]",
+        rootRef.current,
+      );
+
+      gsap.set(heading, { autoAlpha: 0, y: 24 });
+      gsap.set(cards, { autoAlpha: 0, y: 36 });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: rootRef.current,
+          start: "top 78%",
+          once: true,
+        },
+      });
+
+      tl.to(heading, {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.55,
+        stagger: 0.08,
+        ease: "power2.out",
+      }).to(
+        cards,
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.55,
+          stagger: 0.08,
+          ease: "power2.out",
+        },
+        "-=0.2",
+      );
+    },
+    { scope: rootRef },
+  );
 
   function syncFromScroll() {
     const el = scrollerRef.current;
@@ -69,9 +121,12 @@ export function HomeTestimonials() {
   const progress = ((index + 1) / reviews.length) * 100;
 
   return (
-    <section className="overflow-hidden bg-[#F8F5F0]">
+    <section ref={rootRef} className="overflow-hidden bg-[#F8F5F0]">
       <div className="mx-auto w-full max-w-[90rem] px-4 py-16 sm:px-6 md:py-20 lg:px-8 lg:py-24">
-        <div className="flex items-center justify-between gap-6">
+        <div
+          data-testimonial-heading
+          className="flex items-center justify-between gap-6"
+        >
           <div className="flex items-center gap-2.5">
             <SectionMark />
             <p className="text-[0.8rem] font-bold uppercase tracking-[0.12em] text-black">
@@ -98,7 +153,7 @@ export function HomeTestimonials() {
                 onClick={() => scrollByDir(-1)}
                 disabled={!canPrev}
                 aria-label="Previous testimonial"
-                className="flex items-center justify-center text-black transition-colors disabled:text-[#b0aaa0]"
+                className="inline-flex size-11 items-center justify-center rounded-full text-black transition-colors disabled:text-[#b0aaa0]"
               >
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden>
                   <path
@@ -115,7 +170,7 @@ export function HomeTestimonials() {
                 onClick={() => scrollByDir(1)}
                 disabled={!canNext}
                 aria-label="Next testimonial"
-                className="flex items-center justify-center text-black transition-colors disabled:text-[#b0aaa0]"
+                className="inline-flex size-11 items-center justify-center rounded-full text-black transition-colors disabled:text-[#b0aaa0]"
               >
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden>
                   <path

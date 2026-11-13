@@ -13,6 +13,12 @@ const category = getLearningCategory("florida-real-estate");
 export const metadata: Metadata = {
   title: category?.pageTitle ?? "Florida Real Estate",
   description: category?.pageLede,
+  alternates: { canonical: "/florida-real-estate" },
+  openGraph: {
+    title: category?.pageTitle ?? "Florida Real Estate",
+    description: category?.pageLede,
+    url: "/florida-real-estate",
+  },
 };
 
 export default function FloridaRealEstatePage() {

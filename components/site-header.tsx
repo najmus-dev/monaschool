@@ -1,15 +1,21 @@
 "use client";
 
+import { useGSAP } from "@gsap/react";
 import {
+  ArrowRightIcon,
   CaretRightIcon,
   EnvelopeSimpleIcon,
   StudentIcon,
 } from "@phosphor-icons/react/ssr";
+import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useId, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { site } from "@/content/site";
+import { MobileNavPanel } from "./mobile-nav-panel";
+
+gsap.registerPlugin(useGSAP);
 
 type MenuKey =
   | "florida-real-estate"
@@ -245,6 +251,8 @@ function menuKeyFromPath(pathname: string): MenuKey {
 export function SiteHeader() {
   const pathname = usePathname();
   const panelId = useId();
+  const panelRef = useRef<HTMLDivElement>(null);
+  const menuWasOpenRef = useRef(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<MenuKey>(() =>
     menuKeyFromPath(pathname),
@@ -274,15 +282,97 @@ export function SiteHeader() {
     };
   }, [menuOpen]);
 
+  useGSAP(
+    () => {
+      if (!menuOpen || !panelRef.current) return;
+      // Desktop megamenu only — mobile uses MobileNavPanel.
+      if (!window.matchMedia("(min-width: 1024px)").matches) return;
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced) return;
+
+      const asideItems = gsap.utils.toArray<HTMLElement>(
+        "[data-menu-aside] li",
+        panelRef.current,
+      );
+      const content = panelRef.current.querySelector("[data-menu-content]");
+
+      gsap.fromTo(
+        panelRef.current,
+        { autoAlpha: 0, y: -18 },
+        { autoAlpha: 1, y: 0, duration: 0.4, ease: "power2.out" },
+      );
+      gsap.fromTo(
+        asideItems,
+        { autoAlpha: 0, x: -14 },
+        {
+          autoAlpha: 1,
+          x: 0,
+          duration: 0.35,
+          stagger: 0.045,
+          ease: "power2.out",
+          delay: 0.08,
+        },
+      );
+      if (content) {
+        gsap.fromTo(
+          content,
+          { autoAlpha: 0, y: 16 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.4,
+            ease: "power2.out",
+            delay: 0.12,
+          },
+        );
+      }
+    },
+    { dependencies: [menuOpen] },
+  );
+
+  useGSAP(
+    () => {
+      if (!menuOpen || !panelRef.current) {
+        menuWasOpenRef.current = false;
+        return;
+      }
+      if (!window.matchMedia("(min-width: 1024px)").matches) return;
+      // Skip content crossfade on the same open that runs the panel intro.
+      if (!menuWasOpenRef.current) {
+        menuWasOpenRef.current = true;
+        return;
+      }
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced) return;
+
+      const content = panelRef.current.querySelector("[data-menu-content]");
+      if (!content) return;
+
+      gsap.fromTo(
+        content,
+        { autoAlpha: 0.35, y: 10 },
+        { autoAlpha: 1, y: 0, duration: 0.32, ease: "power2.out" },
+      );
+    },
+    { dependencies: [activeMenu, menuOpen] },
+  );
+
   return (
     <header className="pointer-events-none fixed inset-x-0 top-0 z-50">
       <div className="pointer-events-auto mx-auto w-full max-w-[92rem] px-3 pt-3 sm:px-4 sm:pt-4 lg:px-5">
-        <div className="relative flex h-[5.25rem] items-center justify-between gap-3 rounded-t-[1.75rem] rounded-b-none bg-white/90 px-4 shadow-[0_10px_30px_rgba(0,0,0,0.12)] backdrop-blur-2xl sm:h-[5.75rem] sm:px-6">
+        <div
+          className={`relative flex h-[5.25rem] items-center justify-between gap-3 px-4 shadow-[0_10px_30px_rgba(0,0,0,0.14)] backdrop-blur-2xl sm:h-[5.75rem] sm:px-6 ${
+            menuOpen
+              ? "rounded-t-[1.5rem] rounded-b-none bg-white lg:rounded-t-[1.75rem]"
+              : "rounded-[1.5rem] bg-white lg:rounded-t-[1.75rem] lg:rounded-b-none lg:bg-white/90"
+          }`}
+        >
+          {/* Desktop: Menu left */}
           <button
             type="button"
-            className="inline-flex h-11 shrink-0 items-center gap-3 bg-transparent px-0 text-[1rem] font-medium text-black"
+            className="hidden h-11 shrink-0 items-center gap-3 bg-transparent px-0 text-[1rem] font-medium text-black lg:inline-flex"
             aria-expanded={menuOpen}
-            aria-controls={panelId}
+            aria-controls={`${panelId}-desktop`}
             onClick={() => setMenuOpen((value) => !value)}
           >
             <span className="relative block h-3.5 w-5" aria-hidden>
@@ -300,9 +390,10 @@ export function SiteHeader() {
             <span>{menuOpen ? "Close" : "Menu"}</span>
           </button>
 
+          {/* Mobile: logo left · Desktop: logo centered */}
           <Link
             href="/"
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+            className="relative z-10 shrink-0 lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2"
             aria-label={`${site.school.name}, home`}
           >
             <Image
@@ -312,11 +403,11 @@ export function SiteHeader() {
               height={203}
               priority
               unoptimized
-              className="h-14 w-auto max-w-[min(48vw,10.5rem)] object-contain object-center sm:h-[3.85rem] sm:max-w-[12.5rem] md:h-16 md:max-w-[14rem]"
+              className="h-12 w-auto max-w-[min(52vw,11rem)] object-contain object-left sm:h-[3.85rem] sm:max-w-[12.5rem] md:h-16 md:max-w-[14rem] lg:object-center"
             />
           </Link>
 
-          <div className="flex items-center gap-1 sm:gap-2">
+          <div className="flex items-center gap-0.5 sm:gap-2">
             <a
               href={site.ui.studentLoginHref}
               target="_blank"
@@ -329,21 +420,54 @@ export function SiteHeader() {
             <Link
               href="/contact"
               aria-label="Contact"
-              className="inline-flex h-10 items-center gap-2 rounded-full bg-[#002448] px-4 text-[0.9rem] font-medium text-white transition-colors hover:bg-black sm:px-5"
+              className="hidden h-10 items-center gap-2 rounded-full bg-[#002448] px-4 text-[0.9rem] font-medium text-white transition-colors hover:bg-black lg:inline-flex lg:px-5"
             >
               <EnvelopeSimpleIcon size={17} weight="bold" aria-hidden />
-              <span className="hidden sm:inline">Contact</span>
+              <span>Contact</span>
             </Link>
+            {/* Mobile: menu/close icon on the right */}
+            <button
+              type="button"
+              className="inline-flex size-10 items-center justify-center rounded-full text-black lg:hidden"
+              aria-expanded={menuOpen}
+              aria-controls={panelId}
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              onClick={() => setMenuOpen((value) => !value)}
+            >
+              <span className="relative block h-3.5 w-5" aria-hidden>
+                <span
+                  className={`absolute left-0 top-0 block h-[2px] w-5 origin-center bg-black transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    menuOpen ? "translate-y-[6px] rotate-45" : ""
+                  }`}
+                />
+                <span
+                  className={`absolute left-0 top-[6px] block h-[2px] w-3.5 origin-center bg-black transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    menuOpen ? "w-5 -translate-y-[6px] -rotate-45" : ""
+                  }`}
+                />
+              </span>
+            </button>
           </div>
         </div>
 
+        <MobileNavPanel
+          open={menuOpen}
+          panelId={panelId}
+          sections={menuSections}
+          onClose={() => setMenuOpen(false)}
+        />
+
         {menuOpen ? (
           <div
-            id={panelId}
-            className="mt-3 max-h-[min(82vh,42rem)] overflow-y-auto rounded-[1.75rem] bg-[#f3efe6] shadow-[0_28px_60px_rgba(0,0,0,0.18)] lg:overflow-hidden"
+            ref={panelRef}
+            id={`${panelId}-desktop`}
+            className="mt-3 hidden max-h-[min(82vh,42rem)] overflow-y-auto rounded-[1.75rem] bg-[#f3efe6] shadow-[0_28px_60px_rgba(0,0,0,0.18)] lg:block lg:overflow-hidden"
           >
             <div className="grid grid-cols-1 lg:h-full lg:max-h-[min(82vh,42rem)] lg:grid-cols-[17.5rem_minmax(0,1fr)] lg:items-stretch">
-              <aside className="shrink-0 border-b border-black/8 p-3 sm:p-4 lg:border-b-0 lg:overflow-y-auto lg:py-5 lg:pl-5 lg:pr-2">
+              <aside
+                data-menu-aside
+                className="shrink-0 border-b border-black/8 p-3 sm:p-4 lg:border-b-0 lg:overflow-y-auto lg:py-5 lg:pl-5 lg:pr-2"
+              >
                 <ul className="grid gap-1 sm:gap-1.5">
                   {menuSections.map((section) => {
                     const active =
@@ -406,7 +530,10 @@ export function SiteHeader() {
               </aside>
 
               <div className="flex min-h-0 min-w-0 flex-col p-2 sm:p-3 lg:h-full lg:min-h-0 lg:pl-2">
-                <div className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-[1.25rem] bg-white shadow-[0_1px_0_rgba(0,0,0,0.04)] sm:rounded-[1.35rem] lg:h-full">
+                <div
+                  data-menu-content
+                  className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-[1.25rem] bg-white shadow-[0_1px_0_rgba(0,0,0,0.04)] sm:rounded-[1.35rem] lg:h-full"
+                >
                   <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-4 sm:p-6 md:p-8 lg:max-h-none">
                     <h2 className="font-sans text-[1.45rem] font-bold tracking-tight text-black sm:text-[1.85rem] md:text-[2.15rem]">
                       {activeSection.label}
@@ -484,7 +611,7 @@ export function SiteHeader() {
                       onClick={() => setMenuOpen(false)}
                     >
                       {activeSection.cta.label}
-                      <span aria-hidden>→</span>
+                      <ArrowRightIcon size={16} weight="bold" aria-hidden />
                     </Link>
                   </div>
                 </div>

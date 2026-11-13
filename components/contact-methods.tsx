@@ -1,9 +1,13 @@
+"use client";
+
 import {
   EnvelopeSimpleIcon,
   MapPinIcon,
   PhoneIcon,
 } from "@phosphor-icons/react/ssr";
+import { useRef } from "react";
 import { site } from "@/content/site";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const cards = [
   {
@@ -36,16 +40,22 @@ const cards = [
 ] as const;
 
 export function ContactMethods() {
+  const rootRef = useRef<HTMLElement>(null);
+  useScrollReveal(rootRef, { stagger: 0.1 });
+
   return (
-    <section className="bg-[#F8F5F0]">
+    <section ref={rootRef} className="bg-[#F8F5F0]">
       <div className="mx-auto w-full max-w-[90rem] px-4 py-16 sm:px-6 md:py-20 lg:px-8 lg:py-24">
-        <h2 className="font-sans text-[2.15rem] font-bold tracking-[-0.02em] text-black sm:text-[2.5rem]">
+        <h2
+          data-reveal
+          className="font-sans text-[2.15rem] font-bold tracking-[-0.02em] text-black sm:text-[2.5rem]"
+        >
           {site.contact.reachTitle}
         </h2>
 
         <ul className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {cards.map(({ key, eyebrow, title, href, value, Icon, tone }) => (
-            <li key={key}>
+            <li key={key} data-reveal>
               <a
                 href={href}
                 className="relative flex h-full min-h-[11.5rem] flex-col overflow-hidden rounded-[1.15rem] bg-white px-6 pb-6 pt-6 shadow-[0_10px_28px_rgba(0,0,0,0.06)] transition-shadow hover:shadow-[0_14px_34px_rgba(0,0,0,0.09)]"
@@ -70,7 +80,10 @@ export function ContactMethods() {
           ))}
         </ul>
 
-        <p className="mt-8 max-w-[42rem] text-[0.88rem] leading-6 text-[#746C66]">
+        <p
+          data-reveal
+          className="mt-8 max-w-[42rem] text-[0.88rem] leading-6 text-[#746C66]"
+        >
           {site.contact.accessBody}
         </p>
       </div>

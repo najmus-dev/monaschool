@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
+import { useRef } from "react";
 import { site } from "@/content/site";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 function SectionMark() {
   return (
@@ -11,9 +15,11 @@ function SectionMark() {
 
 export function AboutHero() {
   const copy = site.about;
+  const rootRef = useRef<HTMLElement>(null);
+  useScrollReveal(rootRef, { start: "top 90%", y: 20, stagger: 0.1 });
 
   return (
-    <section className="relative isolate overflow-hidden">
+    <section ref={rootRef} className="relative isolate overflow-hidden">
       <div className="relative min-h-[18rem] sm:min-h-[20rem] md:min-h-[22rem] lg:min-h-[24rem]">
         <Image
           src={copy.heroImage}
@@ -30,18 +36,24 @@ export function AboutHero() {
 
         <div className="relative mx-auto flex min-h-[18rem] w-full max-w-[90rem] items-end px-4 pb-12 pt-[calc(5.75rem+3.25rem)] sm:min-h-[20rem] sm:px-6 sm:pb-14 sm:pt-[calc(5.75rem+3.75rem)] md:min-h-[22rem] lg:min-h-[24rem] lg:px-8 lg:pb-16">
           <div className="max-w-[40rem]">
-            <div className="flex items-center gap-2.5">
+            <div data-reveal className="flex items-center gap-2.5">
               <SectionMark />
               <p className="text-[0.78rem] font-bold uppercase tracking-[0.14em] text-white">
                 About us
               </p>
             </div>
 
-            <h1 className="mt-5 max-w-[16ch] font-sans text-[2rem] font-bold uppercase leading-[1.05] tracking-[-0.025em] text-white sm:text-[2.55rem] md:text-[3rem]">
+            <h1
+              data-reveal
+              className="mt-5 max-w-[16ch] font-sans text-[2rem] font-bold uppercase leading-[1.05] tracking-[-0.025em] text-white sm:text-[2.55rem] md:text-[3rem]"
+            >
               {copy.heroTitle}
             </h1>
 
-            <p className="mt-4 max-w-[34rem] text-[0.98rem] leading-7 text-white/88 sm:text-[1.05rem] sm:leading-7">
+            <p
+              data-reveal
+              className="mt-4 max-w-[34rem] text-[0.98rem] leading-7 text-white/88 sm:text-[1.05rem] sm:leading-7"
+            >
               {copy.lede}
             </p>
           </div>

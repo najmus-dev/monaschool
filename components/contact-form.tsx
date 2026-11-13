@@ -360,7 +360,7 @@ export function ContactForm() {
             type="checkbox"
             checked={agreed}
             onChange={(event) => setAgreed(event.target.checked)}
-            className="mt-1 size-4 shrink-0 rounded-[2px] border border-[#d6d0c6] accent-[#222222]"
+            className="mt-0.5 size-5 shrink-0 rounded-[2px] border border-[#d6d0c6] accent-[#222222]"
           />
           <span>I understand this form prepares an email draft to the school.</span>
         </label>
@@ -383,7 +383,7 @@ export function ContactForm() {
       <div className="pt-2">
         <button
           type="submit"
-          className="inline-flex h-10 items-center rounded-[0.35rem] bg-[#002448] px-5 text-[0.9rem] font-bold text-white transition-colors hover:bg-black"
+          className="inline-flex h-11 items-center rounded-[0.35rem] bg-[#002448] px-5 text-[0.9rem] font-bold text-white transition-colors hover:bg-black"
         >
           Submit
         </button>

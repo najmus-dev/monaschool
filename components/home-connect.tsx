@@ -1,8 +1,13 @@
 "use client";
 
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { site } from "@/content/site";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const signupOptions = [
   { value: "all", label: "All updates" },
@@ -20,6 +25,7 @@ const labelClass =
   "mb-1.5 block text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[#6b6358]";
 
 export function HomeConnect() {
+  const rootRef = useRef<HTMLElement>(null);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -27,6 +33,52 @@ export function HomeConnect() {
   const [error, setError] = useState("");
   const [draftReady, setDraftReady] = useState(false);
   const [mailto, setMailto] = useState("");
+
+  useGSAP(
+    () => {
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced) return;
+
+      const media = rootRef.current?.querySelector("[data-connect-media]");
+      const copy = gsap.utils.toArray<HTMLElement>(
+        "[data-connect-copy]",
+        rootRef.current,
+      );
+
+      if (media) gsap.set(media, { autoAlpha: 0, x: -36 });
+      gsap.set(copy, { autoAlpha: 0, y: 28 });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: rootRef.current,
+          start: "top 78%",
+          once: true,
+        },
+      });
+
+      if (media) {
+        tl.to(media, {
+          autoAlpha: 1,
+          x: 0,
+          duration: 0.7,
+          ease: "power2.out",
+        });
+      }
+
+      tl.to(
+        copy,
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.55,
+          stagger: 0.08,
+          ease: "power2.out",
+        },
+        media ? "-=0.35" : 0,
+      );
+    },
+    { scope: rootRef },
+  );
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -60,9 +112,13 @@ export function HomeConnect() {
   }
 
   return (
-    <section className="bg-[#F8F5F0]">
+    <section ref={rootRef} className="bg-[#F8F5F0]">
       <div className="mx-auto grid w-full max-w-[90rem] grid-cols-1 items-start gap-10 px-4 py-16 sm:px-6 md:gap-12 md:py-20 lg:grid-cols-[minmax(0,0.48fr)_minmax(0,0.52fr)] lg:items-stretch lg:gap-x-20 lg:px-8 lg:py-24 xl:gap-x-24">
-        <div className="relative aspect-[4/5] w-full overflow-hidden rounded-br-[4.5rem] rounded-tr-[4.5rem] sm:aspect-[926/1024] lg:aspect-auto lg:h-full lg:min-h-0">
+        {/* Photo is desktop-only — on mobile it crowds the form and isn’t needed. */}
+        <div
+          data-connect-media
+          className="relative hidden aspect-[4/5] w-full overflow-hidden rounded-br-[4.5rem] rounded-tr-[4.5rem] lg:block lg:aspect-auto lg:h-full lg:min-h-0"
+        >
           <Image
             src="/images/leo-cussen-stay-connected-laptop-website-926x1024.jpg"
             alt="Learner reviewing the school website on a laptop"
@@ -72,8 +128,8 @@ export function HomeConnect() {
           />
         </div>
 
-        <div className="w-full min-w-0 max-w-[36rem]">
-          <div className="flex items-center gap-2.5">
+        <div className="w-full min-w-0 max-w-[36rem] lg:max-w-none">
+          <div data-connect-copy className="flex items-center gap-2.5">
             <svg
               width="12"
               height="12"
@@ -88,11 +144,17 @@ export function HomeConnect() {
             </p>
           </div>
 
-          <h2 className="mt-5 font-sans text-[2.35rem] font-bold leading-[1.08] tracking-[-0.02em] text-black sm:text-[2.75rem] md:text-[3rem]">
+          <h2
+            data-connect-copy
+            className="mt-5 font-sans text-[2.35rem] font-bold leading-[1.08] tracking-[-0.02em] text-black sm:text-[2.75rem] md:text-[3rem]"
+          >
             Stay connected
           </h2>
 
-          <p className="mt-5 text-[1.05rem] leading-[1.65] text-black/75 sm:text-[1.125rem] sm:leading-[1.7]">
+          <p
+            data-connect-copy
+            className="mt-5 text-[1.05rem] leading-[1.65] text-black/75 sm:text-[1.125rem] sm:leading-[1.7]"
+          >
             Be first to hear about upcoming courses, industry insights, new
             programs and opportunities to support your real estate and business
             career at every stage.
@@ -100,7 +162,12 @@ export function HomeConnect() {
 
           <div className="mt-8 border-t border-black/10" aria-hidden />
 
-          <form className="mt-8 w-full" onSubmit={onSubmit} noValidate>
+          <form
+            data-connect-copy
+            className="mt-8 w-full"
+            onSubmit={onSubmit}
+            noValidate
+          >
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
               <div>
                 <label htmlFor="connect-first-name" className={labelClass}>
@@ -210,7 +277,7 @@ export function HomeConnect() {
 
             <button
               type="submit"
-              className="mt-6 inline-flex h-10 items-center bg-[#002448] px-5 text-[0.82rem] font-bold text-white transition-colors hover:bg-black"
+              className="mt-6 inline-flex h-11 items-center bg-[#002448] px-5 text-[0.88rem] font-bold text-white transition-colors hover:bg-black"
             >
               Submit
             </button>

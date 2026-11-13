@@ -8,6 +8,12 @@ import { site } from "@/content/site";
 export const metadata: Metadata = {
   title: site.faq.title,
   description: site.faq.lede,
+  alternates: { canonical: "/faq" },
+  openGraph: {
+    title: site.faq.title,
+    description: site.faq.lede,
+    url: "/faq",
+  },
 };
 
 export default function FaqPage() {

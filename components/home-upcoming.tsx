@@ -1,17 +1,24 @@
+"use client";
+
 import Link from "next/link";
+import { useRef } from "react";
 import { site } from "@/content/site";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { Container } from "./container";
 
 export function HomeUpcoming() {
   const sessions = site.upcomingSessions;
+  const rootRef = useRef<HTMLElement>(null);
+  useScrollReveal(rootRef);
+
   if (sessions.length === 0) {
     return null;
   }
 
   return (
-    <section className="border-t border-line bg-paper">
+    <section ref={rootRef} className="border-t border-line bg-paper">
       <Container className="py-16 md:py-20">
-        <div className="max-w-2xl">
+        <div data-reveal className="max-w-2xl">
           <p className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-accent">
             {site.home.upcomingEyebrow}
           </p>
@@ -24,6 +31,7 @@ export function HomeUpcoming() {
           {sessions.map((session) => (
             <li
               key={session.id}
+              data-reveal
               className="flex flex-col gap-3 py-5 sm:flex-row sm:items-center sm:justify-between"
             >
               <div>
@@ -35,7 +43,7 @@ export function HomeUpcoming() {
               </div>
               <Link
                 href={`/courses/${session.courseSlug}`}
-                className="inline-flex h-10 items-center justify-center rounded-md bg-accent px-4 text-sm font-semibold text-accent-ink"
+                className="inline-flex h-11 items-center justify-center rounded-md bg-accent px-4 text-sm font-semibold text-accent-ink"
               >
                 {site.ui.viewCourse}
               </Link>

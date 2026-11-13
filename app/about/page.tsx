@@ -9,6 +9,13 @@ import { site } from "@/content/site";
 export const metadata: Metadata = {
   title: site.about.title,
   description: site.about.lede,
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: site.about.title,
+    description: site.about.lede,
+    url: "/about",
+    images: [{ url: site.about.heroImage, alt: site.about.heroImageAlt }],
+  },
 };
 
 export default function AboutPage() {

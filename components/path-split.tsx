@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useRef } from "react";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 type PathSplitItem = {
   title: string;
@@ -11,11 +15,15 @@ type PathSplitItem = {
 };
 
 export function PathSplit({ items }: { items: PathSplitItem[] }) {
+  const rootRef = useRef<HTMLElement>(null);
+  useScrollReveal(rootRef, { stagger: 0.12, y: 24 });
+
   return (
-    <section className="grid grid-cols-1 lg:grid-cols-2">
+    <section ref={rootRef} className="grid grid-cols-1 lg:grid-cols-2">
       {items.map((item) => (
         <article
           key={item.title}
+          data-reveal
           className="relative isolate min-h-[22rem] overflow-hidden sm:min-h-[26rem]"
         >
           <Image

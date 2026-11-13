@@ -22,6 +22,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: course.title,
     description: course.benefit,
+    alternates: { canonical: `/courses/${course.slug}` },
+    openGraph: {
+      title: course.title,
+      description: course.benefit,
+      url: `/courses/${course.slug}`,
+    },
   };
 }
 

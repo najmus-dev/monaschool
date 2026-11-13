@@ -1,6 +1,9 @@
+"use client";
+
 import { ArrowRightIcon } from "@phosphor-icons/react/ssr";
 import Image from "next/image";
 import Link from "next/link";
+import { useRef } from "react";
 import type { Course } from "@/content/site";
 import {
   coursePriceLabel,
@@ -8,6 +11,7 @@ import {
   getLearningCategory,
   site,
 } from "@/content/site";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { CourseFormatCards } from "./course-format-cards";
 import { HomeQuestions } from "./home-questions";
 
@@ -34,6 +38,9 @@ function heroForSlug(slug: string) {
 }
 
 export function CourseLanding({ course }: { course: Course }) {
+  const rootRef = useRef<HTMLDivElement>(null);
+  useScrollReveal(rootRef);
+
   const category = getLearningCategory(course.categoryIds[0] ?? "");
   const categoryHref = category ? `/${category.slug}` : "/florida-real-estate";
   const heroImage = heroForSlug(course.slug);
@@ -75,8 +82,8 @@ export function CourseLanding({ course }: { course: Course }) {
     .slice(0, 3);
 
   return (
-    <>
-      <section className="relative isolate overflow-hidden">
+    <div ref={rootRef}>
+      <section data-reveal-section className="relative isolate overflow-hidden">
         <div className="relative min-h-[18rem] sm:min-h-[20rem] md:min-h-[22rem] lg:min-h-[24rem]">
           <Image
             src={heroImage}
@@ -94,6 +101,7 @@ export function CourseLanding({ course }: { course: Course }) {
           <div className="relative mx-auto flex min-h-[18rem] w-full max-w-[90rem] items-end px-4 pb-12 pt-[calc(5.75rem+3.25rem)] sm:min-h-[20rem] sm:px-6 sm:pb-14 sm:pt-[calc(5.75rem+3.75rem)] md:min-h-[22rem] lg:min-h-[24rem] lg:px-8 lg:pb-16">
             <div className="max-w-[42rem]">
               <nav
+                data-reveal
                 aria-label={site.ui.breadcrumb}
                 className="text-[0.78rem] text-white/75"
               >
@@ -114,20 +122,27 @@ export function CourseLanding({ course }: { course: Course }) {
                 </ol>
               </nav>
 
-              <div className="mt-5 flex items-center gap-2.5">
+              <div data-reveal className="mt-5 flex items-center gap-2.5">
                 <SectionMark />
                 <p className="text-[0.78rem] font-bold uppercase tracking-[0.14em] text-white">
                   {category?.label ?? "Course"}
                 </p>
               </div>
 
-              <h1 className="mt-4 font-sans text-[2rem] font-bold uppercase leading-[1.05] tracking-[-0.025em] text-white sm:text-[2.55rem] md:text-[3rem]">
+              <h1
+                data-reveal
+                className="mt-4 font-sans text-[2rem] font-bold uppercase leading-[1.05] tracking-[-0.025em] text-white sm:text-[2.55rem] md:text-[3rem]"
+              >
                 {course.title}
               </h1>
-              <p className="mt-4 max-w-[34rem] text-[0.98rem] leading-7 text-white/88 sm:text-[1.05rem]">
+              <p
+                data-reveal
+                className="mt-4 max-w-[34rem] text-[0.98rem] leading-7 text-white/88 sm:text-[1.05rem]"
+              >
                 {course.benefit}
               </p>
               <a
+                data-reveal
                 href="#formats"
                 className="mt-6 inline-flex h-11 items-center gap-2 rounded-[0.25rem] bg-white px-5 text-[0.9rem] font-bold text-[#002448] transition-colors hover:bg-[#C08430] hover:text-[#001830]"
               >
@@ -139,22 +154,25 @@ export function CourseLanding({ course }: { course: Course }) {
         </div>
       </section>
 
-      <section className="bg-[#F7F3EE]">
+      <section data-reveal-section className="bg-[#F7F3EE]">
         <div className="mx-auto w-full max-w-[44rem] px-4 py-14 sm:px-6 md:py-16">
-          <p className="text-[1.05rem] leading-8 text-[#222222]">
+          <p data-reveal className="text-[1.05rem] leading-8 text-[#222222]">
             {course.benefit}
           </p>
-          <p className="mt-5 text-[1.05rem] leading-8 text-[#746C66]">
+          <p data-reveal className="mt-5 text-[1.05rem] leading-8 text-[#746C66]">
             Formats available: {formatLabels}. {site.ui.fromPrice}{" "}
             {lowest.replace(/^From\s+/i, "")}. {site.ui.priceIntro}
           </p>
           {course.certificateNote ? (
-            <p className="mt-6 border-l-[3px] border-[#C08430] pl-4 text-[0.95rem] leading-7 text-[#746C66]">
+            <p
+              data-reveal
+              className="mt-6 border-l-[3px] border-[#C08430] pl-4 text-[0.95rem] leading-7 text-[#746C66]"
+            >
               {course.certificateNote}
             </p>
           ) : null}
           {course.prerequisites ? (
-            <p className="mt-6 text-[0.95rem] leading-7 text-[#746C66]">
+            <p data-reveal className="mt-6 text-[0.95rem] leading-7 text-[#746C66]">
               <span className="font-semibold text-[#222222]">Prerequisites: </span>
               {course.prerequisites}
             </p>
@@ -162,18 +180,24 @@ export function CourseLanding({ course }: { course: Course }) {
         </div>
       </section>
 
-      <section className="bg-[#F7F3EE]">
+      <section data-reveal-section className="bg-[#F7F3EE]">
         <div className="mx-auto w-full max-w-[90rem] px-4 pb-16 sm:px-6 md:pb-20 lg:px-8">
-          <div className="flex items-center gap-2.5">
+          <div data-reveal className="flex items-center gap-2.5">
             <SectionMark />
             <p className="text-[0.78rem] font-bold uppercase tracking-[0.12em] text-black">
               How it works
             </p>
           </div>
-          <h2 className="mt-4 font-sans text-[2.1rem] font-bold tracking-[-0.02em] text-black sm:text-[2.5rem]">
+          <h2
+            data-reveal
+            className="mt-4 font-sans text-[2.1rem] font-bold tracking-[-0.02em] text-black sm:text-[2.5rem]"
+          >
             {site.ui.courseDetails}
           </h2>
-          <p className="mt-3 max-w-[36rem] text-[1rem] leading-7 text-[#746C66]">
+          <p
+            data-reveal
+            className="mt-3 max-w-[36rem] text-[1rem] leading-7 text-[#746C66]"
+          >
             Published Florida education from the school fee schedule.
           </p>
 
@@ -181,6 +205,7 @@ export function CourseLanding({ course }: { course: Course }) {
             {detailCards.map((card) => (
               <li
                 key={card.title}
+                data-reveal
                 className="rounded-[1.15rem] bg-white px-6 py-7 shadow-[0_8px_24px_rgba(0,0,0,0.04)]"
               >
                 <h3 className="font-sans text-[1.05rem] font-bold text-black">
@@ -191,7 +216,10 @@ export function CourseLanding({ course }: { course: Course }) {
                 </p>
               </li>
             ))}
-            <li className="flex min-h-[11.5rem] flex-col justify-between rounded-[1.15rem] bg-[#002448] px-6 py-7">
+            <li
+              data-reveal
+              className="flex min-h-[11.5rem] flex-col justify-between rounded-[1.15rem] bg-[#002448] px-6 py-7"
+            >
               <div>
                 <h3 className="font-sans text-[1.15rem] font-bold text-white">
                   Ready to get started?
@@ -213,18 +241,24 @@ export function CourseLanding({ course }: { course: Course }) {
         </div>
       </section>
 
-      <section className="bg-[#eef2f6]">
+      <section data-reveal-section className="bg-[#eef2f6]">
         <div className="mx-auto w-full max-w-[90rem] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-          <div className="flex items-center gap-2.5">
+          <div data-reveal className="flex items-center gap-2.5">
             <SectionMark />
             <p className="text-[0.78rem] font-bold uppercase tracking-[0.12em] text-black">
               Outcomes
             </p>
           </div>
-          <h2 className="mt-4 max-w-[20ch] font-sans text-[2.1rem] font-bold tracking-[-0.02em] text-black sm:text-[2.45rem]">
+          <h2
+            data-reveal
+            className="mt-4 max-w-[20ch] font-sans text-[2.1rem] font-bold tracking-[-0.02em] text-black sm:text-[2.45rem]"
+          >
             Practical skill development
           </h2>
-          <p className="mt-3 max-w-[40rem] text-[1rem] leading-7 text-[#746C66]">
+          <p
+            data-reveal
+            className="mt-3 max-w-[40rem] text-[1rem] leading-7 text-[#746C66]"
+          >
             Build capability through the published curriculum, assessments, and
             completion requirements for this course.
           </p>
@@ -233,6 +267,7 @@ export function CourseLanding({ course }: { course: Course }) {
             {skillCards.map((item) => (
               <li
                 key={item}
+                data-reveal
                 className="rounded-[1.15rem] bg-white px-6 py-7 shadow-[0_8px_24px_rgba(0,0,0,0.04)]"
               >
                 <span
@@ -244,7 +279,10 @@ export function CourseLanding({ course }: { course: Course }) {
                 </h3>
               </li>
             ))}
-            <li className="flex min-h-[11rem] flex-col justify-between rounded-[1.15rem] bg-[#002448] px-6 py-7">
+            <li
+              data-reveal
+              className="flex min-h-[11rem] flex-col justify-between rounded-[1.15rem] bg-[#002448] px-6 py-7"
+            >
               <p className="text-[1.15rem] font-bold leading-snug text-white">
                 Compare formats and enroll when you are ready
               </p>
@@ -260,24 +298,34 @@ export function CourseLanding({ course }: { course: Course }) {
         </div>
       </section>
 
-      <section className="bg-[#002448]">
+      <section data-reveal-section className="bg-[#002448]">
         <div className="mx-auto grid w-full max-w-[90rem] grid-cols-1 items-center gap-10 px-4 py-14 sm:px-6 md:gap-14 md:py-16 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-16 lg:px-8">
           <div className="max-w-[34rem]">
-            <h2 className="font-sans text-[2.1rem] font-bold tracking-[-0.02em] text-white sm:text-[2.5rem]">
+            <h2
+              data-reveal
+              className="font-sans text-[2.1rem] font-bold tracking-[-0.02em] text-white sm:text-[2.5rem]"
+            >
               Ready for the next step?
             </h2>
-            <p className="mt-4 text-[1.05rem] leading-7 text-white/75">
+            <p
+              data-reveal
+              className="mt-4 text-[1.05rem] leading-7 text-white/75"
+            >
               Pick the format that fits your schedule. Tuition follows the
               school fee schedule and is confirmed on the partner site.
             </p>
             <a
+              data-reveal
               href="#formats"
               className="mt-8 inline-flex h-11 items-center rounded-[0.25rem] bg-white px-5 text-[0.88rem] font-bold text-[#002448] transition-colors hover:bg-[#C08430] hover:text-[#001830]"
             >
               {site.ui.chooseFormat}
             </a>
           </div>
-          <div className="relative mx-auto aspect-[4/5] w-full max-w-[26rem] overflow-hidden rounded-[1.5rem] sm:aspect-[5/4] lg:mx-0 lg:max-w-none lg:justify-self-end">
+          <div
+            data-reveal
+            className="relative mx-auto aspect-[4/5] w-full max-w-[26rem] overflow-hidden rounded-[1.5rem] sm:aspect-[5/4] lg:mx-0 lg:max-w-none lg:justify-self-end"
+          >
             <Image
               src="/images/bright-office.jpg"
               alt=""
@@ -289,18 +337,24 @@ export function CourseLanding({ course }: { course: Course }) {
         </div>
       </section>
 
-      <section className="bg-[#F7F3EE]">
+      <section data-reveal-section className="bg-[#F7F3EE]">
         <div className="mx-auto w-full max-w-[90rem] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-          <div className="flex items-center gap-2.5">
+          <div data-reveal className="flex items-center gap-2.5">
             <SectionMark />
             <p className="text-[0.78rem] font-bold uppercase tracking-[0.12em] text-black">
               Audience
             </p>
           </div>
-          <h2 className="mt-4 font-sans text-[2.1rem] font-bold tracking-[-0.02em] text-black sm:text-[2.45rem]">
+          <h2
+            data-reveal
+            className="mt-4 font-sans text-[2.1rem] font-bold tracking-[-0.02em] text-black sm:text-[2.45rem]"
+          >
             {site.ui.audienceTitle}
           </h2>
-          <div className="mt-8 max-w-[40rem] rounded-[1.15rem] bg-white px-6 py-7 shadow-[0_8px_24px_rgba(0,0,0,0.04)] sm:px-8 sm:py-8">
+          <div
+            data-reveal
+            className="mt-8 max-w-[40rem] rounded-[1.15rem] bg-white px-6 py-7 shadow-[0_8px_24px_rgba(0,0,0,0.04)] sm:px-8 sm:py-8"
+          >
             <p className="text-[1.05rem] leading-8 text-[#222222]">
               {course.audience}
             </p>
@@ -308,28 +362,41 @@ export function CourseLanding({ course }: { course: Course }) {
         </div>
       </section>
 
-      <section id="formats" className="scroll-mt-28 bg-[#F7F3EE]">
+      <section
+        data-reveal-section
+        id="formats"
+        className="scroll-mt-28 bg-[#F7F3EE]"
+      >
         <div className="mx-auto w-full max-w-[90rem] px-4 pb-16 sm:px-6 md:pb-20 lg:px-8">
-          <div className="flex items-center gap-2.5">
+          <div data-reveal className="flex items-center gap-2.5">
             <SectionMark />
             <p className="text-[0.78rem] font-bold uppercase tracking-[0.12em] text-black">
               Formats
             </p>
           </div>
-          <h2 className="mt-4 font-sans text-[2.1rem] font-bold tracking-[-0.02em] text-black sm:text-[2.45rem]">
+          <h2
+            data-reveal
+            className="mt-4 font-sans text-[2.1rem] font-bold tracking-[-0.02em] text-black sm:text-[2.45rem]"
+          >
             Choose how you study
           </h2>
-          <p className="mt-3 max-w-[40rem] text-[1rem] leading-7 text-[#746C66]">
+          <p
+            data-reveal
+            className="mt-3 max-w-[40rem] text-[1rem] leading-7 text-[#746C66]"
+          >
             Each card lists school tuition and course number where published.
             Self-paced enrolls now; livestream and classroom dates are requested
             through the school.
           </p>
 
-          <div className="mt-10">
+          <div data-reveal className="mt-10">
             <CourseFormatCards course={course} />
           </div>
 
-          <div className="mt-10 rounded-[1.15rem] bg-white px-6 py-7 sm:px-8">
+          <div
+            data-reveal
+            className="mt-10 rounded-[1.15rem] bg-white px-6 py-7 sm:px-8"
+          >
             <h3 className="font-sans text-[1.1rem] font-bold text-black">
               {site.ui.includedTitle}
             </h3>
@@ -349,14 +416,17 @@ export function CourseLanding({ course }: { course: Course }) {
       </section>
 
       {related.length > 0 ? (
-        <section className="bg-white">
+        <section data-reveal-section className="bg-white">
           <div className="mx-auto w-full max-w-[90rem] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-            <h2 className="font-sans text-[2rem] font-bold tracking-[-0.02em] text-black">
+            <h2
+              data-reveal
+              className="font-sans text-[2rem] font-bold tracking-[-0.02em] text-black"
+            >
               {site.ui.otherCourses}
             </h2>
             <ul className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
               {related.map((item) => (
-                <li key={item.slug}>
+                <li key={item.slug} data-reveal>
                   <Link
                     href={`/courses/${item.slug}`}
                     className="group flex h-full flex-col overflow-hidden rounded-[1rem] bg-[#F7F3EE] transition-colors hover:bg-[#F3EFE6]"
@@ -385,6 +455,6 @@ export function CourseLanding({ course }: { course: Course }) {
       ) : null}
 
       <HomeQuestions />
-    </>
+    </div>
   );
 }

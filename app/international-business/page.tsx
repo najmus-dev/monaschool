@@ -13,6 +13,12 @@ const category = getLearningCategory("international-business");
 export const metadata: Metadata = {
   title: category?.pageTitle ?? "International Business",
   description: category?.pageLede,
+  alternates: { canonical: "/international-business" },
+  openGraph: {
+    title: category?.pageTitle ?? "International Business",
+    description: category?.pageLede,
+    url: "/international-business",
+  },
 };
 
 export default function InternationalBusinessPage() {

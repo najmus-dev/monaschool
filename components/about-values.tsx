@@ -1,4 +1,8 @@
+"use client";
+
+import { useRef } from "react";
 import { site } from "@/content/site";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 function SectionMark() {
   return (
@@ -10,24 +14,29 @@ function SectionMark() {
 
 export function AboutValues() {
   const copy = site.about;
+  const rootRef = useRef<HTMLElement>(null);
+  useScrollReveal(rootRef, { stagger: 0.08 });
 
   return (
-    <section className="bg-[#002448]">
+    <section ref={rootRef} className="bg-[#002448]">
       <div className="mx-auto w-full max-w-[90rem] px-4 py-16 sm:px-6 md:py-20 lg:px-8 lg:py-24">
-        <div className="flex items-center gap-2.5">
+        <div data-reveal className="flex items-center gap-2.5">
           <SectionMark />
           <p className="text-[0.8rem] font-bold uppercase tracking-[0.12em] text-[#C08430]">
             {copy.valuesLabel}
           </p>
         </div>
 
-        <h2 className="mt-5 max-w-[18ch] font-sans text-[2.15rem] font-bold leading-[1.1] tracking-[-0.02em] text-white sm:text-[2.6rem] md:text-[2.9rem]">
+        <h2
+          data-reveal
+          className="mt-5 max-w-[18ch] font-sans text-[2.15rem] font-bold leading-[1.1] tracking-[-0.02em] text-white sm:text-[2.6rem] md:text-[2.9rem]"
+        >
           {copy.valuesTitle}
         </h2>
 
         <ul className="mt-12 grid grid-cols-1 gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-14 lg:gap-y-12">
           {copy.why.map((item) => (
-            <li key={item.title}>
+            <li key={item.title} data-reveal>
               <h3 className="font-sans text-[1.15rem] font-bold leading-snug text-white">
                 {item.title}
               </h3>

@@ -1,13 +1,14 @@
 "use client";
 
 import { CaretDownIcon } from "@phosphor-icons/react/ssr";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import type {
   Course,
   DeliveryFormat,
   LearningCategory,
 } from "@/content/site";
 import { site } from "@/content/site";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { CourseGrid } from "./course-card";
 
 const formatLabels: Record<DeliveryFormat, string> = {
@@ -52,12 +53,18 @@ export function CategoryCatalog({
     })),
   ];
 
+  const rootRef = useRef<HTMLDivElement>(null);
+  useScrollReveal(rootRef, { y: 20, stagger: 0.08 });
+
   const selectClass =
-    "h-11 w-full min-w-[12rem] appearance-none rounded-[0.35rem] border border-[#d6d0c6] bg-white px-3.5 pr-10 text-[0.9rem] text-[#222222] outline-none focus:border-[#222222]";
+    "h-11 w-full min-w-0 appearance-none rounded-[0.35rem] border border-[#d6d0c6] bg-white px-3.5 pr-10 text-[0.9rem] text-[#222222] outline-none focus:border-[#222222] sm:min-w-[12rem]";
 
   return (
-    <div>
-      <div className="rounded-[0.75rem] border border-[#D4B06A] bg-[#F3E6C8] p-3 sm:p-4">
+    <div ref={rootRef}>
+      <div
+        data-reveal
+        className="rounded-[0.75rem] border border-[#D4B06A] bg-[#F3E6C8] p-3 sm:p-4"
+      >
         <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div className="min-w-0 flex-1 md:max-w-[20rem]">
             <label
@@ -127,7 +134,7 @@ export function CategoryCatalog({
                   setTopic("all");
                   setFormat("all");
                 }}
-                className="mb-2.5 text-[0.84rem] font-semibold text-[#746C66] underline underline-offset-2 hover:text-black"
+                className="mb-2.5 inline-flex h-11 items-center text-[0.84rem] font-semibold text-[#746C66] underline underline-offset-2 hover:text-black"
               >
                 Clear filters
               </button>
@@ -137,9 +144,14 @@ export function CategoryCatalog({
       </div>
 
       {filtered.length > 0 ? (
-        <CourseGrid courses={filtered} highlightFormat={format} />
+        <div data-reveal>
+          <CourseGrid courses={filtered} highlightFormat={format} />
+        </div>
       ) : (
-        <p className="mt-10 max-w-2xl text-base leading-7 text-[#746C66]">
+        <p
+          data-reveal
+          className="mt-10 max-w-2xl text-base leading-7 text-[#746C66]"
+        >
           {topic !== "all" || format !== "all"
             ? site.ui.emptyFilterCourses
             : site.ui.emptyCategoryCourses}

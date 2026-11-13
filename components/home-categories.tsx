@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useRef } from "react";
 import { site } from "@/content/site";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { Container } from "./container";
 
 const visuals: Record<string, { image: string; alt: string }> = {
@@ -19,10 +23,13 @@ const visuals: Record<string, { image: string; alt: string }> = {
 };
 
 export function HomeCategories() {
+  const rootRef = useRef<HTMLElement>(null);
+  useScrollReveal(rootRef, { stagger: 0.1 });
+
   return (
-    <section className="bg-mist">
+    <section ref={rootRef} className="bg-mist">
       <Container className="py-20 md:py-28">
-        <div className="max-w-2xl">
+        <div data-reveal className="max-w-2xl">
           <p className="text-sm font-semibold text-accent">
             {site.home.categoriesEyebrow}
           </p>
@@ -38,7 +45,7 @@ export function HomeCategories() {
           {site.learningCategories.map((category) => {
             const visual = visuals[category.id];
             return (
-              <li key={category.id}>
+              <li key={category.id} data-reveal>
                 <Link href={`/${category.slug}`} className="group block">
                   <div className="relative aspect-[4/3] overflow-hidden rounded-t-[999px] rounded-b-[1.1rem] shadow-[0_16px_36px_rgb(10_53_82/0.1)]">
                     {visual ? (
