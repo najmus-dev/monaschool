@@ -23,7 +23,7 @@ export function CourseFormatCards({ course }: { course: Course }) {
 
         return (
           <li key={option.id}>
-            <article className="flex h-full flex-col overflow-hidden rounded-[1rem] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.05)] ring-1 ring-black/[0.04]">
+            <article className="flex h-full flex-col overflow-hidden rounded-[var(--radius-panel)] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.05)] ring-1 ring-black/[0.04]">
               <div className="flex flex-wrap gap-2 px-5 pt-5">
                 <span className="rounded-[var(--radius-control)] bg-[#FDF2E9] px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-[0.1em] text-[#222222]">
                   {option.formatLabel}

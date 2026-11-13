@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { CourseLanding } from "@/components/course-landing";
 import { courses, getCourse } from "@/content/site";
 
@@ -31,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function CourseDetailPage({ params }: Props) {
+async function CourseDetail({ params }: Props) {
   const { slug } = await params;
   const course = getCourse(slug);
   if (!course) {
@@ -39,4 +40,12 @@ export default async function CourseDetailPage({ params }: Props) {
   }
 
   return <CourseLanding course={course} />;
+}
+
+export default function CourseDetailPage({ params }: Props) {
+  return (
+    <Suspense fallback={null}>
+      <CourseDetail params={params} />
+    </Suspense>
+  );
 }

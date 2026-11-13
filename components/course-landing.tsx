@@ -12,6 +12,10 @@ import {
   site,
 } from "@/content/site";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import {
+  heroImageForCourse,
+  sideImageForCourse,
+} from "@/lib/course-media";
 import { CourseFormatCards } from "./course-format-cards";
 import { HomeQuestions } from "./home-questions";
 
@@ -23,54 +27,17 @@ function SectionMark() {
   );
 }
 
-const heroImages = [
-  "/images/classroom.jpg",
-  "/images/bright-office.jpg",
-  "/images/hero-study.jpg",
-  "/images/license-desk.jpg",
-  "/images/notebook.jpg",
-] as const;
-
-function heroForSlug(slug: string) {
-  let hash = 0;
-  for (const char of slug) hash = (hash + char.charCodeAt(0)) % heroImages.length;
-  return heroImages[hash] ?? heroImages[0];
-}
-
 export function CourseLanding({ course }: { course: Course }) {
   const rootRef = useRef<HTMLDivElement>(null);
   useScrollReveal(rootRef);
 
   const category = getLearningCategory(course.categoryIds[0] ?? "");
   const categoryHref = category ? `/${category.slug}` : "/florida-real-estate";
-  const heroImage = heroForSlug(course.slug);
-  const formatLabels = course.formats.map((item) => item.formatLabel).join(", ");
+  const heroImage = heroImageForCourse(course);
+  const formatLabels = course.formats.map((item) => item.formatLabel).join(" · ");
   const lowest = coursePriceLabel(course);
-
-  const detailCards = [
-    {
-      title: "Duration",
-      body: `${course.hoursLabel} of Florida education as listed on the school fee schedule.`,
-    },
-    {
-      title: "Credit path",
-      body: course.creditLabel ?? course.title,
-    },
-    {
-      title: "Formats",
-      body: `${formatLabels}. Compare tuition by format before you enroll.`,
-    },
-    {
-      title: "Included",
-      body: course.included[0] ?? course.benefit,
-    },
-    {
-      title: "Tuition",
-      body: `${lowest} depending on format. Confirm the total on the partner site.`,
-    },
-  ];
-
-  const skillCards = course.outcomes.slice(0, 4);
+  const outcomes = course.outcomes.filter((item) => item.trim().length > 0);
+  const included = course.included.filter((item) => item.trim().length > 0);
 
   const related = courses
     .filter(
@@ -81,10 +48,36 @@ export function CourseLanding({ course }: { course: Course }) {
     )
     .slice(0, 3);
 
+  const facts = [
+    { label: "Hours", value: course.hoursLabel },
+    { label: "Formats", value: formatLabels },
+    { label: "Tuition", value: lowest },
+  ];
+
+  const aboutItems = [
+    course.audience
+      ? { label: "Who it is for", body: course.audience }
+      : null,
+    course.creditLabel
+      ? { label: "Credit path", body: course.creditLabel }
+      : null,
+    course.prerequisites
+      ? { label: "Prerequisites", body: course.prerequisites }
+      : null,
+  ].filter(Boolean) as { label: string; body: string }[];
+
+  const aboutCols =
+    aboutItems.length <= 1
+      ? "grid-cols-1 max-w-2xl"
+      : aboutItems.length === 2
+        ? "sm:grid-cols-2"
+        : "sm:grid-cols-2 lg:grid-cols-3";
+
   return (
     <div ref={rootRef}>
+      {/* 1. Hero */}
       <section data-reveal-section className="relative isolate overflow-hidden">
-        <div className="relative min-h-[18rem] sm:min-h-[20rem] md:min-h-[22rem] lg:min-h-[24rem]">
+        <div className="relative min-h-[20rem] sm:min-h-[22rem] md:min-h-[24rem] lg:min-h-[26rem]">
           <Image
             src={heroImage}
             alt=""
@@ -94,11 +87,11 @@ export function CourseLanding({ course }: { course: Course }) {
             className="object-cover object-[center_28%]"
           />
           <div
-            className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.74)_0%,rgba(0,0,0,0.48)_44%,rgba(0,0,0,0.14)_76%,transparent_100%)]"
+            className="absolute inset-0 bg-[linear-gradient(105deg,rgba(0,24,48,0.94)_0%,rgba(0,36,72,0.8)_40%,rgba(0,36,72,0.32)_72%,rgba(0,24,48,0.18)_100%)]"
             aria-hidden
           />
 
-          <div className="relative mx-auto flex min-h-[18rem] w-full max-w-[90rem] items-end px-4 pb-12 pt-[calc(4.25rem+3.25rem)] sm:min-h-[20rem] sm:px-6 sm:pb-14 sm:pt-[calc(4.25rem+3.75rem)] md:min-h-[22rem] lg:min-h-[24rem] lg:px-8 lg:pb-16">
+          <div className="relative mx-auto flex min-h-[20rem] w-full max-w-[90rem] items-end px-4 pb-12 pt-[calc(4.25rem+3.25rem)] sm:min-h-[22rem] sm:px-6 sm:pb-14 sm:pt-[calc(4.25rem+3.75rem)] md:min-h-[24rem] lg:min-h-[26rem] lg:px-8 lg:pb-16">
             <div className="max-w-[42rem]">
               <nav
                 data-reveal
@@ -137,7 +130,7 @@ export function CourseLanding({ course }: { course: Course }) {
               </h1>
               <p
                 data-reveal
-                className="mt-4 max-w-[34rem] text-[0.98rem] leading-7 text-white/88 sm:text-[1.05rem]"
+                className="mt-4 max-w-[36rem] text-[0.98rem] leading-7 text-white/88 sm:text-[1.05rem]"
               >
                 {course.benefit}
               </p>
@@ -146,7 +139,7 @@ export function CourseLanding({ course }: { course: Course }) {
                 href="#formats"
                 className="mt-6 inline-flex h-11 items-center gap-2 rounded-[var(--radius-control)] bg-white px-5 text-[0.9rem] font-bold text-[#002448] transition-colors hover:bg-[#C08430] hover:text-[#001830]"
               >
-                Find out more
+                {site.ui.chooseFormat}
                 <ArrowRightIcon size={16} weight="bold" aria-hidden />
               </a>
             </div>
@@ -154,229 +147,88 @@ export function CourseLanding({ course }: { course: Course }) {
         </div>
       </section>
 
-      <section data-reveal-section className="bg-[#F7F3EE]">
-        <div className="mx-auto w-full max-w-[44rem] px-4 py-14 sm:px-6 md:py-16">
-          <p data-reveal className="text-[1.05rem] leading-8 text-[#222222]">
-            {course.benefit}
-          </p>
-          <p data-reveal className="mt-5 text-[1.05rem] leading-8 text-[#746C66]">
-            Formats available: {formatLabels}. {site.ui.fromPrice}{" "}
-            {lowest.replace(/^From\s+/i, "")}. {site.ui.priceIntro}
-          </p>
-          {course.certificateNote ? (
-            <p
-              data-reveal
-              className="mt-6 border-l-[3px] border-[#C08430] pl-4 text-[0.95rem] leading-7 text-[#746C66]"
-            >
-              {course.certificateNote}
-            </p>
-          ) : null}
-          {course.prerequisites ? (
-            <p data-reveal className="mt-6 text-[0.95rem] leading-7 text-[#746C66]">
-              <span className="font-semibold text-[#222222]">Prerequisites: </span>
-              {course.prerequisites}
-            </p>
-          ) : null}
-        </div>
-      </section>
-
-      <section data-reveal-section className="bg-[#F7F3EE]">
-        <div className="mx-auto w-full max-w-[90rem] px-4 pb-16 sm:px-6 md:pb-20 lg:px-8">
-          <div data-reveal className="flex items-center gap-2.5">
-            <SectionMark />
-            <p className="text-[0.78rem] font-bold uppercase tracking-[0.12em] text-black">
-              How it works
-            </p>
-          </div>
-          <h2
+      {/* 2. Facts + about — dense, no decorative side image */}
+      <section data-reveal-section className="border-b border-black/8 bg-white">
+        <div className="mx-auto w-full max-w-[90rem] px-4 py-10 sm:px-6 md:py-12 lg:px-8">
+          <dl
             data-reveal
-            className="mt-4 font-sans text-[2.1rem] font-bold tracking-[-0.02em] text-black sm:text-[2.5rem]"
+            className="grid grid-cols-1 gap-px overflow-hidden rounded-[var(--radius-panel)] border border-[#d5dde6] bg-[#d5dde6] sm:grid-cols-3"
           >
-            {site.ui.courseDetails}
-          </h2>
-          <p
-            data-reveal
-            className="mt-3 max-w-[36rem] text-[1rem] leading-7 text-[#746C66]"
-          >
-            Published Florida education from the school fee schedule.
-          </p>
-
-          <ul className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
-            {detailCards.map((card) => (
-              <li
-                key={card.title}
-                data-reveal
-                className="rounded-[1.15rem] bg-white px-6 py-7 shadow-[0_8px_24px_rgba(0,0,0,0.04)]"
-              >
-                <h3 className="font-sans text-[1.05rem] font-bold text-black">
-                  {card.title}
-                </h3>
-                <p className="mt-3 text-[0.95rem] leading-7 text-[#746C66]">
-                  {card.body}
-                </p>
-              </li>
-            ))}
-            <li
-              data-reveal
-              className="flex min-h-[11.5rem] flex-col justify-between rounded-[1.15rem] bg-[#002448] px-6 py-7"
-            >
-              <div>
-                <h3 className="font-sans text-[1.15rem] font-bold text-white">
-                  Ready to get started?
-                </h3>
-                <p className="mt-3 text-[0.95rem] leading-7 text-white/75">
-                  Choose a format below. Enrollment, video, and payment open on
-                  the partner site.
-                </p>
+            {facts.map((fact) => (
+              <div key={fact.label} className="bg-white px-5 py-5 sm:px-6">
+                <dt className="text-[0.7rem] font-bold uppercase tracking-[0.12em] text-[#5A6B7A]">
+                  {fact.label}
+                </dt>
+                <dd className="mt-2 text-[1.05rem] font-semibold leading-snug text-[#001830]">
+                  {fact.value}
+                </dd>
               </div>
-              <a
-                href="#formats"
-                className="mt-6 inline-flex items-center gap-2 self-end text-[0.92rem] font-bold text-white transition-colors hover:text-[#C08430]"
-              >
-                Find out more
-                <ArrowRightIcon size={16} weight="bold" aria-hidden />
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <section data-reveal-section className="bg-[#eef2f6]">
-        <div className="mx-auto w-full max-w-[90rem] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-          <div data-reveal className="flex items-center gap-2.5">
-            <SectionMark />
-            <p className="text-[0.78rem] font-bold uppercase tracking-[0.12em] text-black">
-              Outcomes
-            </p>
-          </div>
-          <h2
-            data-reveal
-            className="mt-4 max-w-[20ch] font-sans text-[2.1rem] font-bold tracking-[-0.02em] text-black sm:text-[2.45rem]"
-          >
-            Practical skill development
-          </h2>
-          <p
-            data-reveal
-            className="mt-3 max-w-[40rem] text-[1rem] leading-7 text-[#746C66]"
-          >
-            Build capability through the published curriculum, assessments, and
-            completion requirements for this course.
-          </p>
-
-          <ul className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {skillCards.map((item) => (
-              <li
-                key={item}
-                data-reveal
-                className="rounded-[1.15rem] bg-white px-6 py-7 shadow-[0_8px_24px_rgba(0,0,0,0.04)]"
-              >
-                <span
-                  className="mb-5 block h-1 w-8 rounded-full bg-[#C08430]"
-                  aria-hidden
-                />
-                <h3 className="font-sans text-[1.08rem] font-bold leading-snug text-black">
-                  {item}
-                </h3>
-              </li>
             ))}
-            <li
-              data-reveal
-              className="flex min-h-[11rem] flex-col justify-between rounded-[1.15rem] bg-[#002448] px-6 py-7"
-            >
-              <p className="text-[1.15rem] font-bold leading-snug text-white">
-                Compare formats and enroll when you are ready
-              </p>
+          </dl>
+
+          <div data-reveal className="mt-10">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <h2 className="font-sans text-[1.45rem] font-bold tracking-[-0.02em] text-[#001830] sm:text-[1.6rem]">
+                About this course
+              </h2>
               <a
                 href="#formats"
-                className="mt-8 inline-flex size-11 items-center justify-center rounded-full bg-white text-[#002448] transition-colors hover:bg-[#C08430] hover:text-[#001830]"
-                aria-label="Jump to formats"
+                className="inline-flex items-center gap-1.5 text-[0.88rem] font-bold text-[#002448] hover:text-[#C08430]"
               >
-                <ArrowRightIcon size={18} weight="bold" aria-hidden />
+                {site.ui.chooseFormat}
+                <ArrowRightIcon size={14} weight="bold" aria-hidden />
               </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+            </div>
 
-      <section data-reveal-section className="bg-[#002448]">
-        <div className="mx-auto grid w-full max-w-[90rem] grid-cols-1 items-center gap-10 px-4 py-14 sm:px-6 md:gap-14 md:py-16 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-16 lg:px-8">
-          <div className="max-w-[34rem]">
-            <h2
-              data-reveal
-              className="font-sans text-[2.1rem] font-bold tracking-[-0.02em] text-white sm:text-[2.5rem]"
-            >
-              Ready for the next step?
-            </h2>
-            <p
-              data-reveal
-              className="mt-4 text-[1.05rem] leading-7 text-white/75"
-            >
-              Pick the format that fits your schedule. Tuition follows the
-              school fee schedule and is confirmed on the partner site.
-            </p>
-            <a
-              data-reveal
-              href="#formats"
-              className="mt-8 inline-flex h-11 items-center rounded-[var(--radius-control)] bg-white px-5 text-[0.88rem] font-bold text-[#002448] transition-colors hover:bg-[#C08430] hover:text-[#001830]"
-            >
-              {site.ui.chooseFormat}
-            </a>
-          </div>
-          <div
-            data-reveal
-            className="relative mx-auto aspect-[4/5] w-full max-w-[26rem] overflow-hidden rounded-[var(--radius-media)] sm:aspect-[5/4] lg:mx-0 lg:max-w-none lg:justify-self-end"
-          >
-            <Image
-              src="/images/bright-office.jpg"
-              alt=""
-              fill
-              sizes="(min-width: 1024px) 40vw, 90vw"
-              className="object-cover object-[center_22%]"
-            />
+            {aboutItems.length > 0 ? (
+              <div
+                className={`mt-6 grid grid-cols-1 items-start gap-4 ${aboutCols}`}
+              >
+                {aboutItems.map((item) => (
+                  <div
+                    key={item.label}
+                    className="rounded-[var(--radius-panel)] border border-[#d5dde6] bg-[#F7FAFC] px-5 py-5"
+                  >
+                    <p className="text-[0.72rem] font-bold uppercase tracking-[0.1em] text-[#5A6B7A]">
+                      {item.label}
+                    </p>
+                    <p className="mt-2.5 text-[0.98rem] leading-7 text-[#001830]">
+                      {item.body}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="mt-5 max-w-2xl text-[1.02rem] leading-8 text-[#526578]">
+                {course.benefit}
+              </p>
+            )}
+
+            {course.certificateNote ? (
+              <p className="mt-5 border-l-[3px] border-[#C08430] pl-4 text-[0.95rem] leading-7 text-[#5A6B7A]">
+                {course.certificateNote}
+              </p>
+            ) : null}
           </div>
         </div>
       </section>
 
-      <section data-reveal-section className="bg-[#F7F3EE]">
-        <div className="mx-auto w-full max-w-[90rem] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-          <div data-reveal className="flex items-center gap-2.5">
-            <SectionMark />
-            <p className="text-[0.78rem] font-bold uppercase tracking-[0.12em] text-black">
-              Audience
-            </p>
-          </div>
-          <h2
-            data-reveal
-            className="mt-4 font-sans text-[2.1rem] font-bold tracking-[-0.02em] text-black sm:text-[2.45rem]"
-          >
-            {site.ui.audienceTitle}
-          </h2>
-          <div
-            data-reveal
-            className="mt-8 max-w-[40rem] rounded-[1.15rem] bg-white px-6 py-7 shadow-[0_8px_24px_rgba(0,0,0,0.04)] sm:px-8 sm:py-8"
-          >
-            <p className="text-[1.05rem] leading-8 text-[#222222]">
-              {course.audience}
-            </p>
-          </div>
-        </div>
-      </section>
-
+      {/* 3. Formats early — primary conversion block */}
       <section
         data-reveal-section
         id="formats"
         className="scroll-mt-28 bg-[#F7F3EE]"
       >
-        <div className="mx-auto w-full max-w-[90rem] px-4 pb-16 sm:px-6 md:pb-20 lg:px-8">
+        <div className="mx-auto w-full max-w-[90rem] px-4 py-14 sm:px-6 md:py-16 lg:px-8 lg:py-20">
           <div data-reveal className="flex items-center gap-2.5">
             <SectionMark />
             <p className="text-[0.78rem] font-bold uppercase tracking-[0.12em] text-black">
-              Formats
+              Formats & tuition
             </p>
           </div>
           <h2
             data-reveal
-            className="mt-4 font-sans text-[2.1rem] font-bold tracking-[-0.02em] text-black sm:text-[2.45rem]"
+            className="mt-4 font-sans text-[2rem] font-bold tracking-[-0.02em] text-black sm:text-[2.35rem]"
           >
             Choose how you study
           </h2>
@@ -384,43 +236,92 @@ export function CourseLanding({ course }: { course: Course }) {
             data-reveal
             className="mt-3 max-w-[40rem] text-[1rem] leading-7 text-[#746C66]"
           >
-            Each card lists school tuition and course number where published.
-            Self-paced enrolls now; livestream and classroom dates are requested
-            through the school.
+            Tuition follows the school fee schedule. Self-paced enrolls on the
+            partner site; livestream and classroom dates are requested through
+            the school.
           </p>
 
           <div data-reveal className="mt-10">
             <CourseFormatCards course={course} />
           </div>
 
-          <div
-            data-reveal
-            className="mt-10 rounded-[1.15rem] bg-white px-6 py-7 sm:px-8"
-          >
-            <h3 className="font-sans text-[1.1rem] font-bold text-black">
-              {site.ui.includedTitle}
-            </h3>
-            <ul className="mt-5 grid gap-3.5 sm:grid-cols-2">
-              {course.included.map((item) => (
-                <li
-                  key={item}
-                  className="flex gap-3 text-[0.95rem] leading-7 text-[#746C66]"
-                >
-                  <span className="mt-2.5 size-1.5 shrink-0 rounded-full bg-[#C08430]" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {included.length > 0 ? (
+            <div
+              data-reveal
+              className="mt-10 rounded-[var(--radius-panel)] bg-white px-6 py-7 sm:px-8"
+            >
+              <h3 className="font-sans text-[1.1rem] font-bold text-black">
+                {site.ui.includedTitle}
+              </h3>
+              <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+                {included.map((item) => (
+                  <li
+                    key={item}
+                    className="flex gap-3 text-[0.95rem] leading-7 text-[#746C66]"
+                  >
+                    <span className="mt-2.5 size-1.5 shrink-0 rounded-full bg-[#C08430]" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
         </div>
       </section>
 
+      {/* 4. Outcomes — compact numbered grid */}
+      {outcomes.length > 0 ? (
+        <section data-reveal-section className="border-b border-black/8 bg-[#F4F7FA]">
+          <div className="mx-auto w-full max-w-[90rem] px-4 py-12 sm:px-6 md:py-14 lg:px-8">
+            <div data-reveal className="flex flex-wrap items-end justify-between gap-3">
+              <div>
+                <div className="flex items-center gap-2.5">
+                  <SectionMark />
+                  <p className="text-[0.78rem] font-bold uppercase tracking-[0.12em] text-[#001830]">
+                    Outcomes
+                  </p>
+                </div>
+                <h2 className="mt-3 font-sans text-[1.65rem] font-bold tracking-[-0.02em] text-[#001830] sm:text-[1.85rem]">
+                  What you complete
+                </h2>
+              </div>
+            </div>
+
+            <ol
+              data-reveal
+              className={`mt-8 grid grid-cols-1 gap-4 ${
+                outcomes.length === 1
+                  ? "max-w-xl"
+                  : outcomes.length === 2
+                    ? "md:grid-cols-2"
+                    : "md:grid-cols-2 xl:grid-cols-3"
+              }`}
+            >
+              {outcomes.map((item, index) => (
+                <li
+                  key={item}
+                  className="flex gap-4 rounded-[var(--radius-panel)] border border-[#d5dde6] bg-white px-5 py-5"
+                >
+                  <span className="font-sans text-[0.78rem] font-bold tabular-nums tracking-[0.06em] text-[#C08430]">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-[1rem] leading-7 text-[#001830]">
+                    {item}
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+      ) : null}
+
+      {/* 5. Related */}
       {related.length > 0 ? (
-        <section data-reveal-section className="bg-white">
-          <div className="mx-auto w-full max-w-[90rem] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+        <section data-reveal-section className="bg-[#F7F3EE]">
+          <div className="mx-auto w-full max-w-[90rem] px-4 py-14 sm:px-6 md:py-16 lg:px-8">
             <h2
               data-reveal
-              className="font-sans text-[2rem] font-bold tracking-[-0.02em] text-black"
+              className="font-sans text-[1.75rem] font-bold tracking-[-0.02em] text-black sm:text-[2rem]"
             >
               {site.ui.otherCourses}
             </h2>
@@ -429,16 +330,25 @@ export function CourseLanding({ course }: { course: Course }) {
                 <li key={item.slug} data-reveal>
                   <Link
                     href={`/courses/${item.slug}`}
-                    className="group flex h-full flex-col overflow-hidden rounded-[1rem] bg-[#F7F3EE] transition-colors hover:bg-[#F3EFE6]"
+                    className="group flex h-full flex-col overflow-hidden rounded-[var(--radius-panel)] bg-white transition-shadow hover:shadow-[0_10px_28px_rgba(0,0,0,0.06)]"
                   >
-                    <div className="flex flex-1 flex-col px-6 pb-5 pt-6">
+                    <div className="relative aspect-[16/10] overflow-hidden bg-[#E8E2DA]">
+                      <Image
+                        src={sideImageForCourse(item)}
+                        alt=""
+                        fill
+                        sizes="(min-width: 768px) 28vw, 90vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    </div>
+                    <div className="flex flex-1 flex-col px-6 pb-5 pt-5">
                       <p className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-[#746C66]">
                         {item.hoursLabel}
                       </p>
-                      <h3 className="mt-3 font-sans text-[1.12rem] font-bold leading-snug text-black">
+                      <h3 className="mt-2.5 font-sans text-[1.12rem] font-bold leading-snug text-black">
                         {item.title}
                       </h3>
-                      <p className="mt-3 flex-1 text-[0.9rem] leading-6 text-[#746C66]">
+                      <p className="mt-2.5 flex-1 text-[0.9rem] leading-6 text-[#746C66] line-clamp-2">
                         {item.benefit}
                       </p>
                     </div>
