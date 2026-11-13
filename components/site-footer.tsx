@@ -100,11 +100,12 @@ export function SiteFooter() {
               aria-label={`${site.school.name}, home`}
             >
               <Image
-                src="/institute-logos/REIB_Institute_Full_Logo.jpg"
+                src="/institute-logos/REIB_Formal_Institutional_Logo.png"
                 alt={site.school.logoAlt}
-                width={360}
-                height={140}
-                className="h-12 w-auto sm:h-14"
+                width={520}
+                height={320}
+                unoptimized
+                className="h-auto w-full max-w-[10.5rem] object-contain object-left sm:max-w-[12rem] md:max-w-[13.5rem]"
               />
             </Link>
 

@@ -361,10 +361,10 @@ export function SiteHeader() {
     <header className="pointer-events-none fixed inset-x-0 top-0 z-50">
       <div className="pointer-events-auto mx-auto w-full max-w-[92rem] px-3 pt-3 sm:px-4 sm:pt-4 lg:px-5">
         <div
-          className={`relative flex h-[5.25rem] items-center justify-between gap-3 px-4 shadow-[0_10px_30px_rgba(0,0,0,0.14)] backdrop-blur-2xl sm:h-[5.75rem] sm:px-6 ${
+          className={`relative flex h-16 items-center justify-between gap-3 px-4 shadow-[0_10px_30px_rgba(0,0,0,0.14)] backdrop-blur-2xl sm:h-[4.25rem] sm:px-6 ${
             menuOpen
-              ? "rounded-t-[1.5rem] rounded-b-none bg-white lg:rounded-t-[1.75rem]"
-              : "rounded-[1.5rem] bg-white lg:rounded-t-[1.75rem] lg:rounded-b-none lg:bg-white/90"
+              ? "rounded-t-[1.25rem] rounded-b-none bg-white lg:rounded-t-[1.5rem]"
+              : "rounded-[1.25rem] bg-white lg:rounded-t-[1.5rem] lg:rounded-b-none lg:bg-white/90"
           }`}
         >
           {/* Desktop: Menu left */}
@@ -390,20 +390,20 @@ export function SiteHeader() {
             <span>{menuOpen ? "Close" : "Menu"}</span>
           </button>
 
-          {/* Mobile: logo left · Desktop: logo centered */}
+          {/* Mobile: logo left · Desktop: logo centered — R mark only (text logos were hard to read) */}
           <Link
             href="/"
             className="relative z-10 shrink-0 lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2"
             aria-label={`${site.school.name}, home`}
           >
             <Image
-              src="/institute-logos/REIB_Formal_Institutional_Logo.png"
+              src={site.school.logoSrc}
               alt=""
-              width={333}
-              height={203}
+              width={160}
+              height={160}
               priority
               unoptimized
-              className="h-12 w-auto max-w-[min(52vw,11rem)] object-contain object-left sm:h-[3.85rem] sm:max-w-[12.5rem] md:h-16 md:max-w-[14rem] lg:object-center"
+              className="h-10 w-auto object-contain object-left sm:h-11 lg:object-center"
             />
           </Link>
 

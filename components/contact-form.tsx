@@ -16,7 +16,7 @@ type Errors = {
 };
 
 const fieldClass =
-  "h-11 w-full border border-[#d6d0c6] bg-white px-3.5 text-[0.95rem] font-normal text-[#222222] outline-none transition-[border-color] placeholder:text-[#222222]/40 focus:border-[#222222]";
+  "h-11 w-full rounded-[var(--radius-control)] border border-[#d6d0c6] bg-white px-3.5 text-[0.95rem] font-normal text-[#222222] outline-none transition-[border-color] placeholder:text-[#222222]/40 focus:border-[#222222]";
 
 const labelClass =
   "mb-2 block text-[0.7rem] font-bold uppercase tracking-[0.08em] text-[#746C66]";
@@ -344,7 +344,7 @@ export function ContactForm() {
           value={message}
           onChange={(event) => setMessage(event.target.value)}
           aria-invalid={errors.message ? true : undefined}
-          className="min-h-[8.5rem] w-full resize-y border border-[#d6d0c6] bg-white px-3.5 py-3 text-[0.95rem] font-normal text-[#222222] outline-none transition-[border-color] focus:border-[#222222]"
+          className="min-h-[8.5rem] w-full resize-y rounded-[var(--radius-control)] border border-[#d6d0c6] bg-white px-3.5 py-3 text-[0.95rem] font-normal text-[#222222] outline-none transition-[border-color] focus:border-[#222222]"
         />
         {errors.message ? (
           <p className="mt-1.5 text-sm font-medium text-red-700">
@@ -364,7 +364,7 @@ export function ContactForm() {
           />
           <span>I understand this form prepares an email draft to the school.</span>
         </label>
-        <p className="mt-3 border border-[#d6d0c6] bg-transparent px-3.5 py-3 text-[0.85rem] leading-6 text-[#746C66]">
+        <p className="mt-3 rounded-[var(--radius-control)] border border-[#d6d0c6] bg-transparent px-3.5 py-3 text-[0.85rem] leading-6 text-[#746C66]">
           You agree to our{" "}
           <Link href="/terms" className="text-[#222222] underline underline-offset-2">
             Terms
@@ -383,7 +383,7 @@ export function ContactForm() {
       <div className="pt-2">
         <button
           type="submit"
-          className="inline-flex h-11 items-center rounded-[0.35rem] bg-[#002448] px-5 text-[0.9rem] font-bold text-white transition-colors hover:bg-black"
+          className="inline-flex h-11 items-center rounded-[var(--radius-control)] bg-[#002448] px-5 text-[0.9rem] font-bold text-white transition-colors hover:bg-black"
         >
           Submit
         </button>

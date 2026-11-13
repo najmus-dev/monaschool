@@ -54,7 +54,7 @@ export function CategoryEmpty({
         <div className="mx-auto grid w-full max-w-[90rem] grid-cols-1 items-start gap-10 px-4 pb-6 sm:px-6 md:gap-12 md:pb-8 lg:grid-cols-[minmax(0,0.48fr)_minmax(0,0.52fr)] lg:items-stretch lg:gap-x-20 lg:px-8 lg:pb-10 xl:gap-x-24">
           <div
             data-reveal
-            className="relative order-2 aspect-[5/4] w-full overflow-hidden rounded-br-[3.75rem] rounded-tr-[3.75rem] sm:aspect-[5/4] lg:order-1 lg:aspect-auto lg:h-full lg:min-h-[24rem]"
+            className="relative order-2 aspect-[5/4] w-full overflow-hidden rounded-[var(--radius-media)] sm:aspect-[5/4] lg:order-1 lg:aspect-auto lg:h-full lg:min-h-[24rem]"
           >
             <Image
               src={image}
@@ -95,13 +95,13 @@ export function CategoryEmpty({
             <div data-reveal className="mt-8 flex flex-wrap gap-3">
               <Link
                 href={askHref}
-                className="inline-flex h-11 items-center rounded-[0.25rem] bg-[#002448] px-5 text-[0.9rem] font-bold text-white transition-colors hover:bg-black"
+                className="inline-flex h-11 items-center rounded-[var(--radius-control)] bg-[#002448] px-5 text-[0.9rem] font-bold text-white transition-colors hover:bg-black"
               >
                 Ask about this path
               </Link>
               <Link
                 href="/florida-real-estate"
-                className="inline-flex h-11 items-center rounded-[0.25rem] border border-black/15 bg-white px-5 text-[0.9rem] font-bold text-black transition-colors hover:border-black hover:bg-black hover:text-white"
+                className="inline-flex h-11 items-center rounded-[var(--radius-control)] border border-black/15 bg-white px-5 text-[0.9rem] font-bold text-black transition-colors hover:border-black hover:bg-black hover:text-white"
               >
                 {site.ui.allCourses}
               </Link>
@@ -221,7 +221,7 @@ export function CategoryEmpty({
         <div className="mx-auto grid w-full max-w-[90rem] grid-cols-1 items-start gap-10 px-4 py-16 sm:px-6 md:gap-12 md:py-20 lg:grid-cols-[minmax(0,0.48fr)_minmax(0,0.52fr)] lg:items-stretch lg:gap-x-20 lg:px-8 xl:gap-x-24">
           <div
             data-reveal
-            className="relative order-2 aspect-[5/4] w-full overflow-hidden rounded-br-[3.75rem] rounded-tr-[3.75rem] lg:order-1 lg:aspect-auto lg:h-full lg:min-h-[22rem]"
+            className="relative order-2 aspect-[5/4] w-full overflow-hidden rounded-[var(--radius-media)] lg:order-1 lg:aspect-auto lg:h-full lg:min-h-[22rem]"
           >
             <Image
               src="/images/classroom.jpg"
@@ -249,13 +249,13 @@ export function CategoryEmpty({
             <div data-reveal className="mt-8 flex flex-wrap gap-3">
               <Link
                 href={askHref}
-                className="inline-flex h-11 items-center rounded-[0.25rem] bg-[#002448] px-5 text-[0.88rem] font-bold text-white transition-colors hover:bg-black"
+                className="inline-flex h-11 items-center rounded-[var(--radius-control)] bg-[#002448] px-5 text-[0.88rem] font-bold text-white transition-colors hover:bg-black"
               >
                 {site.ui.sendMessage}
               </Link>
               <a
                 href={`tel:${site.school.phoneTel}`}
-                className="inline-flex h-11 items-center rounded-[0.25rem] border border-black/20 bg-transparent px-5 text-[0.88rem] font-bold text-black transition-colors hover:bg-[#002448] hover:text-white"
+                className="inline-flex h-11 items-center rounded-[var(--radius-control)] border border-black/20 bg-transparent px-5 text-[0.88rem] font-bold text-black transition-colors hover:bg-[#002448] hover:text-white"
               >
                 Call the school
               </a>

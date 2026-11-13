@@ -51,7 +51,7 @@ export function PolicyFooterLinks({
         <Link
           key={link.href}
           href={link.href}
-          className="inline-flex h-10 items-center rounded-[0.3rem] border border-black bg-transparent px-4 text-[0.84rem] font-bold text-black transition-colors hover:bg-black hover:text-white"
+          className="inline-flex h-10 items-center rounded-[var(--radius-control)] border border-black bg-transparent px-4 text-[0.84rem] font-bold text-black transition-colors hover:bg-black hover:text-white"
         >
           {link.label}
         </Link>

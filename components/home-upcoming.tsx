@@ -43,7 +43,7 @@ export function HomeUpcoming() {
               </div>
               <Link
                 href={`/courses/${session.courseSlug}`}
-                className="inline-flex h-11 items-center justify-center rounded-md bg-accent px-4 text-sm font-semibold text-accent-ink"
+                className="inline-flex h-11 items-center justify-center rounded-[var(--radius-control)] bg-accent px-4 text-sm font-semibold text-accent-ink"
               >
                 {site.ui.viewCourse}
               </Link>

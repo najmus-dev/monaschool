@@ -19,7 +19,7 @@ const signupOptions = [
 ] as const;
 
 const fieldClass =
-  "h-11 w-full border border-[#d8d2c8] bg-white px-3 text-[0.95rem] text-black outline-none transition-[border-color,box-shadow] placeholder:text-black/35 focus:border-black focus:shadow-[0_0_0_1px_#000]";
+  "h-11 w-full rounded-[var(--radius-control)] border border-[#d8d2c8] bg-white px-3 text-[0.95rem] text-black outline-none transition-[border-color,box-shadow] placeholder:text-black/35 focus:border-black focus:shadow-[0_0_0_1px_#000]";
 
 const labelClass =
   "mb-1.5 block text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[#6b6358]";
@@ -117,7 +117,7 @@ export function HomeConnect() {
         {/* Photo is desktop-only — on mobile it crowds the form and isn’t needed. */}
         <div
           data-connect-media
-          className="relative hidden aspect-[4/5] w-full overflow-hidden rounded-br-[4.5rem] rounded-tr-[4.5rem] lg:block lg:aspect-auto lg:h-full lg:min-h-0"
+          className="relative hidden aspect-[4/5] w-full overflow-hidden rounded-[var(--radius-media)] lg:block lg:aspect-auto lg:h-full lg:min-h-0"
         >
           <Image
             src="/images/leo-cussen-stay-connected-laptop-website-926x1024.jpg"
@@ -277,7 +277,7 @@ export function HomeConnect() {
 
             <button
               type="submit"
-              className="mt-6 inline-flex h-11 items-center bg-[#002448] px-5 text-[0.88rem] font-bold text-white transition-colors hover:bg-black"
+              className="mt-6 inline-flex h-11 items-center rounded-[var(--radius-control)] bg-[#002448] px-5 text-[0.88rem] font-bold text-white transition-colors hover:bg-black"
             >
               Submit
             </button>

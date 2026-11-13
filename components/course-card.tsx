@@ -38,7 +38,7 @@ export function CourseCard({
   const hoursValue = hoursMatch?.[1] ?? null;
 
   return (
-    <article className="group relative flex h-full min-h-[17rem] flex-col overflow-hidden rounded-md border border-black/10 bg-white transition-colors duration-200 hover:border-black/20">
+    <article className="group relative flex h-full min-h-[17rem] flex-col overflow-hidden rounded-[var(--radius-panel)] border border-black/10 bg-white transition-colors duration-200 hover:border-black/20">
       <div className="flex flex-1 flex-col px-6 pb-5 pt-6 sm:px-7 sm:pt-7">
         <span
           className={`inline-flex h-8 w-fit shrink-0 items-center justify-center self-start rounded-t-[0.45rem] rounded-b-none px-2.5 font-sans text-[0.95rem] font-black lowercase leading-none tracking-[-0.04em] text-black ${tagTone(course)}`}

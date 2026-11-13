@@ -24,7 +24,7 @@ export function HomeLearn() {
           data-reveal
           className="relative order-2 lg:order-1 lg:col-span-6 xl:col-span-7"
         >
-          <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] md:aspect-[5/4]">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-media)] md:aspect-[5/4]">
             <Image
               src="/images/hero-banner.jpg"
               alt="Adult learners in a classroom during a course session"

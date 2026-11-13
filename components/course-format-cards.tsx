@@ -25,14 +25,14 @@ export function CourseFormatCards({ course }: { course: Course }) {
           <li key={option.id}>
             <article className="flex h-full flex-col overflow-hidden rounded-[1rem] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.05)] ring-1 ring-black/[0.04]">
               <div className="flex flex-wrap gap-2 px-5 pt-5">
-                <span className="rounded-[0.25rem] bg-[#FDF2E9] px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-[0.1em] text-[#222222]">
+                <span className="rounded-[var(--radius-control)] bg-[#FDF2E9] px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-[0.1em] text-[#222222]">
                   {option.formatLabel}
                 </span>
-                <span className="rounded-[0.25rem] bg-[#FDF2E9] px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-[0.1em] text-[#222222]">
+                <span className="rounded-[var(--radius-control)] bg-[#FDF2E9] px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-[0.1em] text-[#222222]">
                   {course.hoursLabel}
                 </span>
                 {option.courseNumber ? (
-                  <span className="rounded-[0.25rem] bg-[#F7F3EE] px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-[0.1em] text-[#746C66]">
+                  <span className="rounded-[var(--radius-control)] bg-[#F7F3EE] px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-[0.1em] text-[#746C66]">
                     #{option.courseNumber}
                   </span>
                 ) : null}
@@ -110,7 +110,7 @@ export function CourseFormatCards({ course }: { course: Course }) {
                     href={option.enrollUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-[0.3rem] bg-[#002448] px-4 text-[0.9rem] font-bold text-white transition-colors hover:bg-black"
+                    className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-[var(--radius-control)] bg-[#002448] px-4 text-[0.9rem] font-bold text-white transition-colors hover:bg-black"
                   >
                     {site.ui.enroll}
                     <ArrowSquareOutIcon size={15} weight="bold" aria-hidden />
@@ -119,7 +119,7 @@ export function CourseFormatCards({ course }: { course: Course }) {
                 ) : (
                   <a
                     href={`/contact?interest=course-question&course=${encodeURIComponent(course.slug)}&format=${encodeURIComponent(option.formatLabel)}`}
-                    className="inline-flex h-11 w-full items-center justify-center rounded-[0.3rem] bg-[#8FA3B8] px-4 text-[0.9rem] font-bold text-black transition-colors hover:bg-black hover:text-white"
+                    className="inline-flex h-11 w-full items-center justify-center rounded-[var(--radius-control)] bg-[#8FA3B8] px-4 text-[0.9rem] font-bold text-black transition-colors hover:bg-black hover:text-white"
                   >
                     {site.ui.requestDates}
                   </a>

@@ -171,7 +171,7 @@ export function MobileNavPanel({
     <div
       ref={panelRef}
       id={panelId}
-      className="mt-3 flex max-h-[min(78svh,40rem)] flex-col overflow-hidden rounded-[1.5rem] bg-white shadow-[0_24px_50px_rgba(0,0,0,0.18)] lg:hidden"
+      className="mt-3 flex max-h-[min(78svh,40rem)] flex-col overflow-hidden rounded-[var(--radius-media)] bg-white shadow-[0_24px_50px_rgba(0,0,0,0.18)] lg:hidden"
     >
       <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
         <div ref={slideRef} className="px-5 pb-5 pt-4 sm:px-6">

@@ -39,13 +39,13 @@ export default function FaqPage() {
               <div className="flex flex-wrap gap-3">
                 <Link
                   href="/florida-real-estate"
-                  className="inline-flex h-11 items-center rounded-[0.3rem] bg-[#002448] px-5 text-[0.86rem] font-bold text-white transition-colors hover:bg-black"
+                  className="inline-flex h-11 items-center rounded-[var(--radius-control)] bg-[#002448] px-5 text-[0.86rem] font-bold text-white transition-colors hover:bg-black"
                 >
                   {site.ui.seeCourses}
                 </Link>
                 <Link
                   href="/contact"
-                  className="inline-flex h-11 items-center rounded-[0.3rem] border border-black bg-transparent px-5 text-[0.86rem] font-bold text-black transition-colors hover:bg-black hover:text-white"
+                  className="inline-flex h-11 items-center rounded-[var(--radius-control)] border border-black bg-transparent px-5 text-[0.86rem] font-bold text-black transition-colors hover:bg-black hover:text-white"
                 >
                   {site.ui.sendMessage}
                 </Link>

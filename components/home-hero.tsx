@@ -265,7 +265,7 @@ export function HomeHero() {
         />
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[92rem] flex-col px-4 pb-5 pt-[8.5rem] sm:justify-between sm:px-6 sm:pb-7 sm:pt-[10rem] lg:px-8 lg:pt-[10.75rem]">
+      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[92rem] flex-col px-4 pb-5 pt-[7.25rem] sm:justify-between sm:px-6 sm:pb-7 sm:pt-[8.5rem] lg:px-8 lg:pt-[9rem]">
         {/* Mobile: copy lower + wide; desktop keeps top placement */}
         <div className="flex min-h-0 flex-1 flex-col justify-end sm:flex-none sm:justify-start">
           <div
@@ -288,7 +288,7 @@ export function HomeHero() {
             <div data-slide-copy className="mt-6 sm:mt-5">
               <Link
                 href={activeSlide.href}
-                className="inline-flex h-[2.65rem] items-center rounded-[0.35rem] bg-[#C08430] px-5 text-[0.95rem] font-semibold text-[#001830] transition-colors hover:bg-[#F3E6C8] sm:h-[2.5rem] sm:text-[0.9rem]"
+                className="inline-flex h-[2.65rem] items-center rounded-[var(--radius-control)] bg-[#C08430] px-5 text-[0.95rem] font-semibold text-[#001830] transition-colors hover:bg-[#F3E6C8] sm:h-[2.5rem] sm:text-[0.9rem]"
               >
                 {activeSlide.ctaLabel}
               </Link>

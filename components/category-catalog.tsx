@@ -57,7 +57,7 @@ export function CategoryCatalog({
   useScrollReveal(rootRef, { y: 20, stagger: 0.08 });
 
   const selectClass =
-    "h-11 w-full min-w-0 appearance-none rounded-[0.35rem] border border-[#d6d0c6] bg-white px-3.5 pr-10 text-[0.9rem] text-[#222222] outline-none focus:border-[#222222] sm:min-w-[12rem]";
+    "h-11 w-full min-w-0 appearance-none rounded-[var(--radius-control)] border border-[#d6d0c6] bg-white px-3.5 pr-10 text-[0.9rem] text-[#222222] outline-none focus:border-[#222222] sm:min-w-[12rem]";
 
   return (
     <div ref={rootRef}>

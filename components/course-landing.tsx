@@ -98,7 +98,7 @@ export function CourseLanding({ course }: { course: Course }) {
             aria-hidden
           />
 
-          <div className="relative mx-auto flex min-h-[18rem] w-full max-w-[90rem] items-end px-4 pb-12 pt-[calc(5.75rem+3.25rem)] sm:min-h-[20rem] sm:px-6 sm:pb-14 sm:pt-[calc(5.75rem+3.75rem)] md:min-h-[22rem] lg:min-h-[24rem] lg:px-8 lg:pb-16">
+          <div className="relative mx-auto flex min-h-[18rem] w-full max-w-[90rem] items-end px-4 pb-12 pt-[calc(4.25rem+3.25rem)] sm:min-h-[20rem] sm:px-6 sm:pb-14 sm:pt-[calc(4.25rem+3.75rem)] md:min-h-[22rem] lg:min-h-[24rem] lg:px-8 lg:pb-16">
             <div className="max-w-[42rem]">
               <nav
                 data-reveal
@@ -144,7 +144,7 @@ export function CourseLanding({ course }: { course: Course }) {
               <a
                 data-reveal
                 href="#formats"
-                className="mt-6 inline-flex h-11 items-center gap-2 rounded-[0.25rem] bg-white px-5 text-[0.9rem] font-bold text-[#002448] transition-colors hover:bg-[#C08430] hover:text-[#001830]"
+                className="mt-6 inline-flex h-11 items-center gap-2 rounded-[var(--radius-control)] bg-white px-5 text-[0.9rem] font-bold text-[#002448] transition-colors hover:bg-[#C08430] hover:text-[#001830]"
               >
                 Find out more
                 <ArrowRightIcon size={16} weight="bold" aria-hidden />
@@ -317,14 +317,14 @@ export function CourseLanding({ course }: { course: Course }) {
             <a
               data-reveal
               href="#formats"
-              className="mt-8 inline-flex h-11 items-center rounded-[0.25rem] bg-white px-5 text-[0.88rem] font-bold text-[#002448] transition-colors hover:bg-[#C08430] hover:text-[#001830]"
+              className="mt-8 inline-flex h-11 items-center rounded-[var(--radius-control)] bg-white px-5 text-[0.88rem] font-bold text-[#002448] transition-colors hover:bg-[#C08430] hover:text-[#001830]"
             >
               {site.ui.chooseFormat}
             </a>
           </div>
           <div
             data-reveal
-            className="relative mx-auto aspect-[4/5] w-full max-w-[26rem] overflow-hidden rounded-[1.5rem] sm:aspect-[5/4] lg:mx-0 lg:max-w-none lg:justify-self-end"
+            className="relative mx-auto aspect-[4/5] w-full max-w-[26rem] overflow-hidden rounded-[var(--radius-media)] sm:aspect-[5/4] lg:mx-0 lg:max-w-none lg:justify-self-end"
           >
             <Image
               src="/images/bright-office.jpg"

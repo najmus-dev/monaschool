@@ -24,7 +24,7 @@ export function AboutIntro() {
       <div className="mx-auto grid w-full max-w-[90rem] grid-cols-1 items-stretch gap-10 px-4 py-16 sm:px-6 md:gap-14 md:py-20 lg:grid-cols-[minmax(0,0.44fr)_minmax(0,0.56fr)] lg:gap-x-16 lg:px-8 lg:py-24 xl:gap-x-20">
         <div
           data-reveal
-          className="relative order-2 min-h-[18rem] overflow-hidden rounded-[1.75rem] sm:min-h-[22rem] lg:order-1 lg:min-h-full"
+          className="relative order-2 min-h-[18rem] overflow-hidden rounded-[var(--radius-media)] sm:min-h-[22rem] lg:order-1 lg:min-h-full"
         >
           <Image
             src={copy.introImage}
@@ -77,7 +77,7 @@ export function AboutIntro() {
           <div data-reveal className="mt-10">
             <Link
               href="/florida-real-estate"
-              className="inline-flex h-11 items-center rounded-[0.25rem] bg-[#002448] px-5 text-[0.88rem] font-bold text-white transition-colors hover:bg-black"
+              className="inline-flex h-11 items-center rounded-[var(--radius-control)] bg-[#002448] px-5 text-[0.88rem] font-bold text-white transition-colors hover:bg-black"
             >
               Explore Florida Real Estate
             </Link>

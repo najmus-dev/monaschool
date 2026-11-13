@@ -31,7 +31,7 @@ export function SimplePageHero({
 
   return (
     <div ref={rootRef} className="bg-[#F7F3EE]">
-      <div className="mx-auto w-full max-w-[90rem] px-4 pb-12 pt-[calc(5.75rem+2rem)] sm:px-6 md:pb-14 md:pt-[calc(5.75rem+2.5rem)] lg:px-8">
+      <div className="mx-auto w-full max-w-[90rem] px-4 pb-12 pt-[calc(4.25rem+2rem)] sm:px-6 md:pb-14 md:pt-[calc(4.25rem+2.5rem)] lg:px-8">
         <nav
           data-reveal
           aria-label="Breadcrumb"

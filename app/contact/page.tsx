@@ -29,7 +29,7 @@ export default function ContactPage() {
   return (
     <>
       <section className="bg-[#F7F3EE]">
-        <div className="mx-auto w-full max-w-[90rem] px-4 pb-16 pt-[calc(5.75rem+2rem)] sm:px-6 md:pb-20 md:pt-[calc(5.75rem+2.5rem)] lg:px-8">
+        <div className="mx-auto w-full max-w-[90rem] px-4 pb-16 pt-[calc(4.25rem+2rem)] sm:px-6 md:pb-20 md:pt-[calc(4.25rem+2.5rem)] lg:px-8">
           <nav aria-label="Breadcrumb" className="text-[0.8rem] text-[#746C66]">
             <ol className="flex flex-wrap items-center gap-2">
               <li>

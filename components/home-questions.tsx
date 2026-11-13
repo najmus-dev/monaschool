@@ -65,13 +65,13 @@ export function HomeQuestions() {
         >
           <a
             href={`tel:${site.school.phoneTel}`}
-            className="inline-flex h-11 items-center rounded-[0.2rem] bg-white px-6 text-[0.9rem] font-bold text-[#002448] transition-colors hover:bg-[#C08430]"
+            className="inline-flex h-11 items-center rounded-[var(--radius-control)] bg-white px-6 text-[0.9rem] font-bold text-[#002448] transition-colors hover:bg-[#C08430]"
           >
             Call the school
           </a>
           <Link
             href="/contact?interest=course-question"
-            className="inline-flex h-11 items-center rounded-[0.2rem] border border-white/50 bg-transparent px-6 text-[0.9rem] font-bold text-white transition-colors hover:bg-white hover:text-[#002448]"
+            className="inline-flex h-11 items-center rounded-[var(--radius-control)] border border-white/50 bg-transparent px-6 text-[0.9rem] font-bold text-white transition-colors hover:bg-white hover:text-[#002448]"
           >
             Send a message
           </Link>

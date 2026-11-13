@@ -60,7 +60,7 @@ const schoolShortName = "REIB Institute";
 const city = "Orlando";
 const dbprSchoolLicense = "Pending approval";
 const dbprProviderNumber = "Pending approval";
-const logoSrc = "/institute-logos/REIB_Institute_Full_Logo.jpg";
+const logoSrc = "/institute-logos/REIB_Monogram_R.png";
 const logoAlt = "REIB Institute";
 const tagline = "Where Education Opens Markets.";
 
