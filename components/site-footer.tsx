@@ -38,7 +38,7 @@ function FooterLink({
   external?: boolean;
 }) {
   const className =
-    "inline-flex min-h-11 items-center text-[0.98rem] font-semibold text-black transition-colors hover:text-black/55";
+    "inline-flex min-h-9 items-center text-[0.95rem] font-medium text-black transition-colors hover:text-black/55 md:min-h-0 md:py-0.5";
 
   if (external) {
     return (
@@ -69,10 +69,10 @@ function LinkColumn({
 }) {
   return (
     <div data-reveal>
-      <h2 className="text-[0.7rem] font-bold uppercase tracking-[0.14em] text-black/40">
+      <h2 className="text-[0.68rem] font-bold uppercase tracking-[0.14em] text-black/40">
         {title}
       </h2>
-      <ul className="mt-4 grid gap-3">
+      <ul className="mt-2.5 grid gap-1 md:mt-3 md:gap-1.5">
         {links.map((link) => (
           <li key={link.label}>
             <FooterLink href={link.href} external={link.external}>
@@ -92,65 +92,58 @@ export function SiteFooter() {
   return (
     <footer ref={rootRef} className="relative mt-auto bg-[#001830]">
       <div className="relative mx-auto max-w-[92rem] px-3 pb-3 sm:px-4 lg:px-5">
-        <div className="rounded-t-[1.75rem] bg-white px-6 pb-10 pt-12 sm:rounded-t-[2rem] sm:px-10 sm:pb-12 sm:pt-14 md:px-14">
-          <div data-reveal>
-            <Link
-              href="/"
-              className="inline-flex"
-              aria-label={`${site.school.name}, home`}
-            >
-              <Image
-                src="/institute-logos/REIB_Formal_Institutional_Logo.png"
-                alt={site.school.logoAlt}
-                width={520}
-                height={320}
-                unoptimized
-                className="h-auto w-full max-w-[10.5rem] object-contain object-left sm:max-w-[12rem] md:max-w-[13.5rem]"
-              />
-            </Link>
+        <div className="rounded-t-[1.75rem] bg-white px-6 pb-8 pt-10 sm:rounded-t-[2rem] sm:px-10 sm:pb-9 sm:pt-11 md:px-14 md:pb-10 md:pt-12">
+          <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between md:gap-12 lg:gap-16">
+            <div data-reveal className="shrink-0 md:max-w-[16rem]">
+              <Link
+                href="/"
+                className="inline-flex"
+                aria-label={`${site.school.name}, home`}
+              >
+                <Image
+                  src="/institute-logos/REIB_Formal_Institutional_Logo.png"
+                  alt={site.school.logoAlt}
+                  width={520}
+                  height={320}
+                  unoptimized
+                  className="h-auto w-full max-w-[10.5rem] object-contain object-left sm:max-w-[12rem] md:max-w-[13rem]"
+                />
+              </Link>
 
-            <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
-              <a
-                href={`tel:${site.school.phoneTel}`}
-                className="inline-flex items-center gap-2 text-[0.92rem] font-semibold text-black/70 transition-colors hover:text-black"
-              >
-                <PhoneIcon size={18} weight="regular" aria-hidden />
-                {site.school.phoneDisplay}
-              </a>
-              <a
-                href={`mailto:${site.school.email}`}
-                className="inline-flex items-center gap-2 text-[0.92rem] font-semibold text-black/70 transition-colors hover:text-black"
-              >
-                <EnvelopeSimpleIcon size={18} weight="regular" aria-hidden />
-                {site.school.email}
-              </a>
+              <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 md:mt-5">
+                <a
+                  href={`tel:${site.school.phoneTel}`}
+                  className="inline-flex items-center gap-2 text-[0.88rem] font-medium text-black/65 transition-colors hover:text-black"
+                >
+                  <PhoneIcon size={16} weight="regular" aria-hidden />
+                  {site.school.phoneDisplay}
+                </a>
+                <a
+                  href={`mailto:${site.school.email}`}
+                  className="inline-flex items-center gap-2 text-[0.88rem] font-medium text-black/65 transition-colors hover:text-black"
+                >
+                  <EnvelopeSimpleIcon size={16} weight="regular" aria-hidden />
+                  {site.school.email}
+                </a>
+              </div>
             </div>
-          </div>
 
-          {/* Mobile: 2-col like Leo; desktop: 3-col */}
-          <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-10 sm:mt-12 md:grid-cols-3 md:gap-x-10">
-            <LinkColumn title="Company" links={companyLinks} />
-            <LinkColumn title="Policies" links={policyLinks} />
-            <div className="col-span-2 md:col-span-1">
-              <LinkColumn title="Learn" links={learnLinks} />
+            <div className="grid grid-cols-2 gap-x-6 gap-y-7 sm:gap-x-10 md:grid-cols-3 md:gap-x-12 lg:gap-x-16">
+              <LinkColumn title="Company" links={companyLinks} />
+              <LinkColumn title="Policies" links={policyLinks} />
+              <div className="col-span-2 md:col-span-1">
+                <LinkColumn title="Learn" links={learnLinks} />
+              </div>
             </div>
           </div>
 
           <div
             data-reveal
-            className="mt-12 border-t border-black/10 pt-6 text-[0.8rem] leading-6 text-black/55 sm:mt-14"
+            className="mt-8 border-t border-black/10 pt-5 text-[0.78rem] leading-5 text-black/50 sm:mt-9 md:mt-10 md:pt-6"
           >
-            <p>
-              © 2026 {site.school.name}. All rights reserved.
-            </p>
-            <p className="mt-2">{site.school.licenseLine}</p>
-          </div>
-
-          <div
-            data-reveal
-            className="mt-6 border-t border-black/10 pt-6 text-[0.8rem] leading-6 text-black/50"
-          >
-            <p>
+            <p>© 2026 {site.school.name}. All rights reserved.</p>
+            <p className="mt-1.5">{site.school.licenseLine}</p>
+            <p className="mt-3 max-w-3xl">
               {site.school.tagline} Based in {site.school.city}, Florida.{" "}
               {site.school.hours}.
             </p>
