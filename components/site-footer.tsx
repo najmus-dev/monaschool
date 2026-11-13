@@ -92,7 +92,7 @@ export function SiteFooter() {
   return (
     <footer ref={rootRef} className="relative mt-auto bg-[#001830]">
       <div className="relative mx-auto max-w-[92rem] px-3 pb-3 sm:px-4 lg:px-5">
-        <div className="rounded-t-[1.75rem] bg-white px-6 pb-8 pt-10 sm:rounded-t-[2rem] sm:px-10 sm:pb-9 sm:pt-11 md:px-14 md:pb-10 md:pt-12">
+        <div className="rounded-b-[1.75rem] bg-white px-6 pb-8 pt-10 sm:rounded-b-[2rem] sm:px-10 sm:pb-9 sm:pt-11 md:px-14 md:pb-10 md:pt-12">
           <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between md:gap-12 lg:gap-16">
             <div data-reveal className="shrink-0 md:max-w-[16rem]">
               <Link
