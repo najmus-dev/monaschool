@@ -361,10 +361,8 @@ export function SiteHeader() {
     <header className="pointer-events-none fixed inset-x-0 top-0 z-50">
       <div className="pointer-events-auto mx-auto w-full max-w-[92rem] px-3 pt-3 sm:px-4 sm:pt-4 lg:px-5">
         <div
-          className={`relative flex h-16 items-center justify-between gap-3 px-4 shadow-[0_10px_30px_rgba(0,0,0,0.14)] backdrop-blur-2xl sm:h-[4.25rem] sm:px-6 ${
-            menuOpen
-              ? "rounded-t-[1.25rem] rounded-b-none bg-white lg:rounded-t-[1.5rem]"
-              : "rounded-[1.25rem] bg-white lg:rounded-t-[1.5rem] lg:rounded-b-none lg:bg-white/90"
+          className={`relative flex h-16 items-center justify-between gap-3 rounded-[1.25rem] px-4 shadow-[0_10px_30px_rgba(0,0,0,0.14)] backdrop-blur-2xl sm:h-[4.25rem] sm:px-6 lg:rounded-[1.5rem] ${
+            menuOpen ? "bg-white" : "bg-white lg:bg-white/90"
           }`}
         >
           {/* Desktop: Menu left */}
