@@ -4,7 +4,6 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { site } from "@/content/site";
 
 gsap.registerPlugin(useGSAP);
 
@@ -54,6 +53,8 @@ export function HomeHero() {
   const trackRef = useRef<HTMLUListElement>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const [activeCard, setActiveCard] = useState(0);
+  // Keep previous video painted until the next one has a real frame (avoids poster/old-image flash).
+  const [displayedCard, setDisplayedCard] = useState(0);
   const [introDone, setIntroDone] = useState(false);
   const [paused, setPaused] = useState(false);
 
@@ -64,14 +65,50 @@ export function HomeHero() {
   }
 
   useEffect(() => {
+    const next = videoRefs.current[activeCard];
+    if (!next) return;
+
+    let cancelled = false;
+
     videoRefs.current.forEach((video, index) => {
-      if (!video) return;
-      if (index === activeCard) {
-        void video.play().catch(() => undefined);
-      } else {
-        video.pause();
-      }
+      if (!video || index === activeCard) return;
+      video.pause();
     });
+
+    const reveal = () => {
+      if (!cancelled) setDisplayedCard(activeCard);
+    };
+
+    const tryPlay = () => {
+      void next.play().then(reveal).catch(reveal);
+    };
+
+    const onReady = () => {
+      next.removeEventListener("loadeddata", onReady);
+      next.removeEventListener("playing", onReady);
+      tryPlay();
+    };
+
+    // Warm the upcoming neighbor so the next auto-advance is less likely to stall.
+    const neighbor = videoRefs.current[(activeCard + 1) % pathCards.length];
+    if (neighbor && neighbor.preload !== "auto") {
+      neighbor.preload = "auto";
+    }
+
+    if (next.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+      tryPlay();
+    } else {
+      next.addEventListener("loadeddata", onReady);
+      next.addEventListener("playing", onReady);
+      next.preload = "auto";
+      void next.play().catch(() => undefined);
+    }
+
+    return () => {
+      cancelled = true;
+      next.removeEventListener("loadeddata", onReady);
+      next.removeEventListener("playing", onReady);
+    };
   }, [activeCard]);
 
   useGSAP(
@@ -235,7 +272,7 @@ export function HomeHero() {
       ref={rootRef}
       className="relative isolate min-h-[100svh] overflow-hidden bg-[#111111] text-[#111111]"
     >
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 bg-[#111111]">
         {pathCards.map((slide, index) => (
           <video
             key={slide.video + slide.code}
@@ -243,13 +280,12 @@ export function HomeHero() {
               videoRefs.current[index] = node;
             }}
             className={`absolute inset-0 h-full w-full object-cover brightness-[0.72] contrast-[1.12] saturate-[1.08] transition-opacity duration-700 ${
-              index === activeCard ? "opacity-100" : "opacity-0"
+              index === displayedCard ? "opacity-100" : "opacity-0"
             }`}
             muted
             loop
             playsInline
-            preload={index === 0 ? "auto" : "metadata"}
-            poster={site.home.heroImage}
+            preload={index === 0 || index === 1 ? "auto" : "metadata"}
             aria-hidden
           >
             <source src={slide.video} type="video/mp4" />
