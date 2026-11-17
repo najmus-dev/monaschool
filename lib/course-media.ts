@@ -36,6 +36,22 @@ export function sideImageForCourse(course: Course) {
       return "/images/fl-card-reactivation.jpg";
     case "broker-post-license-management":
       return "/images/fl-card-office.jpg";
+    case "the-voice-that-sells":
+    case "presenting-across-cultures":
+      return "/images/bright-office.jpg";
+    case "the-5-ws-of-selling":
+    case "negotiating-across-cultures":
+      return "/images/courses-band.jpg";
+    case "leading-diverse-teams":
+      return "/images/fl-card-office.jpg";
+    case "introduction-to-commercial-real-estate":
+    case "introduction-to-business-brokerage":
+      return "/images/fl-card-broker.jpg";
+    case "from-trade-mission-to-real-estate-opportunity":
+    case "geopolitics-and-real-estate-investment":
+    case "global-clients-local-business":
+    case "when-businesses-cross-borders":
+      return "/images/florida-skyline.jpg";
     default:
       break;
   }

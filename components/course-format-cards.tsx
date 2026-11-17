@@ -56,7 +56,9 @@ export function CourseFormatCards({ course }: { course: Course }) {
                   <div className="flex items-center justify-between gap-4 border-b border-black/10 py-3 text-[0.92rem]">
                     <dt className="text-[#888888]">{site.ui.tuitionLabel}</dt>
                     <dd className="font-semibold tabular-nums text-[#222222]">
-                      {option.priceLabel}
+                      {option.enrollReady === false && option.priceCents === 0
+                        ? "Contact for pricing"
+                        : option.priceLabel}
                     </dd>
                   </div>
                   {option.courseNumber ? (

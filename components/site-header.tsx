@@ -85,42 +85,84 @@ const menuSections: {
     key: "professional-development",
     label: "Professional Development",
     href: "/professional-development",
-    lede: "Practical programs that build capability for careers and teams.",
+    lede: "Specialty skills for real estate practice—communication, sales, leadership, and more.",
     hasPanel: true,
     tone: "#ebe4d4",
     columns: [
       {
-        heading: "Skill areas",
+        heading: "Featured courses",
         links: [
-          { label: "AI for business & productivity", href: "/professional-development" },
-          { label: "Sales & business development", href: "/professional-development" },
-          { label: "Negotiation", href: "/professional-development" },
-          { label: "Communication & presentation", href: "/professional-development" },
-          { label: "Leadership", href: "/professional-development" },
+          {
+            label: "The Voice That Sells",
+            href: "/courses/the-voice-that-sells",
+          },
+          {
+            label: "The 5 W's of Selling",
+            href: "/courses/the-5-ws-of-selling",
+          },
+          {
+            label: "Negotiating Across Cultures",
+            href: "/courses/negotiating-across-cultures",
+          },
+          {
+            label: "Introduction to Commercial Real Estate",
+            href: "/courses/introduction-to-commercial-real-estate",
+          },
+          {
+            label: "Global Clients, Local Business",
+            href: "/courses/global-clients-local-business",
+          },
         ],
       },
       {
-        heading: "For organizations",
+        heading: "Topics",
         links: [
           {
-            label: "Request group training",
-            href: "/contact?interest=group-training",
+            label: "Communication & presentation",
+            href: "/professional-development?topic=communication#courses",
           },
-          { label: "Contact the school", href: "/contact" },
+          {
+            label: "Sales & business development",
+            href: "/professional-development?topic=sales-bd#courses",
+          },
+          {
+            label: "Negotiation",
+            href: "/professional-development?topic=negotiation#courses",
+          },
+          {
+            label: "Leadership",
+            href: "/professional-development?topic=leadership#courses",
+          },
+          {
+            label: "Commercial & brokerage",
+            href: "/professional-development?topic=commercial#courses",
+          },
+          {
+            label: "Cross-border & global clients",
+            href: "/professional-development?topic=cross-border#courses",
+          },
         ],
       },
       {
         heading: "Helpful links",
         links: [
-          { label: "Category overview", href: "/professional-development" },
-          { label: "FAQ", href: "/faq" },
+          {
+            label: "Browse all PD courses",
+            href: "/professional-development#courses",
+          },
+          {
+            label: "Request group training",
+            href: "/contact?interest=group-training&path=professional-development",
+          },
+          { label: "Ask a question", href: "/contact" },
+          { label: "Student login", href: site.ui.studentLoginHref },
         ],
       },
     ],
     cta: {
-      label: "See PD",
-      href: "/professional-development",
-      body: "Strengthen skills for what’s next — livestream and in-person sessions.",
+      label: "See PD courses",
+      href: "/professional-development#courses",
+      body: "Browse published specialty courses, then open a class for formats and details.",
     },
   },
   {

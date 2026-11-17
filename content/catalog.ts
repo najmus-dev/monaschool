@@ -1,8 +1,9 @@
 /**
  * Course catalog shaped to the Nov 10, 2026 REIB developer brief:
  * category → course → format. Florida Real Estate tuition from the fee schedule.
- * Professional Development and International Business topics are listed for IA only
- * until REIB supplies confirmed copy, instructors, dates, and fees.
+ * Professional Development specialty courses are drafted from school submissions
+ * (pending DBPR/FREC approval; tuition TBD). International Business topics remain
+ * listed for IA until confirmed titles move there.
  */
 
 export type LearningCategoryId =
@@ -88,9 +89,23 @@ const enrollReactivation = partnerShop(
 const enrollCoreLaw = partnerShop("3-hour-core-law-course");
 const enrollEthics = partnerShop("3-hour-ethics-business-practices-course");
 const enrollBrokerPostMgmt = partnerShop("broker-post-licensing-course");
+/** Placeholder enroll URL — PD specialty courses use Request Next Dates until CME/live. */
+const enrollPendingContact = "/contact?interest=course-question";
+
+const pdPriceNote =
+  "Tuition will be published when the school confirms fees. Course approval with DBPR/FREC is pending—do not treat listings as approved CE until the school confirms.";
 
 function money(cents: number) {
+  if (cents === 0) return "Contact for pricing";
   return `$${Math.round(cents / 100)}`;
+}
+
+function pendingPdFormats(): CourseFormatOption[] {
+  return [
+    fmt("sp", "self-paced", "Self-paced", undefined, 0, enrollPendingContact, false),
+    fmt("live", "livestream", "Livestream", undefined, 0, enrollPendingContact, false),
+    fmt("class", "classroom", "In person", undefined, 0, enrollPendingContact, false),
+  ];
 }
 
 function fmt(
@@ -144,14 +159,15 @@ export const learningCategories: LearningCategory[] = [
       "Build practical skills in AI, sales, communication and leadership.",
     pageTitle: "Professional Development",
     pageLede:
-      "Practical skills in AI for business, sales, negotiation, communication, and leadership—offered as livestream and in-person sessions.",
-    allowedFormats: ["livestream", "classroom"],
+      "Specialty and professional skills for real estate practice—communication, sales, leadership, commercial foundations, and cross-border work. Formats include self-paced, livestream, and in person. Approval and tuition publish as the school confirms them.",
+    allowedFormats: ["self-paced", "livestream", "classroom"],
     topics: [
-      { id: "ai-business", label: "AI for Business & Productivity" },
+      { id: "communication", label: "Communication & Presentation" },
       { id: "sales-bd", label: "Sales & Business Development" },
       { id: "negotiation", label: "Negotiation" },
-      { id: "communication", label: "Communication & Presentation" },
       { id: "leadership", label: "Leadership" },
+      { id: "commercial", label: "Commercial & Brokerage" },
+      { id: "cross-border", label: "Cross-border & Global Clients" },
     ],
   },
   {
@@ -412,6 +428,309 @@ export const courses: Course[] = [
     ],
     published: true,
   },
+  {
+    slug: "the-voice-that-sells",
+    title: "The Voice That Sells",
+    benefit:
+      "Build clear spoken communication for calls, meetings, and short real estate presentations.",
+    hoursLabel: "3 hours",
+    categoryIds: ["professional-development"],
+    topicTags: ["communication"],
+    creditLabel: "Specialty CE (pending approval)",
+    certificateNote:
+      "Draft specialty CE submission. Hours and delivery are subject to FREC/DBPR approval. Not a substitute for Core Law or Ethics.",
+    audience:
+      "Florida sales associates, broker associates, and brokers who want stronger listening, wording, and vocal delivery with clients.",
+    outcomes: [
+      "Distinguish intended meaning from what a listener reports hearing",
+      "Use listening, paraphrase, and confirmation in real estate conversations",
+      "Adapt tone and structure for phone, one-to-one, and group settings",
+    ],
+    included: [
+      "Self-paced, livestream, and classroom format options",
+      "Practice scenarios for inquiry calls, meetings, and short talks",
+      "School review materials aligned to a 3-hour specialty outline",
+    ],
+    prerequisites: "Basic familiarity with a Florida real estate transaction is expected.",
+    priceNote: pdPriceNote,
+    formats: pendingPdFormats(),
+    published: true,
+    featured: true,
+  },
+  {
+    slug: "the-5-ws-of-selling",
+    title: "The 5 W's of Selling",
+    benefit:
+      "Organize sales conversations around clear who, what, when, where, and why questions.",
+    hoursLabel: "3 hours",
+    categoryIds: ["professional-development"],
+    topicTags: ["sales-bd"],
+    creditLabel: "Specialty CE (pending approval)",
+    certificateNote:
+      "Draft specialty course materials. Approval and final hours subject to FREC/DBPR.",
+    audience:
+      "Sales associates and brokers who want a practical structure for client discovery and follow-up.",
+    outcomes: [
+      "Apply a 5 W framework to real estate sales conversations",
+      "Ask clearer discovery questions without pressure tactics",
+      "Confirm next steps the client actually understands",
+    ],
+    included: [
+      "Self-paced, livestream, and classroom format options",
+      "Scenario practice for client conversations",
+      "School draft materials pending final approval",
+    ],
+    priceNote: pdPriceNote,
+    formats: pendingPdFormats(),
+    published: true,
+    featured: true,
+  },
+  {
+    slug: "leading-diverse-teams",
+    title: "Leading Diverse Teams",
+    benefit:
+      "Lead brokerage and project teams with clearer communication across different working styles.",
+    hoursLabel: "3 hours",
+    categoryIds: ["professional-development"],
+    topicTags: ["leadership"],
+    creditLabel: "Specialty CE (pending approval)",
+    certificateNote:
+      "Draft specialty course materials. Approval and final hours subject to FREC/DBPR.",
+    audience:
+      "Team leads, broker-owners, and managers who coordinate mixed experience levels and backgrounds.",
+    outcomes: [
+      "Set clearer expectations across a diverse team",
+      "Adapt feedback and meeting habits to different working styles",
+      "Reduce misunderstandings in day-to-day brokerage coordination",
+    ],
+    included: [
+      "Self-paced, livestream, and classroom format options",
+      "Leadership scenarios for real estate workplaces",
+      "School draft materials pending final approval",
+    ],
+    priceNote: pdPriceNote,
+    formats: pendingPdFormats(),
+    published: true,
+  },
+  {
+    slug: "presenting-across-cultures",
+    title: "Presenting Across Cultures",
+    benefit:
+      "Present property, services, and ideas clearly when your audience brings different cultural expectations.",
+    hoursLabel: "3 hours",
+    categoryIds: ["professional-development"],
+    topicTags: ["communication"],
+    creditLabel: "Specialty CE (pending approval)",
+    certificateNote:
+      "Draft specialty course materials. Approval and final hours subject to FREC/DBPR.",
+    audience:
+      "Agents and brokers who present to mixed local and international audiences.",
+    outcomes: [
+      "Structure a short presentation for a mixed audience",
+      "Adjust examples and pacing without stereotyping listeners",
+      "Check that the audience received the intended message",
+    ],
+    included: [
+      "Self-paced, livestream, and classroom format options",
+      "Presentation practice prompts and feedback criteria",
+      "School draft materials pending final approval",
+    ],
+    priceNote: pdPriceNote,
+    formats: pendingPdFormats(),
+    published: true,
+  },
+  {
+    slug: "negotiating-across-cultures",
+    title: "Negotiating Across Cultures",
+    benefit:
+      "Negotiate offers and terms with clearer process when parties bring different cultural norms.",
+    hoursLabel: "3 hours",
+    categoryIds: ["professional-development"],
+    topicTags: ["negotiation"],
+    creditLabel: "Specialty CE (pending approval)",
+    certificateNote:
+      "Draft specialty course materials. Approval and final hours subject to FREC/DBPR.",
+    audience:
+      "Sales associates and brokers who negotiate with clients or counterparts from different cultural backgrounds.",
+    outcomes: [
+      "Prepare a negotiation plan that accounts for process differences",
+      "Clarify interests without assuming a single cultural style",
+      "Confirm agreements in language both parties understand",
+    ],
+    included: [
+      "Self-paced, livestream, and classroom format options",
+      "Negotiation scenarios for real estate practice",
+      "School draft materials pending final approval",
+    ],
+    priceNote: pdPriceNote,
+    formats: pendingPdFormats(),
+    published: true,
+    featured: true,
+  },
+  {
+    slug: "introduction-to-commercial-real-estate",
+    title: "Introduction to Commercial Real Estate",
+    benefit:
+      "Learn the foundations of commercial property types, parties, and deal vocabulary.",
+    hoursLabel: "3 hours",
+    categoryIds: ["professional-development"],
+    topicTags: ["commercial"],
+    creditLabel: "Specialty CE (pending approval)",
+    certificateNote:
+      "Draft specialty course materials. Approval and final hours subject to FREC/DBPR.",
+    audience:
+      "Residential licensees and career changers exploring commercial real estate practice.",
+    outcomes: [
+      "Identify common commercial property types and roles",
+      "Use accurate commercial vocabulary with clients and peers",
+      "Recognize when a commercial specialist or referral is needed",
+    ],
+    included: [
+      "Self-paced, livestream, and classroom format options",
+      "Introductory commercial practice overview",
+      "School draft materials pending final approval",
+    ],
+    priceNote: pdPriceNote,
+    formats: pendingPdFormats(),
+    published: true,
+    featured: true,
+  },
+  {
+    slug: "introduction-to-business-brokerage",
+    title: "Introduction to Business Brokerage",
+    benefit:
+      "Get oriented to how business sales differ from typical residential brokerage work.",
+    hoursLabel: "3 hours",
+    categoryIds: ["professional-development"],
+    topicTags: ["commercial"],
+    creditLabel: "Specialty CE (pending approval)",
+    certificateNote:
+      "Draft specialty course materials. Approval and final hours subject to FREC/DBPR.",
+    audience:
+      "Licensees exploring business brokerage as an additional practice area.",
+    outcomes: [
+      "Describe the main stages of a business sale conversation",
+      "Distinguish business brokerage work from residential listing work",
+      "Identify limits and when specialist support is required",
+    ],
+    included: [
+      "Self-paced, livestream, and classroom format options",
+      "Introductory business brokerage overview",
+      "School draft materials pending final approval",
+    ],
+    priceNote: pdPriceNote,
+    formats: pendingPdFormats(),
+    published: true,
+  },
+  {
+    slug: "from-trade-mission-to-real-estate-opportunity",
+    title: "From Trade Mission to Real Estate Opportunity",
+    benefit:
+      "Connect trade-mission and market-visit relationships to real estate follow-up opportunities.",
+    hoursLabel: "3 hours",
+    categoryIds: ["professional-development"],
+    topicTags: ["cross-border"],
+    creditLabel: "Specialty CE (pending approval)",
+    certificateNote:
+      "Draft specialty course materials. Approval and final hours subject to FREC/DBPR.",
+    audience:
+      "Agents and brokers who meet international contacts through missions, events, or market visits.",
+    outcomes: [
+      "Turn introductions from trade missions into qualified follow-up",
+      "Frame real estate opportunities without overpromising outcomes",
+      "Plan a professional next step after a market visit",
+    ],
+    included: [
+      "Self-paced, livestream, and classroom format options",
+      "Cross-border relationship scenarios",
+      "School draft materials pending final approval",
+    ],
+    priceNote: pdPriceNote,
+    formats: pendingPdFormats(),
+    published: true,
+  },
+  {
+    slug: "geopolitics-and-real-estate-investment",
+    title: "Geopolitics and Real Estate Investment",
+    benefit:
+      "Discuss how geopolitical context can affect cross-border real estate investment conversations.",
+    hoursLabel: "3 hours",
+    categoryIds: ["professional-development"],
+    topicTags: ["cross-border"],
+    creditLabel: "Specialty CE (pending approval)",
+    certificateNote:
+      "Draft specialty course materials. Approval and final hours subject to FREC/DBPR.",
+    audience:
+      "Brokers and advisors who speak with investors about international or multi-market opportunities.",
+    outcomes: [
+      "Explain geopolitical context in plain language for clients",
+      "Separate verified facts from speculation in investment talks",
+      "Know when to refer legal, tax, or investment specialists",
+    ],
+    included: [
+      "Self-paced, livestream, and classroom format options",
+      "Discussion frameworks for investment conversations",
+      "School draft materials pending final approval",
+    ],
+    priceNote: pdPriceNote,
+    formats: pendingPdFormats(),
+    published: true,
+  },
+  {
+    slug: "global-clients-local-business",
+    title: "Global Clients, Local Business",
+    benefit:
+      "Serve international clients while staying accurate about local Florida market practice.",
+    hoursLabel: "3 hours",
+    categoryIds: ["professional-development"],
+    topicTags: ["cross-border"],
+    creditLabel: "Specialty CE (pending approval)",
+    certificateNote:
+      "Draft specialty course materials. Approval and final hours subject to FREC/DBPR.",
+    audience:
+      "Florida licensees working with overseas buyers, sellers, or relocating clients.",
+    outcomes: [
+      "Adapt client communication for international expectations",
+      "Explain local process steps without inventing timelines",
+      "Confirm understanding before recommending a next action",
+    ],
+    included: [
+      "Self-paced, livestream, and classroom format options",
+      "Client-service scenarios for global-to-local work",
+      "School draft materials pending final approval",
+    ],
+    priceNote: pdPriceNote,
+    formats: pendingPdFormats(),
+    published: true,
+    featured: true,
+  },
+  {
+    slug: "when-businesses-cross-borders",
+    title: "When Businesses Cross Borders",
+    benefit:
+      "Support clients whose business or real estate plans move across national borders.",
+    hoursLabel: "3 hours",
+    categoryIds: ["professional-development"],
+    topicTags: ["cross-border"],
+    creditLabel: "Specialty CE (pending approval)",
+    certificateNote:
+      "Draft specialty course materials. Approval and final hours subject to FREC/DBPR.",
+    audience:
+      "Agents and brokers advising clients with cross-border business or property plans.",
+    outcomes: [
+      "Map the parties and steps in a cross-border business conversation",
+      "Ask clarifying questions before recommending local next steps",
+      "Recognize limits and refer specialists when required",
+    ],
+    included: [
+      "Self-paced, livestream, and classroom format options",
+      "Cross-border business and real estate scenarios",
+      "School draft materials pending final approval",
+    ],
+    priceNote: pdPriceNote,
+    formats: pendingPdFormats(),
+    published: true,
+  },
 ];
 
 /** Live sessions across categories. Empty until REIB supplies dates. */
@@ -441,6 +760,12 @@ export function coursesForCategory(categoryId: LearningCategoryId) {
 }
 
 export function coursePriceLabel(course: Course) {
+  const pending = course.formats.every(
+    (item) => item.enrollReady === false && item.priceCents === 0,
+  );
+  if (pending) {
+    return "Contact for pricing";
+  }
   const prices = course.formats.map((item) => item.priceCents);
   const min = Math.min(...prices);
   const max = Math.max(...prices);
