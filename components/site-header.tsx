@@ -78,7 +78,7 @@ const menuSections: {
     cta: {
       label: "See Florida courses",
       href: "/florida-real-estate",
-      body: "Compare published courses and tuition from the school fee schedule.",
+      body: "Browse published Florida courses, then open a class for formats and tuition.",
     },
   },
   {
@@ -202,6 +202,10 @@ const menuSections: {
         heading: "Connect",
         links: [
           { label: "Contact", href: "/contact" },
+          {
+            label: "Teach with us",
+            href: "/contact?interest=teaching-partnership",
+          },
           { label: "Student login", href: site.ui.studentLoginHref },
         ],
       },
@@ -361,7 +365,7 @@ export function SiteHeader() {
     <header className="pointer-events-none fixed inset-x-0 top-0 z-50">
       <div className="pointer-events-auto mx-auto w-full max-w-[92rem] px-3 pt-3 sm:px-4 sm:pt-4 lg:px-5">
         <div
-          className={`relative flex h-16 items-center justify-between gap-3 rounded-[1.25rem] px-4 shadow-[0_10px_30px_rgba(0,0,0,0.14)] backdrop-blur-2xl sm:h-[4.25rem] sm:px-6 lg:rounded-[1.5rem] ${
+          className={`relative flex h-[4.5rem] items-center justify-between gap-3 rounded-[1.25rem] px-4 shadow-[0_10px_30px_rgba(0,0,0,0.14)] backdrop-blur-2xl sm:h-[4.75rem] sm:px-6 lg:h-[5rem] lg:rounded-[1.5rem] ${
             menuOpen ? "bg-white" : "bg-white lg:bg-white/90"
           }`}
         >
@@ -388,7 +392,7 @@ export function SiteHeader() {
             <span>{menuOpen ? "Close" : "Menu"}</span>
           </button>
 
-          {/* Mobile: logo left · Desktop: logo centered — R mark only (text logos were hard to read) */}
+          {/* Mobile: logo left · Desktop: logo centered — formal institute mark */}
           <Link
             href="/"
             className="relative z-10 shrink-0 lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2"
@@ -396,24 +400,33 @@ export function SiteHeader() {
           >
             <Image
               src={site.school.logoSrc}
-              alt=""
-              width={160}
-              height={160}
+              alt={site.school.logoAlt}
+              width={333}
+              height={203}
               priority
               unoptimized
-              className="h-10 w-auto object-contain object-left sm:h-11 lg:object-center"
+              className="h-[3.15rem] w-auto max-w-[10.5rem] object-contain object-left sm:h-[3.4rem] sm:max-w-[12rem] lg:h-[3.75rem] lg:max-w-[13.5rem] lg:object-center"
             />
           </Link>
 
-          <div className="flex items-center gap-0.5 sm:gap-2">
+          <div className="flex items-center gap-1 sm:gap-2">
             <a
               href={site.ui.studentLoginHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex size-10 items-center justify-center rounded-full text-[#111111] transition-colors hover:bg-[#002448]/10 hover:text-[#002448]"
+              className="inline-flex size-10 items-center justify-center rounded-full text-[#111111] transition-colors hover:bg-[#002448]/10 hover:text-[#002448] lg:hidden"
               aria-label={site.ui.studentLogin}
             >
               <StudentIcon size={22} weight="regular" aria-hidden />
+            </a>
+            <a
+              href={site.ui.studentLoginHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden h-10 items-center gap-2 rounded-full px-3 text-[0.9rem] font-semibold text-[#C08430] transition-colors hover:bg-[#C08430]/12 hover:text-[#9a6a20] lg:inline-flex lg:px-4"
+            >
+              <StudentIcon size={18} weight="bold" aria-hidden />
+              <span>{site.ui.studentLogin}</span>
             </a>
             <Link
               href="/contact"

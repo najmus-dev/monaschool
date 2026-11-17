@@ -46,12 +46,6 @@ export function HomeContact() {
             >
               {site.school.phoneDisplay}
             </a>
-            <a
-              href={`mailto:${site.school.email}`}
-              className="hover:text-accent"
-            >
-              {site.school.email}
-            </a>
           </div>
         </div>
 

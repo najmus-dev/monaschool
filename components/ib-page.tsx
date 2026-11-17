@@ -16,6 +16,7 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { CategoryCatalog } from "./category-catalog";
 import { CategoryMediaHero } from "./category-media-hero";
 import { HomeQuestions } from "./home-questions";
+import { PathNextCta } from "./path-next-cta";
 
 const keyFacts = [
   { label: "Formats", value: "Livestream · In person" },
@@ -440,6 +441,15 @@ export function IbPage({
           </div>
         </section>
       ) : null}
+
+      <PathNextCta
+        title="Ready to talk through IB options?"
+        body="Ask about published programs, group sessions, or when international business courses will open."
+        primaryHref={askHref}
+        primaryLabel="Ask a question"
+        secondaryHref={groupHref}
+        secondaryLabel="Group training"
+      />
 
       <HomeQuestions />
     </div>

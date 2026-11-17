@@ -301,7 +301,7 @@ export function HomeHero() {
         />
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[92rem] flex-col px-4 pb-5 pt-[7.25rem] sm:justify-between sm:px-6 sm:pb-7 sm:pt-[8.5rem] lg:px-8 lg:pt-[9rem]">
+      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[92rem] flex-col px-4 pb-5 pt-[7.5rem] sm:justify-between sm:px-6 sm:pb-7 sm:pt-[8.75rem] lg:px-8 lg:pt-[9.25rem]">
         {/* Mobile: copy lower + wide; desktop keeps top placement */}
         <div className="flex min-h-0 flex-1 flex-col justify-end sm:flex-none sm:justify-start">
           <div

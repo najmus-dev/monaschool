@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  EnvelopeSimpleIcon,
-  PhoneIcon,
-} from "@phosphor-icons/react/ssr";
+import { PhoneIcon } from "@phosphor-icons/react/ssr";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
@@ -13,6 +10,10 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 const companyLinks = [
   { label: "About us", href: "/about" },
   { label: "Contact", href: "/contact" },
+  {
+    label: "Teach with us",
+    href: "/contact?interest=teaching-partnership",
+  },
   { label: "FAQ", href: "/faq" },
   { label: "Student login", href: site.ui.studentLoginHref, external: true },
 ] as const;
@@ -101,10 +102,10 @@ export function SiteFooter() {
                 aria-label={`${site.school.name}, home`}
               >
                 <Image
-                  src="/institute-logos/REIB_Formal_Institutional_Logo.png"
+                  src={site.school.logoSrc}
                   alt={site.school.logoAlt}
-                  width={520}
-                  height={320}
+                  width={333}
+                  height={203}
                   unoptimized
                   className="h-auto w-full max-w-[10.5rem] object-contain object-left sm:max-w-[12rem] md:max-w-[13rem]"
                 />
@@ -117,13 +118,6 @@ export function SiteFooter() {
                 >
                   <PhoneIcon size={16} weight="regular" aria-hidden />
                   {site.school.phoneDisplay}
-                </a>
-                <a
-                  href={`mailto:${site.school.email}`}
-                  className="inline-flex items-center gap-2 text-[0.88rem] font-medium text-black/65 transition-colors hover:text-black"
-                >
-                  <EnvelopeSimpleIcon size={16} weight="regular" aria-hidden />
-                  {site.school.email}
                 </a>
               </div>
             </div>

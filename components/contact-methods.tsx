@@ -5,23 +5,41 @@ import {
   MapPinIcon,
   PhoneIcon,
 } from "@phosphor-icons/react/ssr";
-import { useRef } from "react";
+import { useRef, type ComponentType } from "react";
 import { site } from "@/content/site";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
-const cards = [
-  {
-    key: "general",
-    eyebrow: "General",
-    title: "General enquiries",
-    href: `mailto:${site.school.email}`,
-    value: site.school.email,
-    Icon: EnvelopeSimpleIcon,
-    tone: "#C08430",
-  },
+type ContactCard = {
+  key: string;
+  eyebrow: string;
+  title: string;
+  href: string;
+  value: string;
+  Icon: ComponentType<{
+    size?: number;
+    weight?: "regular";
+    "aria-hidden"?: boolean;
+  }>;
+  tone: string;
+};
+
+const cards: ContactCard[] = [
+  ...(site.school.email
+    ? [
+        {
+          key: "general",
+          eyebrow: "General",
+          title: "General enquiries",
+          href: `mailto:${site.school.email}`,
+          value: site.school.email,
+          Icon: EnvelopeSimpleIcon,
+          tone: "#C08430",
+        },
+      ]
+    : []),
   {
     key: "phone",
-    eyebrow: "Phone",
+    eyebrow: "Office",
     title: "Call the school",
     href: `tel:${site.school.phoneTel}`,
     value: site.school.phoneDisplay,
@@ -37,11 +55,18 @@ const cards = [
     Icon: MapPinIcon,
     tone: "#3d5a73",
   },
-] as const;
+];
 
 export function ContactMethods() {
   const rootRef = useRef<HTMLElement>(null);
   useScrollReveal(rootRef, { stagger: 0.1 });
+
+  const cols =
+    cards.length === 2
+      ? "sm:grid-cols-2"
+      : cards.length === 1
+        ? "grid-cols-1"
+        : "sm:grid-cols-2 lg:grid-cols-3";
 
   return (
     <section ref={rootRef} className="bg-[#F8F5F0]">
@@ -53,26 +78,28 @@ export function ContactMethods() {
           {site.contact.reachTitle}
         </h2>
 
-        <ul className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+        <ul className={`mt-8 grid w-full grid-cols-1 gap-5 ${cols} lg:gap-6`}>
           {cards.map(({ key, eyebrow, title, href, value, Icon, tone }) => (
-            <li key={key} data-reveal>
+            <li key={key} data-reveal className="min-w-0">
               <a
                 href={href}
-                className="relative flex h-full min-h-[11.5rem] flex-col overflow-hidden rounded-[1.15rem] bg-white px-6 pb-6 pt-6 shadow-[0_10px_28px_rgba(0,0,0,0.06)] transition-shadow hover:shadow-[0_14px_34px_rgba(0,0,0,0.09)]"
+                className="relative flex h-full min-h-[10.5rem] flex-col overflow-hidden rounded-[1.15rem] bg-white px-6 py-6 shadow-[0_10px_28px_rgba(0,0,0,0.06)] transition-shadow hover:shadow-[0_14px_34px_rgba(0,0,0,0.09)] sm:min-h-[11.5rem] sm:flex-row sm:items-end sm:justify-between sm:gap-6 sm:px-8 sm:py-7"
               >
                 <span
                   className="absolute inset-y-0 left-0 w-[3px]"
                   style={{ backgroundColor: tone }}
                   aria-hidden
                 />
-                <p className="text-[0.72rem] font-bold uppercase tracking-[0.12em] text-black">
-                  {eyebrow}
-                </p>
-                <h3 className="mt-3 font-sans text-[1.2rem] font-medium leading-snug text-black">
-                  {title}
-                </h3>
-                <span className="mt-auto inline-flex items-center gap-2 pt-8 text-[0.92rem] font-normal text-black/80">
-                  <Icon size={16} weight="regular" aria-hidden />
+                <div className="min-w-0">
+                  <p className="text-[0.72rem] font-bold uppercase tracking-[0.12em] text-black">
+                    {eyebrow}
+                  </p>
+                  <h3 className="mt-3 font-sans text-[1.25rem] font-medium leading-snug text-black sm:text-[1.35rem]">
+                    {title}
+                  </h3>
+                </div>
+                <span className="mt-8 inline-flex items-center gap-2 text-[0.95rem] font-semibold text-black/80 sm:mt-0 sm:shrink-0">
+                  <Icon size={18} weight="regular" aria-hidden />
                   {value}
                 </span>
               </a>

@@ -79,7 +79,7 @@ const organizationJsonLd = {
   alternateName: site.school.shortName,
   url: siteUrl,
   description: site.school.description,
-  email: site.school.email,
+  ...(site.school.email ? { email: site.school.email } : {}),
   telephone: site.school.phoneDisplay,
   address: {
     "@type": "PostalAddress",

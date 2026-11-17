@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Course, DeliveryFormat } from "@/content/site";
-import { coursePriceLabel, site } from "@/content/site";
+import { site } from "@/content/site";
 import { cardImageForCourse } from "@/lib/course-media";
 
 export function CourseCard({
@@ -66,8 +66,8 @@ export function CourseCard({
               </span>
             )}
           </p>
-          <p className="shrink-0 font-sans text-[1.05rem] font-extrabold tabular-nums tracking-[-0.02em] text-[#001830]">
-            {coursePriceLabel(course)}
+          <p className="shrink-0 font-sans text-[0.88rem] font-semibold text-[#5A6B7A]">
+            {site.ui.viewDetails}
           </p>
         </div>
 

@@ -37,8 +37,7 @@ export function HomeUpcoming() {
               <div>
                 <p className="font-semibold text-ink">{session.title}</p>
                 <p className="mt-1 text-sm text-muted">
-                  {session.when} · {session.timeZone} · {session.formatLabel} ·{" "}
-                  {session.priceLabel}
+                  {session.when} · {session.timeZone} · {session.formatLabel}
                 </p>
               </div>
               <Link

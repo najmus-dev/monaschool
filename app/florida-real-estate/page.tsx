@@ -9,6 +9,7 @@ import { CategoryCatalog } from "@/components/category-catalog";
 import { CategoryMediaHero } from "@/components/category-media-hero";
 import { FloridaPathStrip } from "@/components/florida-path-strip";
 import { HomeQuestions } from "@/components/home-questions";
+import { PathNextCta } from "@/components/path-next-cta";
 
 const category = getLearningCategory("florida-real-estate");
 
@@ -70,6 +71,13 @@ export default function FloridaRealEstatePage() {
           </Suspense>
         </div>
       </section>
+
+      <PathNextCta
+        title="Ready to pick a course?"
+        body="Open a class for formats and tuition, or contact the office if you need a path recommendation."
+        primaryHref="#courses"
+        primaryLabel="Browse courses"
+      />
 
       <HomeQuestions />
     </>

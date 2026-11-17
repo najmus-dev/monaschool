@@ -51,17 +51,17 @@ export type Review = {
   avatarSrc?: string;
 };
 
-const phoneDisplay = "(407) 947-5746";
-const phoneTel = "+14079475746";
-/** Replace with the school inbox Mona wants on the site before launch. */
-const email = "hello@example-school.test";
+const phoneDisplay = "(407) 574-5920";
+const phoneTel = "+14075745920";
+/** Empty until the school provides a public inbox. Do not show placeholder emails. */
+const email = "";
 const schoolName = "Real Estate & International Business Institute";
 const schoolShortName = "REIB Institute";
 const city = "Orlando";
 const dbprSchoolLicense = "Pending approval";
 const dbprProviderNumber = "Pending approval";
-const logoSrc = "/institute-logos/REIB_Monogram_R.png";
-const logoAlt = "REIB Institute";
+const logoSrc = "/institute-logos/REIB_Formal_Institutional_Logo.png";
+const logoAlt = "REIB Institute — Real Estate & International Business Institute";
 const tagline = "Where Education Opens Markets.";
 
 export const site = {
@@ -179,11 +179,12 @@ export const site = {
       message: "Message",
       messageHint: "Say which course you are asking about.",
       messageError: "Enter a few words so the school knows what you need.",
-      submit: "Prepare email",
+      submit: "Prepare message",
       summary: "Check the highlighted fields.",
-      readyTitle: "Email draft ready",
-      readyBody:
-        "Nothing is stored on this website. Open your email app to send the draft.",
+      readyTitle: "Message ready",
+      readyBody: email
+        ? "Nothing is stored on this website. Open your email app to send the draft."
+        : `Nothing is stored on this website. Call the office at ${phoneDisplay} with these details.`,
       subject: `Question for ${schoolName}`,
       interest: "I am interested in",
       interestHint: "Pick the closest option so the school can route your note.",
@@ -191,7 +192,10 @@ export const site = {
       interestOptions: [
         { value: "course-question", label: "Course Question" },
         { value: "group-training", label: "Group Training" },
-        { value: "teaching-partnership", label: "Teaching / Partnership Inquiry" },
+        {
+          value: "teaching-partnership",
+          label: "Instructor application / teaching",
+        },
         { value: "other", label: "Other" },
       ],
       organization: "Organization name",
@@ -199,6 +203,26 @@ export const site = {
       organizationError: "Enter the organization name.",
       groupSize: "Approximate group size",
       groupSizeHint: "Optional. A range is fine.",
+      teachingFocus: "Primary teaching focus",
+      teachingFocusError: "Choose a teaching focus.",
+      teachingFocusOptions: [
+        { value: "florida-real-estate", label: "Florida Real Estate" },
+        {
+          value: "professional-development",
+          label: "Professional Development",
+        },
+        { value: "international-business", label: "International Business" },
+        { value: "multiple", label: "More than one area" },
+      ],
+      teachingExperience: "Years of teaching or industry experience",
+      teachingExperienceError: "Share your relevant experience.",
+      teachingCredentials: "Licenses or credentials",
+      teachingCredentialsHint:
+        "Example: Florida real estate license, broker, industry certifications.",
+      teachingCredentialsError:
+        "List at least one credential or write Not applicable.",
+      teachingProfile: "LinkedIn or portfolio URL",
+      teachingProfileHint: "Optional.",
     },
   },
   home: {
@@ -331,7 +355,7 @@ export const site = {
       },
       {
         title: "License and renewal paths",
-        body: "Pre-license, 45-hour post-license, 14-hour continuing education, reactivation, and broker courses are listed with school tuition by format.",
+        body: "Pre-license, 45-hour post-license, 14-hour continuing education, reactivation, and broker courses — open a course page to see tuition by format.",
       },
       {
         title: "Transparent enrollment",
@@ -343,7 +367,7 @@ export const site = {
       },
       {
         title: "Local contact in Orlando",
-        body: `Call ${phoneDisplay} or email ${email} before you pick a format or renewal course.`,
+        body: `Call the office at ${phoneDisplay} before you pick a format or renewal course.`,
       },
       {
         title: "Approval status in the open",
@@ -352,8 +376,7 @@ export const site = {
     ],
     facts: [
       { label: "City", value: city },
-      { label: "Phone", value: phoneDisplay },
-      { label: "Email", value: email },
+      { label: "Office phone", value: phoneDisplay },
       { label: "DBPR school license", value: dbprSchoolLicense },
       { label: "Course provider number", value: dbprProviderNumber },
     ],
@@ -478,7 +501,7 @@ export const site = {
       },
       {
         question: "How do I ask the school a question?",
-        answer: `Call ${phoneDisplay} or email ${email}. The contact form does not store messages. It opens an email draft in your own email app.`,
+        answer: `Call the office at ${phoneDisplay}. You can also use the contact form on this site to prepare your details, then call with your question.`,
       },
     ] satisfies FaqItem[],
   },
@@ -487,11 +510,11 @@ export const site = {
     label: "Contact us",
     heading: "General enquiry",
     lede: "To help us direct your enquiry, please select a type below and share a few details.",
-    reachTitle: "Email us",
-    reachLede: "Use the school email or phone for course questions, formats, and next steps.",
+    reachTitle: "Reach us",
+    reachLede: "Call the office for course questions, formats, and next steps.",
     accessTitle: "Course access",
     accessBody:
-      "Video, exams, and payment stay on the partner site. Use Enroll on the course you want. This form only prepares an email to the school.",
+      "Video, exams, and payment stay on the partner site. Use Enroll on the course you want. For questions, call the office number on this site.",
   },
   privacy: {
     title: "Privacy policy",
@@ -508,7 +531,7 @@ export const site = {
       },
       {
         heading: "Contact messages",
-        body: "The contact form does not submit to a server here. It opens your email application with a draft. Your email provider then handles delivery.",
+        body: "The contact form does not submit to a server here. Use it to organize your details, then call the school office. A public email address will be added when the school provides one.",
       },
       {
         heading: "Partner site",

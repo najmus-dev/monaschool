@@ -15,6 +15,7 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { CategoryCatalog } from "./category-catalog";
 import { CategoryMediaHero } from "./category-media-hero";
 import { HomeQuestions } from "./home-questions";
+import { PathNextCta } from "./path-next-cta";
 
 const keyFacts = [
   { label: "Formats", value: "Livestream · In person" },
@@ -440,6 +441,15 @@ export function PdPage({
           </div>
         </section>
       ) : null}
+
+      <PathNextCta
+        title="Have a team or course question?"
+        body="Ask the school about upcoming sessions, group training, or when a program will publish."
+        primaryHref={askHref}
+        primaryLabel="Ask a question"
+        secondaryHref={groupHref}
+        secondaryLabel="Group training"
+      />
 
       <HomeQuestions />
     </div>

@@ -103,9 +103,11 @@ export function HomeConnect() {
       "Please add me to school updates.",
     ].join("\n");
 
-    const href = `mailto:${site.school.email}?subject=${encodeURIComponent(
-      "Stay connected signup",
-    )}&body=${encodeURIComponent(body)}`;
+    const href = site.school.email
+      ? `mailto:${site.school.email}?subject=${encodeURIComponent(
+          "Stay connected signup",
+        )}&body=${encodeURIComponent(body)}`
+      : `tel:${site.school.phoneTel}`;
 
     setMailto(href);
     setDraftReady(true);
@@ -264,14 +266,29 @@ export function HomeConnect() {
 
             {draftReady ? (
               <p className="mt-4 text-sm leading-6 text-black/70">
-                Your message is ready.{" "}
-                <a
-                  href={mailto}
-                  className="font-semibold text-black underline underline-offset-2"
-                >
-                  Open your email app
-                </a>{" "}
-                to send it to {site.school.email}.
+                {site.school.email ? (
+                  <>
+                    Your message is ready.{" "}
+                    <a
+                      href={mailto}
+                      className="font-semibold text-black underline underline-offset-2"
+                    >
+                      Open your email app
+                    </a>{" "}
+                    to send it to {site.school.email}.
+                  </>
+                ) : (
+                  <>
+                    Thanks — your details are ready.{" "}
+                    <a
+                      href={mailto}
+                      className="font-semibold text-black underline underline-offset-2"
+                    >
+                      Call {site.school.phoneDisplay}
+                    </a>{" "}
+                    to finish signing up for updates.
+                  </>
+                )}
               </p>
             ) : null}
 

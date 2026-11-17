@@ -25,7 +25,7 @@ const details = [
   },
   {
     title: "School contact",
-    body: `Call ${site.school.phoneDisplay} or message the school before you choose a renewal or broker path.`,
+    body: `Call the office at ${site.school.phoneDisplay} before you choose a renewal or broker path.`,
   },
   {
     title: "Approval status",

@@ -12,6 +12,9 @@ type Errors = {
   phone?: string;
   interest?: string;
   organization?: string;
+  teachingFocus?: string;
+  teachingExperience?: string;
+  teachingCredentials?: string;
   message?: string;
 };
 
@@ -40,6 +43,10 @@ export function ContactForm() {
   const [interest, setInterest] = useState("");
   const [organization, setOrganization] = useState("");
   const [groupSize, setGroupSize] = useState("");
+  const [teachingFocus, setTeachingFocus] = useState("");
+  const [teachingExperience, setTeachingExperience] = useState("");
+  const [teachingCredentials, setTeachingCredentials] = useState("");
+  const [teachingProfile, setTeachingProfile] = useState("");
   const [message, setMessage] = useState("");
   const [agreed, setAgreed] = useState(false);
 
@@ -50,6 +57,13 @@ export function ContactForm() {
       copy.interestOptions.some((option) => option.value === preset)
     ) {
       setInterest(preset);
+      if (preset === "teaching-partnership") {
+        setMessage((current) =>
+          current.trim()
+            ? current
+            : "I would like to apply to teach with REIB Institute.",
+        );
+      }
     }
     const course = searchParams.get("course");
     const format = searchParams.get("format");
@@ -75,6 +89,7 @@ export function ContactForm() {
   }, [searchParams, copy.interestOptions]);
 
   const needsOrg = interest === "group-training";
+  const needsTeaching = interest === "teaching-partnership";
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -83,6 +98,10 @@ export function ContactForm() {
     const nextPhone = phone.trim();
     const nextInterest = interest.trim();
     const nextOrg = organization.trim();
+    const nextFocus = teachingFocus.trim();
+    const nextExperience = teachingExperience.trim();
+    const nextCredentials = teachingCredentials.trim();
+    const nextProfile = teachingProfile.trim();
     const nextMessage = message.trim();
     const nextErrors: Errors = {};
 
@@ -95,11 +114,23 @@ export function ContactForm() {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(nextEmail)) {
       nextErrors.email = copy.emailError;
     }
-    if (nextPhone && nextPhone.replace(/\D/g, "").length < 7) {
+    if (
+      (needsTeaching || nextPhone) &&
+      nextPhone.replace(/\D/g, "").length < 7
+    ) {
       nextErrors.phone = copy.phoneError;
     }
     if (needsOrg && nextOrg.length < 2) {
       nextErrors.organization = copy.organizationError;
+    }
+    if (needsTeaching && !nextFocus) {
+      nextErrors.teachingFocus = copy.teachingFocusError;
+    }
+    if (needsTeaching && !nextExperience) {
+      nextErrors.teachingExperience = copy.teachingExperienceError;
+    }
+    if (needsTeaching && !nextCredentials) {
+      nextErrors.teachingCredentials = copy.teachingCredentialsError;
     }
     if (nextMessage.length < 10) {
       nextErrors.message = copy.messageError;
@@ -127,6 +158,9 @@ export function ContactForm() {
     const interestLabel =
       copy.interestOptions.find((option) => option.value === nextInterest)
         ?.label ?? nextInterest;
+    const focusLabel =
+      copy.teachingFocusOptions.find((option) => option.value === nextFocus)
+        ?.label ?? nextFocus;
 
     const body = [
       `Name: ${nextName}`,
@@ -137,6 +171,10 @@ export function ContactForm() {
       needsOrg && groupSize.trim()
         ? `Approximate group size: ${groupSize.trim()}`
         : "",
+      needsTeaching ? `Teaching focus: ${focusLabel}` : "",
+      needsTeaching ? `Experience: ${nextExperience}` : "",
+      needsTeaching ? `Credentials: ${nextCredentials}` : "",
+      needsTeaching && nextProfile ? `Profile: ${nextProfile}` : "",
       "",
       nextMessage,
     ]
@@ -146,7 +184,13 @@ export function ContactForm() {
     setSummary("");
     setDraft(body);
     setMailto(
-      `mailto:${site.school.email}?subject=${encodeURIComponent(copy.subject)}&body=${encodeURIComponent(body)}`,
+      site.school.email
+        ? `mailto:${site.school.email}?subject=${encodeURIComponent(
+            needsTeaching
+              ? `Instructor application — ${site.school.name}`
+              : copy.subject,
+          )}&body=${encodeURIComponent(body)}`
+        : "",
     );
   }
 
@@ -163,13 +207,22 @@ export function ContactForm() {
           {draft}
         </pre>
         <div className="mt-5 flex flex-wrap gap-3">
-          <a
-            href={mailto}
-            className="inline-flex h-10 items-center gap-2 rounded-full bg-[#002448] px-5 text-[0.88rem] font-bold text-white transition-colors hover:bg-black"
-          >
-            {site.ui.openEmail}
-            <ArrowSquareOutIcon size={16} weight="bold" aria-hidden />
-          </a>
+          {mailto ? (
+            <a
+              href={mailto}
+              className="inline-flex h-10 items-center gap-2 rounded-full bg-[#002448] px-5 text-[0.88rem] font-bold text-white transition-colors hover:bg-black"
+            >
+              {site.ui.openEmail}
+              <ArrowSquareOutIcon size={16} weight="bold" aria-hidden />
+            </a>
+          ) : (
+            <a
+              href={`tel:${site.school.phoneTel}`}
+              className="inline-flex h-10 items-center gap-2 rounded-full bg-[#002448] px-5 text-[0.88rem] font-bold text-white transition-colors hover:bg-black"
+            >
+              Call {site.school.phoneDisplay}
+            </a>
+          )}
           <button
             type="button"
             className="inline-flex h-10 items-center rounded-full border border-black px-5 text-[0.88rem] font-bold text-black transition-colors hover:bg-black hover:text-white"
@@ -277,6 +330,7 @@ export function ContactForm() {
       <div>
         <label htmlFor="phone" className={labelClass}>
           {copy.phone}
+          {needsTeaching ? " *" : ""}
         </label>
         <input
           ref={phoneRef}
@@ -332,6 +386,109 @@ export function ContactForm() {
         </>
       ) : null}
 
+      {needsTeaching ? (
+        <>
+          <div>
+            <label htmlFor="teachingFocus" className={labelClass}>
+              {copy.teachingFocus} *
+            </label>
+            <div className="relative">
+              <select
+                id="teachingFocus"
+                name="teachingFocus"
+                value={teachingFocus}
+                onChange={(event) => setTeachingFocus(event.target.value)}
+                aria-invalid={errors.teachingFocus ? true : undefined}
+                className={`${fieldClass} appearance-none pr-10`}
+              >
+                <option value="">Please select</option>
+                {copy.teachingFocusOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              <span
+                className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-black/45"
+                aria-hidden
+              >
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                  <path
+                    d="M1 1.5L6 6.5L11 1.5"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+            </div>
+            {errors.teachingFocus ? (
+              <p className="mt-1.5 text-sm font-medium text-red-700">
+                {errors.teachingFocus}
+              </p>
+            ) : null}
+          </div>
+          <div>
+            <label htmlFor="teachingExperience" className={labelClass}>
+              {copy.teachingExperience} *
+            </label>
+            <input
+              id="teachingExperience"
+              name="teachingExperience"
+              value={teachingExperience}
+              onChange={(event) => setTeachingExperience(event.target.value)}
+              aria-invalid={errors.teachingExperience ? true : undefined}
+              className={fieldClass}
+            />
+            {errors.teachingExperience ? (
+              <p className="mt-1.5 text-sm font-medium text-red-700">
+                {errors.teachingExperience}
+              </p>
+            ) : null}
+          </div>
+          <div>
+            <label htmlFor="teachingCredentials" className={labelClass}>
+              {copy.teachingCredentials} *
+            </label>
+            <input
+              id="teachingCredentials"
+              name="teachingCredentials"
+              value={teachingCredentials}
+              onChange={(event) => setTeachingCredentials(event.target.value)}
+              aria-invalid={errors.teachingCredentials ? true : undefined}
+              className={fieldClass}
+            />
+            <p className="mt-1.5 text-[0.8rem] leading-5 text-[#746C66]">
+              {copy.teachingCredentialsHint}
+            </p>
+            {errors.teachingCredentials ? (
+              <p className="mt-1.5 text-sm font-medium text-red-700">
+                {errors.teachingCredentials}
+              </p>
+            ) : null}
+          </div>
+          <div>
+            <label htmlFor="teachingProfile" className={labelClass}>
+              {copy.teachingProfile}
+            </label>
+            <input
+              id="teachingProfile"
+              name="teachingProfile"
+              type="url"
+              inputMode="url"
+              value={teachingProfile}
+              onChange={(event) => setTeachingProfile(event.target.value)}
+              placeholder="https://"
+              className={fieldClass}
+            />
+            <p className="mt-1.5 text-[0.8rem] leading-5 text-[#746C66]">
+              {copy.teachingProfileHint}
+            </p>
+          </div>
+        </>
+      ) : null}
+
       <div>
         <label htmlFor="message" className={labelClass}>
           {copy.message} *
@@ -362,7 +519,11 @@ export function ContactForm() {
             onChange={(event) => setAgreed(event.target.checked)}
             className="mt-0.5 size-5 shrink-0 rounded-[2px] border border-[#d6d0c6] accent-[#222222]"
           />
-          <span>I understand this form prepares an email draft to the school.</span>
+          <span>
+            {site.school.email
+              ? "I understand this form prepares an email draft to the school."
+              : "I understand this form prepares my details so I can call the school office."}
+          </span>
         </label>
         <p className="mt-3 rounded-[var(--radius-control)] border border-[#d6d0c6] bg-transparent px-3.5 py-3 text-[0.85rem] leading-6 text-[#746C66]">
           You agree to our{" "}
