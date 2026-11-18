@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRightIcon } from "@phosphor-icons/react/ssr";
+import { ArrowRightIcon, CheckIcon } from "@phosphor-icons/react/ssr";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
@@ -54,10 +54,7 @@ export function CourseLanding({ course }: { course: Course }) {
     { label: "Tuition", value: lowest },
   ];
 
-  const aboutItems = [
-    course.audience
-      ? { label: "Who it is for", body: course.audience }
-      : null,
+  const aboutMeta = [
     course.creditLabel
       ? { label: "Credit path", body: course.creditLabel }
       : null,
@@ -66,12 +63,10 @@ export function CourseLanding({ course }: { course: Course }) {
       : null,
   ].filter(Boolean) as { label: string; body: string }[];
 
-  const aboutCols =
-    aboutItems.length <= 1
-      ? "grid-cols-1 max-w-2xl"
-      : aboutItems.length === 2
-        ? "sm:grid-cols-2"
-        : "sm:grid-cols-2 lg:grid-cols-3";
+  const hasAbout =
+    Boolean(course.audience) ||
+    aboutMeta.length > 0 ||
+    Boolean(course.certificateNote);
 
   return (
     <div ref={rootRef}>
@@ -180,35 +175,52 @@ export function CourseLanding({ course }: { course: Course }) {
               </a>
             </div>
 
-            {aboutItems.length > 0 ? (
-              <div
-                className={`mt-6 grid grid-cols-1 items-start gap-4 ${aboutCols}`}
-              >
-                {aboutItems.map((item) => (
-                  <div
-                    key={item.label}
-                    className="rounded-[var(--radius-panel)] border border-[#d5dde6] bg-[#F7FAFC] px-5 py-5"
-                  >
-                    <p className="text-[0.72rem] font-bold uppercase tracking-[0.1em] text-[#5A6B7A]">
-                      {item.label}
+            {hasAbout ? (
+              <div className="mt-6 overflow-hidden rounded-[var(--radius-panel)] border border-[#d5dde6]">
+                {course.audience ? (
+                  <div className="bg-[#F7FAFC] px-5 py-5 sm:px-6 sm:py-6">
+                    <p className="text-[0.7rem] font-bold uppercase tracking-[0.12em] text-[#5A6B7A]">
+                      Who it is for
                     </p>
-                    <p className="mt-2.5 text-[0.98rem] leading-7 text-[#001830]">
-                      {item.body}
+                    <p className="mt-2.5 max-w-[52rem] text-[1rem] leading-7 text-[#001830]">
+                      {course.audience}
                     </p>
                   </div>
-                ))}
+                ) : null}
+
+                {aboutMeta.length > 0 ? (
+                  <dl
+                    className={`grid grid-cols-1 gap-px border-t border-[#d5dde6] bg-[#d5dde6] ${
+                      aboutMeta.length > 1 ? "sm:grid-cols-2" : ""
+                    }`}
+                  >
+                    {aboutMeta.map((item) => (
+                      <div
+                        key={item.label}
+                        className="bg-white px-5 py-5 sm:px-6"
+                      >
+                        <dt className="text-[0.7rem] font-bold uppercase tracking-[0.12em] text-[#5A6B7A]">
+                          {item.label}
+                        </dt>
+                        <dd className="mt-2 text-[0.98rem] font-medium leading-7 text-[#001830]">
+                          {item.body}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                ) : null}
+
+                {course.certificateNote ? (
+                  <p className="border-t border-[#d5dde6] bg-white px-5 py-4 text-[0.9rem] leading-7 text-[#5A6B7A] sm:px-6">
+                    {course.certificateNote}
+                  </p>
+                ) : null}
               </div>
             ) : (
               <p className="mt-5 max-w-2xl text-[1.02rem] leading-8 text-[#526578]">
                 {course.benefit}
               </p>
             )}
-
-            {course.certificateNote ? (
-              <p className="mt-5 border-l-[3px] border-[#C08430] pl-4 text-[0.95rem] leading-7 text-[#5A6B7A]">
-                {course.certificateNote}
-              </p>
-            ) : null}
           </div>
         </div>
       </section>
@@ -246,21 +258,35 @@ export function CourseLanding({ course }: { course: Course }) {
           </div>
 
           {included.length > 0 ? (
-            <div
-              data-reveal
-              className="mt-10 rounded-[var(--radius-panel)] bg-white px-6 py-7 sm:px-8"
-            >
-              <h3 className="font-sans text-[1.1rem] font-bold text-black">
+            <div data-reveal className="mt-12">
+              <div className="flex items-center gap-2.5">
+                <SectionMark />
+                <p className="text-[0.78rem] font-bold uppercase tracking-[0.12em] text-black">
+                  Included
+                </p>
+              </div>
+              <h3 className="mt-3 font-sans text-[1.45rem] font-bold tracking-[-0.02em] text-black sm:text-[1.6rem]">
                 {site.ui.includedTitle}
               </h3>
-              <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+
+              <ul
+                className={`mt-6 grid grid-cols-1 gap-3 ${
+                  included.length === 1
+                    ? "max-w-2xl"
+                    : "sm:grid-cols-2"
+                }`}
+              >
                 {included.map((item) => (
                   <li
                     key={item}
-                    className="flex gap-3 text-[0.95rem] leading-7 text-[#746C66]"
+                    className="flex gap-3.5 rounded-[var(--radius-panel)] border border-[#e0d8ce] bg-white px-5 py-5 sm:px-6"
                   >
-                    <span className="mt-2.5 size-1.5 shrink-0 rounded-full bg-[#C08430]" />
-                    <span>{item}</span>
+                    <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-[#F7F3EE] text-[#C08430]">
+                      <CheckIcon size={14} weight="bold" aria-hidden />
+                    </span>
+                    <span className="text-[0.98rem] font-medium leading-7 text-[#2A3340]">
+                      {item}
+                    </span>
                   </li>
                 ))}
               </ul>

@@ -437,8 +437,6 @@ export const courses: Course[] = [
     categoryIds: ["professional-development"],
     topicTags: ["communication"],
     creditLabel: "Specialty CE (pending approval)",
-    certificateNote:
-      "Requested Florida Specialty CE, pending FREC/DBPR approval; not Core Law, Ethics and Business Practices, prelicensing, or postlicensing education.",
     audience:
       "Florida sales associates, broker associates, and brokers who want to listen actively, choose clear words, use their voice purposefully, and check understanding in inquiry calls, client meetings, follow-ups, and public speaking.",
     outcomes: [
@@ -453,7 +451,6 @@ export const courses: Course[] = [
       "Three application activities: message interpretation, same-words vocal comparison with call repair, and a two-minute talk",
       "Reception and communication feedback criteria",
       "Knowledge check with answer explanations",
-      "Self-paced, livestream, and in-person format options (dates and tuition confirmed by the school)",
     ],
     prerequisites: "Basic familiarity with a Florida real estate transaction.",
     priceNote: pdPriceNote,
@@ -470,8 +467,6 @@ export const courses: Course[] = [
     categoryIds: ["professional-development"],
     topicTags: ["sales-bd"],
     creditLabel: "Specialty CE (pending approval)",
-    certificateNote:
-      "Requested Florida Specialty CE, pending FREC/DBPR approval; not Core Law, Ethics and Business Practices, prelicensing, or postlicensing education.",
     audience:
       "Florida sales associates, broker associates, and brokers who want a repeatable consultation process before recommending properties, discussing listing strategy, or explaining brokerage services.",
     outcomes: [
@@ -488,6 +483,7 @@ export const courses: Course[] = [
       "Buyer and seller role-play cases with feedback criteria",
       "Knowledge check with instructor key",
     ],
+    prerequisites: "None required.",
     priceNote: pdPriceNote,
     formats: pendingPdFormats(),
     published: true,
@@ -502,8 +498,6 @@ export const courses: Course[] = [
     categoryIds: ["professional-development"],
     topicTags: ["leadership"],
     creditLabel: "Specialty CE (pending approval)",
-    certificateNote:
-      "Requested Florida Specialty CE, pending FREC/DBPR approval; not Core Law, Ethics and Business Practices, prelicensing, or postlicensing education.",
     audience:
       "Florida brokers, broker associates, team leaders, and sales associates with coordination responsibilities who want to improve communication, technology adoption, and accountability in real estate workflows.",
     outcomes: [
@@ -534,8 +528,6 @@ export const courses: Course[] = [
     categoryIds: ["professional-development"],
     topicTags: ["communication"],
     creditLabel: "Specialty CE (pending approval)",
-    certificateNote:
-      "Requested Florida Specialty CE, pending FREC/DBPR approval; not Core Law, Ethics and Business Practices, prelicensing, or postlicensing education.",
     audience:
       "Florida sales associates, broker associates, and brokers who present to clients with differing expectations about credibility, evidence, relationships, and participation.",
     outcomes: [
@@ -567,8 +559,6 @@ export const courses: Course[] = [
     categoryIds: ["professional-development"],
     topicTags: ["negotiation"],
     creditLabel: "Specialty CE (pending approval)",
-    certificateNote:
-      "Requested Florida Specialty CE, pending FREC/DBPR approval; not Core Law, Ethics and Business Practices, prelicensing, or postlicensing education.",
     audience:
       "Florida sales associates, broker associates, and brokers who want to recognize different negotiation expectations, discover individual client preferences, and adapt communication within clear transaction procedures.",
     outcomes: [
@@ -599,8 +589,6 @@ export const courses: Course[] = [
     categoryIds: ["professional-development"],
     topicTags: ["commercial"],
     creditLabel: "Specialty CE (pending approval)",
-    certificateNote:
-      "Requested Florida Specialty CE, pending FREC/DBPR approval; not Core Law, Ethics and Business Practices, prelicensing, or postlicensing education.",
     audience:
       "Florida sales associates, broker associates, and brokers familiar with basic real estate practice who are beginning to explore commercial assignments.",
     outcomes: [
@@ -632,8 +620,6 @@ export const courses: Course[] = [
     categoryIds: ["professional-development"],
     topicTags: ["commercial"],
     creditLabel: "Specialty CE (pending approval)",
-    certificateNote:
-      "Requested Florida Specialty CE, pending FREC/DBPR approval; not Core Law, Ethics and Business Practices, prelicensing, or postlicensing education.",
     audience:
       "Florida sales associates, broker associates, and brokers familiar with basic brokerage practice who want an introduction to brokering the sale of an operating business.",
     outcomes: [
@@ -663,8 +649,6 @@ export const courses: Course[] = [
     categoryIds: ["professional-development"],
     topicTags: ["cross-border"],
     creditLabel: "Specialty CE (pending approval)",
-    certificateNote:
-      "Requested Florida Specialty CE, pending FREC/DBPR approval; not Core Law, Ethics and Business Practices, prelicensing, or postlicensing education.",
     audience:
       "Florida brokers, broker associates, and sales associates who want to evaluate missions, research participants, conduct purposeful discovery, and turn supported premises needs into appropriate next steps.",
     outcomes: [
@@ -695,8 +679,6 @@ export const courses: Course[] = [
     categoryIds: ["professional-development"],
     topicTags: ["cross-border"],
     creditLabel: "Specialty CE (pending approval)",
-    certificateNote:
-      "Requested Florida Specialty CE, pending FREC/DBPR approval; not Core Law, Ethics and Business Practices, prelicensing, or postlicensing education.",
     audience:
       "Florida brokers, broker associates, and sales associates familiar with basic brokerage practice who want to investigate how geopolitical developments may affect a client's real estate investment or market-entry decision.",
     outcomes: [
@@ -727,8 +709,6 @@ export const courses: Course[] = [
     categoryIds: ["professional-development"],
     topicTags: ["cross-border"],
     creditLabel: "Specialty CE (pending approval)",
-    certificateNote:
-      "Requested Florida Specialty CE, pending FREC/DBPR approval; not Core Law, Ethics and Business Practices, prelicensing, or postlicensing education.",
     audience:
       "Florida sales associates, broker associates, and brokers who want to communicate effectively with international buyers, explain the purchase process, and coordinate competent, fair service within their professional role.",
     outcomes: [
@@ -760,8 +740,6 @@ export const courses: Course[] = [
     categoryIds: ["professional-development"],
     topicTags: ["cross-border"],
     creditLabel: "Specialty CE (pending approval)",
-    certificateNote:
-      "Requested Florida Specialty CE, pending FREC/DBPR approval; not Core Law, Ethics and Business Practices, prelicensing, or postlicensing education.",
     audience:
       "Florida brokers, broker associates, and sales associates who want to connect a company's U.S. entry or expansion objectives to real estate service.",
     outcomes: [
