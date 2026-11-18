@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     url: "/professional-development",
     images: [
       {
-        url: "/images/bright-office.jpg",
+        url: "/images/pd-category-hero.jpg",
         alt: "Professional development and workplace learning",
       },
     ],
@@ -43,9 +43,9 @@ export default function ProfessionalDevelopmentPage() {
         label="Specialty skills"
         title={category.pageTitle}
         lede={category.pageLede}
-        image="/images/bright-office.jpg"
-        imageAlt="Professionals collaborating in a bright modern office"
-        imagePosition="center 40%"
+        image="/images/pd-category-hero.jpg"
+        imageAlt="Professionals collaborating in a modern office meeting"
+        imagePosition="center 35%"
         ctaHref="#courses"
         ctaLabel="Browse courses"
       />

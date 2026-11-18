@@ -1,7 +1,25 @@
 import type { Course } from "@/content/site";
 
+const pdImages: Record<string, string> = {
+  "the-voice-that-sells": "/images/pd-voice-sells.jpg",
+  "the-5-ws-of-selling": "/images/pd-5ws-selling.jpg",
+  "leading-diverse-teams": "/images/pd-leading-teams.jpg",
+  "presenting-across-cultures": "/images/pd-presenting-cultures.jpg",
+  "negotiating-across-cultures": "/images/pd-negotiating-cultures.jpg",
+  "introduction-to-commercial-real-estate": "/images/pd-commercial-re.jpg",
+  "introduction-to-business-brokerage": "/images/pd-business-brokerage.jpg",
+  "from-trade-mission-to-real-estate-opportunity":
+    "/images/pd-trade-mission.jpg",
+  "geopolitics-and-real-estate-investment": "/images/pd-geopolitics-invest.jpg",
+  "global-clients-local-business": "/images/pd-global-clients.jpg",
+  "when-businesses-cross-borders": "/images/pd-cross-borders-map.jpg",
+};
+
 /** Prefer real-estate relevant photography by topic / slug. */
 export function heroImageForCourse(course: Course) {
+  const pd = pdImages[course.slug];
+  if (pd) return pd;
+
   const topic = course.floridaTopic;
   if (topic === "get-license") return "/images/contact-home.jpg";
   if (topic === "become-broker") return "/images/fl-card-broker.jpg";
@@ -10,7 +28,7 @@ export function heroImageForCourse(course: Course) {
   if (topic === "continuing-education") return "/images/hero-banner.jpg";
   if (topic === "reactivation") return "/images/fl-card-reactivation.jpg";
   if (course.categoryIds.includes("professional-development")) {
-    return "/images/bright-office.jpg";
+    return "/images/pd-category-hero.jpg";
   }
   if (course.categoryIds.includes("international-business")) {
     return "/images/florida-skyline.jpg";
@@ -19,6 +37,9 @@ export function heroImageForCourse(course: Course) {
 }
 
 export function sideImageForCourse(course: Course) {
+  const pd = pdImages[course.slug];
+  if (pd) return pd;
+
   switch (course.slug) {
     case "sales-pre-license":
       return "/images/contact-home.jpg";
@@ -36,22 +57,6 @@ export function sideImageForCourse(course: Course) {
       return "/images/fl-card-reactivation.jpg";
     case "broker-post-license-management":
       return "/images/fl-card-office.jpg";
-    case "the-voice-that-sells":
-    case "presenting-across-cultures":
-      return "/images/bright-office.jpg";
-    case "the-5-ws-of-selling":
-    case "negotiating-across-cultures":
-      return "/images/courses-band.jpg";
-    case "leading-diverse-teams":
-      return "/images/fl-card-office.jpg";
-    case "introduction-to-commercial-real-estate":
-    case "introduction-to-business-brokerage":
-      return "/images/fl-card-broker.jpg";
-    case "from-trade-mission-to-real-estate-opportunity":
-    case "geopolitics-and-real-estate-investment":
-    case "global-clients-local-business":
-    case "when-businesses-cross-borders":
-      return "/images/florida-skyline.jpg";
     default:
       break;
   }
@@ -63,6 +68,9 @@ export function sideImageForCourse(course: Course) {
   if (topic === "sales-post-license") return "/images/fl-card-coastal.jpg";
   if (topic === "broker-post-license") return "/images/fl-card-office.jpg";
   if (topic === "reactivation") return "/images/hero-open-home.jpg";
+  if (course.categoryIds.includes("professional-development")) {
+    return "/images/pd-category-hero.jpg";
+  }
   return "/images/florida-skyline.jpg";
 }
 
