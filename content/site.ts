@@ -516,6 +516,13 @@ export const site = {
     accessBody:
       "Video, exams, and payment stay on the partner site. Use Enroll on the course you want. For questions, call the office number on this site.",
   },
+  instructorsApply: {
+    title: "Apply to teach",
+    label: "Teach with us",
+    heading: "Instructor application",
+    lede: "Share your teaching focus, experience, and credentials. The school reviews applications and follows up when there is a fit.",
+    breadcrumb: "Apply to teach",
+  },
   privacy: {
     title: "Privacy policy",
     lede: "How this marketing site handles information while you browse courses and contact the school.",

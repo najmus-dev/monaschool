@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/about",
     "/contact",
+    "/instructors/apply",
     "/faq",
     "/florida-real-estate",
     "/professional-development",

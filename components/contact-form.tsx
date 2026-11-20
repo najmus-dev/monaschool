@@ -24,7 +24,11 @@ const fieldClass =
 const labelClass =
   "mb-2 block text-[0.7rem] font-bold uppercase tracking-[0.08em] text-[#746C66]";
 
-export function ContactForm() {
+export function ContactForm({
+  lockedInterest,
+}: {
+  lockedInterest?: string;
+} = {}) {
   const copy = site.ui.form;
   const searchParams = useSearchParams();
   const nameRef = useRef<HTMLInputElement>(null);
@@ -40,7 +44,7 @@ export function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [interest, setInterest] = useState("");
+  const [interest, setInterest] = useState(lockedInterest ?? "");
   const [organization, setOrganization] = useState("");
   const [groupSize, setGroupSize] = useState("");
   const [teachingFocus, setTeachingFocus] = useState("");
@@ -51,6 +55,18 @@ export function ContactForm() {
   const [agreed, setAgreed] = useState(false);
 
   useEffect(() => {
+    if (lockedInterest) {
+      setInterest(lockedInterest);
+      if (lockedInterest === "teaching-partnership") {
+        setMessage((current) =>
+          current.trim()
+            ? current
+            : "I would like to apply to teach with REIB Institute.",
+        );
+      }
+      return;
+    }
+
     const preset = searchParams.get("interest");
     if (
       preset &&
@@ -86,10 +102,11 @@ export function ContactForm() {
           .join("\n"),
       );
     }
-  }, [searchParams, copy.interestOptions]);
+  }, [searchParams, copy.interestOptions, lockedInterest]);
 
   const needsOrg = interest === "group-training";
   const needsTeaching = interest === "teaching-partnership";
+  const interestLocked = Boolean(lockedInterest);
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -243,48 +260,52 @@ export function ContactForm() {
         </p>
       ) : null}
 
-      <div>
-        <label htmlFor="interest" className={labelClass}>
-          {copy.interest} *
-        </label>
-        <div className="relative">
-          <select
-            ref={interestRef}
-            id="interest"
-            name="interest"
-            value={interest}
-            onChange={(event) => setInterest(event.target.value)}
-            aria-invalid={errors.interest ? true : undefined}
-            className={`${fieldClass} appearance-none pr-10`}
-          >
-            <option value="">Please select</option>
-            {copy.interestOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-          <span
-            className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-black/45"
-            aria-hidden
-          >
-            <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-              <path
-                d="M1 1.5L6 6.5L11 1.5"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
+      {interestLocked ? (
+        <input type="hidden" name="interest" value={interest} />
+      ) : (
+        <div>
+          <label htmlFor="interest" className={labelClass}>
+            {copy.interest} *
+          </label>
+          <div className="relative">
+            <select
+              ref={interestRef}
+              id="interest"
+              name="interest"
+              value={interest}
+              onChange={(event) => setInterest(event.target.value)}
+              aria-invalid={errors.interest ? true : undefined}
+              className={`${fieldClass} appearance-none pr-10`}
+            >
+              <option value="">Please select</option>
+              {copy.interestOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+            <span
+              className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-black/45"
+              aria-hidden
+            >
+              <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                <path
+                  d="M1 1.5L6 6.5L11 1.5"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+          </div>
+          {errors.interest ? (
+            <p className="mt-1.5 text-sm font-medium text-red-700">
+              {errors.interest}
+            </p>
+          ) : null}
         </div>
-        {errors.interest ? (
-          <p className="mt-1.5 text-sm font-medium text-red-700">
-            {errors.interest}
-          </p>
-        ) : null}
-      </div>
+      )}
 
       <div>
         <label htmlFor="name" className={labelClass}>

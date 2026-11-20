@@ -12,7 +12,7 @@ const companyLinks = [
   { label: "Contact", href: "/contact" },
   {
     label: "Teach with us",
-    href: "/contact?interest=teaching-partnership",
+    href: "/instructors/apply",
   },
   { label: "FAQ", href: "/faq" },
   { label: "Student login", href: site.ui.studentLoginHref, external: true },
