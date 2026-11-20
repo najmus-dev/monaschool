@@ -10,12 +10,12 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 const companyLinks = [
   { label: "About us", href: "/about" },
   { label: "Contact", href: "/contact" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Student login", href: site.ui.studentLoginHref, external: true },
   {
     label: "Become an instructor",
     href: "/instructors/apply",
   },
-  { label: "FAQ", href: "/faq" },
-  { label: "Student login", href: site.ui.studentLoginHref, external: true },
 ] as const;
 
 const learnLinks = [

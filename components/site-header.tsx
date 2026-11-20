@@ -221,11 +221,11 @@ const menuSections: {
       {
         heading: "Partnerships",
         links: [
+          { label: "Contact the school", href: "/contact" },
           {
             label: "Become an instructor",
             href: "/instructors/apply",
           },
-          { label: "Contact the school", href: "/contact" },
         ],
       },
       {
@@ -271,11 +271,11 @@ const menuSections: {
         heading: "Connect",
         links: [
           { label: "Contact", href: "/contact" },
+          { label: "Student login", href: site.ui.studentLoginHref },
           {
             label: "Become an instructor",
             href: "/instructors/apply",
           },
-          { label: "Student login", href: site.ui.studentLoginHref },
         ],
       },
     ],
