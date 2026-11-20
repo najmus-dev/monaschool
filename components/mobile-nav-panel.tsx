@@ -28,9 +28,21 @@ export type MobileMenuSection = {
   lede: string;
   hasPanel: boolean;
   tone: string;
-  columns: { heading: string; links: { label: string; href: string }[] }[];
+  badge?: string;
+  columns: {
+    heading: string;
+    links: { label: string; href: string; badge?: string }[];
+  }[];
   cta: { label: string; href: string; body: string };
 };
+
+function MenuBadge({ children }: { children: string }) {
+  return (
+    <span className="inline-flex shrink-0 items-center rounded-full border border-[#C08430]/40 px-2 py-0.5 text-[0.58rem] font-bold uppercase tracking-[0.1em] text-[#8A6A2F]">
+      {children}
+    </span>
+  );
+}
 
 type StackFrame =
   | { type: "root" }
@@ -186,7 +198,10 @@ export function MobileNavPanel({
                         className={drillClass}
                         onClick={() => push({ type: "section", key: item.key })}
                       >
-                        <span>{item.label}</span>
+                        <span className="flex min-w-0 items-center">
+                          <span className="truncate">{item.label}</span>
+                          {item.badge ? <MenuBadge>{item.badge}</MenuBadge> : null}
+                        </span>
                         <CaretRightIcon
                           size={16}
                           weight="bold"
@@ -208,7 +223,10 @@ export function MobileNavPanel({
                           />
                         }
                       >
-                        {item.label}
+                        <span className="inline-flex flex-wrap items-center">
+                          <span>{item.label}</span>
+                          {item.badge ? <MenuBadge>{item.badge}</MenuBadge> : null}
+                        </span>
                       </NavLink>
                     )}
                   </li>
@@ -241,8 +259,9 @@ export function MobileNavPanel({
                 Back
               </button>
 
-              <h2 className="mt-5 font-sans text-[1.55rem] font-bold leading-tight tracking-tight text-black">
-                {section.label}
+              <h2 className="mt-5 flex flex-wrap items-center font-sans text-[1.55rem] font-bold leading-tight tracking-tight text-black">
+                <span>{section.label}</span>
+                {section.badge ? <MenuBadge>{section.badge}</MenuBadge> : null}
               </h2>
               <p className="mt-2 text-[0.95rem] leading-6 text-black/65">
                 {section.lede}
@@ -327,7 +346,14 @@ export function MobileNavPanel({
                         />
                       }
                     >
-                      {link.label}
+                      {link.badge ? (
+                        <span className="flex min-w-0 items-start gap-2">
+                          <span className="min-w-0">{link.label}</span>
+                          <MenuBadge>{link.badge}</MenuBadge>
+                        </span>
+                      ) : (
+                        link.label
+                      )}
                     </NavLink>
                   </li>
                 ))}

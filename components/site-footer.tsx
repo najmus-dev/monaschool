@@ -66,7 +66,12 @@ function LinkColumn({
   links,
 }: {
   title: string;
-  links: readonly { label: string; href: string; external?: boolean }[];
+  links: readonly {
+    label: string;
+    href: string;
+    external?: boolean;
+    badge?: string;
+  }[];
 }) {
   return (
     <div data-reveal>
@@ -77,7 +82,14 @@ function LinkColumn({
         {links.map((link) => (
           <li key={link.label}>
             <FooterLink href={link.href} external={link.external}>
-              {link.label}
+              <span className="inline-flex flex-wrap items-center">
+                <span>{link.label}</span>
+                {link.badge ? (
+                  <span className="ml-2 inline-flex shrink-0 items-center rounded-full border border-[#C08430]/40 px-2 py-0.5 text-[0.58rem] font-bold uppercase tracking-[0.1em] text-[#8A6A2F]">
+                    {link.badge}
+                  </span>
+                ) : null}
+              </span>
             </FooterLink>
           </li>
         ))}

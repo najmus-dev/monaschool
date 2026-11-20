@@ -24,6 +24,20 @@ type MenuKey =
   | "about"
   | "contact";
 
+type MenuLink = {
+  label: string;
+  href: string;
+  badge?: string;
+};
+
+function MenuBadge({ children }: { children: string }) {
+  return (
+    <span className="inline-flex shrink-0 items-center rounded-full border border-[#C08430]/40 px-2 py-0.5 text-[0.58rem] font-bold uppercase tracking-[0.1em] text-[#8A6A2F]">
+      {children}
+    </span>
+  );
+}
+
 const menuSections: {
   key: MenuKey;
   label: string;
@@ -31,7 +45,8 @@ const menuSections: {
   lede: string;
   hasPanel: boolean;
   tone: string;
-  columns: { heading: string; links: { label: string; href: string }[] }[];
+  badge?: string;
+  columns: { heading: string; links: MenuLink[] }[];
   cta: { label: string; href: string; body: string };
 }[] = [
   {
@@ -85,7 +100,7 @@ const menuSections: {
     key: "professional-development",
     label: "Professional Development",
     href: "/professional-development",
-    lede: "Specialty skills for real estate practice—communication, sales, leadership, and more.",
+    lede: "Specialty skills for real estate practice—communication, sales, leadership, and more. Enrollment opens after school approval.",
     hasPanel: true,
     tone: "#ebe4d4",
     columns: [
@@ -95,22 +110,27 @@ const menuSections: {
           {
             label: "The Voice That Sells",
             href: "/courses/the-voice-that-sells",
+            badge: "Coming soon",
           },
           {
             label: "The 5 W's of Selling",
             href: "/courses/the-5-ws-of-selling",
+            badge: "Coming soon",
           },
           {
             label: "Negotiating Across Cultures",
             href: "/courses/negotiating-across-cultures",
+            badge: "Coming soon",
           },
           {
             label: "Introduction to Commercial Real Estate",
             href: "/courses/introduction-to-commercial-real-estate",
+            badge: "Coming soon",
           },
           {
             label: "Global Clients, Local Business",
             href: "/courses/global-clients-local-business",
+            badge: "Coming soon",
           },
         ],
       },
@@ -120,26 +140,32 @@ const menuSections: {
           {
             label: "Communication & presentation",
             href: "/professional-development?topic=communication#courses",
+            badge: "Coming soon",
           },
           {
             label: "Sales & business development",
             href: "/professional-development?topic=sales-bd#courses",
+            badge: "Coming soon",
           },
           {
             label: "Negotiation",
             href: "/professional-development?topic=negotiation#courses",
+            badge: "Coming soon",
           },
           {
             label: "Leadership",
             href: "/professional-development?topic=leadership#courses",
+            badge: "Coming soon",
           },
           {
             label: "Commercial & brokerage",
             href: "/professional-development?topic=commercial#courses",
+            badge: "Coming soon",
           },
           {
             label: "Cross-border & global clients",
             href: "/professional-development?topic=cross-border#courses",
+            badge: "Coming soon",
           },
         ],
       },
@@ -149,6 +175,7 @@ const menuSections: {
           {
             label: "Browse all PD courses",
             href: "/professional-development#courses",
+            badge: "Coming soon",
           },
           {
             label: "Request group training",
@@ -160,9 +187,9 @@ const menuSections: {
       },
     ],
     cta: {
-      label: "See PD courses",
+      label: "Preview PD courses",
       href: "/professional-development#courses",
-      body: "Browse published specialty courses, then open a class for formats and details.",
+      body: "Browse specialty courses now. Enrollment and tuition open after the school confirms approval.",
     },
   },
   {
@@ -568,7 +595,12 @@ export function SiteHeader() {
                               : "transparent";
                           }}
                         >
-                          <span>{section.label}</span>
+                          <span className="flex min-w-0 items-center">
+                            <span className="truncate">{section.label}</span>
+                            {section.badge ? (
+                              <MenuBadge>{section.badge}</MenuBadge>
+                            ) : null}
+                          </span>
                           <CaretRightIcon
                             size={16}
                             weight="bold"
@@ -588,8 +620,11 @@ export function SiteHeader() {
                   className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-[1.25rem] bg-white shadow-[0_1px_0_rgba(0,0,0,0.04)] sm:rounded-[1.35rem] lg:h-full"
                 >
                   <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-4 sm:p-6 md:p-8 lg:max-h-none">
-                    <h2 className="font-sans text-[1.45rem] font-bold tracking-tight text-black sm:text-[1.85rem] md:text-[2.15rem]">
-                      {activeSection.label}
+                    <h2 className="flex flex-wrap items-center gap-y-1 font-sans text-[1.45rem] font-bold tracking-tight text-black sm:text-[1.85rem] md:text-[2.15rem]">
+                      <span>{activeSection.label}</span>
+                      {activeSection.badge ? (
+                        <MenuBadge>{activeSection.badge}</MenuBadge>
+                      ) : null}
                     </h2>
                     <p className="mt-2 max-w-xl text-[0.95rem] leading-6 text-black/70 sm:text-[1rem] sm:leading-7">
                       {activeSection.lede}
@@ -613,6 +648,14 @@ export function SiteHeader() {
                                 link.href.startsWith("mailto:");
                               const className =
                                 "break-words text-[0.95rem] font-medium text-black transition-colors hover:text-black/55 hover:underline hover:underline-offset-4 sm:text-[1rem]";
+                              const label = link.badge ? (
+                                <span className="flex items-start justify-between gap-2">
+                                  <span className="min-w-0">{link.label}</span>
+                                  <MenuBadge>{link.badge}</MenuBadge>
+                                </span>
+                              ) : (
+                                link.label
+                              );
                               return (
                                 <li key={`${column.heading}-${link.label}`}>
                                   {external ? (
@@ -631,7 +674,7 @@ export function SiteHeader() {
                                       }
                                       onClick={() => setMenuOpen(false)}
                                     >
-                                      {link.label}
+                                      {label}
                                     </a>
                                   ) : (
                                     <Link
@@ -639,7 +682,7 @@ export function SiteHeader() {
                                       className={className}
                                       onClick={() => setMenuOpen(false)}
                                     >
-                                      {link.label}
+                                      {label}
                                     </Link>
                                   )}
                                 </li>
