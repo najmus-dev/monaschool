@@ -195,7 +195,7 @@ const menuSections: {
         heading: "Partnerships",
         links: [
           {
-            label: "Apply to teach",
+            label: "Become an instructor",
             href: "/instructors/apply",
           },
           { label: "Contact the school", href: "/contact" },
@@ -245,7 +245,7 @@ const menuSections: {
         links: [
           { label: "Contact", href: "/contact" },
           {
-            label: "Teach with us",
+            label: "Become an instructor",
             href: "/instructors/apply",
           },
           { label: "Student login", href: site.ui.studentLoginHref },

@@ -517,11 +517,11 @@ export const site = {
       "Video, exams, and payment stay on the partner site. Use Enroll on the course you want. For questions, call the office number on this site.",
   },
   instructorsApply: {
-    title: "Apply to teach",
-    label: "Teach with us",
-    heading: "Instructor application",
-    lede: "Share your teaching focus, experience, and credentials. The school reviews applications and follows up when there is a fit.",
-    breadcrumb: "Apply to teach",
+    title: "Become an instructor",
+    label: "Instructor applications",
+    heading: "Become an instructor",
+    lede: "Apply to teach Florida real estate, professional development, or international business with REIB Institute. Share your focus, experience, and credentials—the school reviews applications and follows up when there is a fit.",
+    breadcrumb: "Become an instructor",
   },
   privacy: {
     title: "Privacy policy",

@@ -11,7 +11,7 @@ const companyLinks = [
   { label: "About us", href: "/about" },
   { label: "Contact", href: "/contact" },
   {
-    label: "Teach with us",
+    label: "Become an instructor",
     href: "/instructors/apply",
   },
   { label: "FAQ", href: "/faq" },
