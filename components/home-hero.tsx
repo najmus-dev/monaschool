@@ -270,7 +270,7 @@ export function HomeHero() {
   return (
     <section
       ref={rootRef}
-      className="relative isolate min-h-[100svh] overflow-hidden bg-[#111111] text-[#111111]"
+      className="relative isolate min-h-[108svh] overflow-hidden bg-[#111111] text-[#111111]"
     >
       <div className="absolute inset-0 bg-[#111111]">
         {pathCards.map((slide, index) => (
@@ -301,12 +301,12 @@ export function HomeHero() {
         />
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[92rem] flex-col px-4 pb-5 pt-[7.5rem] sm:justify-between sm:px-6 sm:pb-7 sm:pt-[8.75rem] lg:px-8 lg:pt-[9.25rem]">
+      <div className="relative z-10 mx-auto flex min-h-[108svh] w-full max-w-[92rem] flex-col px-4 pb-5 pt-[10rem] sm:justify-between sm:px-6 sm:pb-7 sm:pt-[12rem] lg:px-8 lg:pt-[13rem]">
         {/* Mobile: copy lower + wide; desktop keeps top placement */}
         <div className="flex min-h-0 flex-1 flex-col justify-end sm:flex-none sm:justify-start">
           <div
             ref={copyRef}
-            className="w-full max-w-none pb-8 sm:max-w-[46rem] sm:pb-0 sm:pt-8 lg:max-w-[52rem]"
+            className="w-full max-w-none pb-8 sm:max-w-[46rem] sm:pb-0 sm:pt-14 lg:max-w-[52rem] lg:pt-16"
             data-hero-copy
           >
             <h1

@@ -34,7 +34,7 @@ export function AboutHero() {
           aria-hidden
         />
 
-        <div className="relative mx-auto flex min-h-[18rem] w-full max-w-[90rem] items-end px-4 pb-12 pt-[calc(4.25rem+3.25rem)] sm:min-h-[20rem] sm:px-6 sm:pb-14 sm:pt-[calc(4.25rem+3.75rem)] md:min-h-[22rem] lg:min-h-[24rem] lg:px-8 lg:pb-16">
+        <div className="relative mx-auto flex min-h-[23rem] w-full max-w-[90rem] items-end px-4 pb-12 pt-[calc(6.25rem+4.25rem)] sm:min-h-[25rem] sm:px-6 sm:pb-14 sm:pt-[calc(6.5rem+4.75rem)] md:min-h-[28rem] lg:min-h-[31rem] lg:px-8 lg:pb-16">
           <div className="max-w-[40rem]">
             <div data-reveal className="flex items-center gap-2.5">
               <SectionMark />

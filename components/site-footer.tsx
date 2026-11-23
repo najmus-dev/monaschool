@@ -148,7 +148,8 @@ export function SiteFooter() {
             className="mt-8 border-t border-black/10 pt-5 text-[0.78rem] leading-5 text-black/50 sm:mt-9 md:mt-10 md:pt-6"
           >
             <p>© 2026 {site.school.name}. All rights reserved.</p>
-            <p className="mt-1.5">{site.school.licenseLine}</p>
+            <p className="mt-1.5">{site.school.credentialsLine}</p>
+            <p className="mt-1">{site.school.equalOpportunityLine}</p>
             <p className="mt-3 max-w-3xl">
               {site.school.tagline} Based in {site.school.city}, Florida.{" "}
               {site.school.hours}.

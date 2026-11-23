@@ -80,7 +80,7 @@ export function FloridaHero({
 
   return (
     <section ref={rootRef} className="relative isolate bg-[#001830]">
-      <div className="relative min-h-[min(92vh,46rem)] overflow-hidden pt-[4.25rem]">
+      <div className="relative min-h-[min(98vh,50rem)] overflow-hidden pt-[6.5rem]">
         <div data-fre-media className="absolute inset-0 will-change-transform">
           <Image
             src="/images/path-earn-home.jpg"
@@ -100,7 +100,7 @@ export function FloridaHero({
           />
         </div>
 
-        <div className="relative mx-auto flex min-h-[min(78vh,38rem)] w-full max-w-[90rem] flex-col justify-end px-4 pb-28 pt-16 sm:px-6 sm:pb-32 md:pb-36 lg:px-8">
+        <div className="relative mx-auto flex min-h-[min(82vh,42rem)] w-full max-w-[90rem] flex-col justify-end px-4 pb-28 pt-20 sm:px-6 sm:pb-32 md:pb-36 lg:px-8 lg:pt-24">
           <nav
             data-fre-hero
             aria-label="Breadcrumb"

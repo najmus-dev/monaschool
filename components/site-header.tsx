@@ -100,7 +100,7 @@ const menuSections: {
     key: "professional-development",
     label: "Professional Development",
     href: "/professional-development",
-    lede: "Specialty skills for real estate practice—communication, sales, leadership, and more. Enrollment opens after school approval.",
+    lede: "Specialty skills for real estate practice—communication, sales, leadership, and more. Enrollment opens as schedules are published.",
     hasPanel: true,
     tone: "#ebe4d4",
     columns: [
@@ -189,7 +189,7 @@ const menuSections: {
     cta: {
       label: "Preview PD courses",
       href: "/professional-development#courses",
-      body: "Browse specialty courses now. Enrollment and tuition open after the school confirms approval.",
+      body: "Browse specialty courses now. Enrollment and tuition open as the school publishes schedules.",
     },
   },
   {
@@ -434,7 +434,7 @@ export function SiteHeader() {
     <header className="pointer-events-none fixed inset-x-0 top-0 z-50">
       <div className="pointer-events-auto mx-auto w-full max-w-[92rem] px-3 pt-3 sm:px-4 sm:pt-4 lg:px-5">
         <div
-          className={`relative flex h-[4.5rem] items-center justify-between gap-3 rounded-[1.25rem] px-4 shadow-[0_10px_30px_rgba(0,0,0,0.14)] backdrop-blur-2xl sm:h-[4.75rem] sm:px-6 lg:h-[5rem] lg:rounded-[1.5rem] ${
+          className={`relative flex h-[6.15rem] items-center justify-between gap-3 rounded-[1.25rem] px-4 shadow-[0_10px_30px_rgba(0,0,0,0.14)] backdrop-blur-2xl sm:h-[6.75rem] sm:px-6 lg:h-[7.5rem] lg:rounded-[1.5rem] ${
             menuOpen ? "bg-white" : "bg-white lg:bg-white/90"
           }`}
         >
@@ -474,7 +474,7 @@ export function SiteHeader() {
               height={203}
               priority
               unoptimized
-              className="h-[3.15rem] w-auto max-w-[10.5rem] object-contain object-left sm:h-[3.4rem] sm:max-w-[12rem] lg:h-[3.75rem] lg:max-w-[13.5rem] lg:object-center"
+              className="h-[4.85rem] w-auto max-w-[16.5rem] object-contain object-left sm:h-[5.4rem] sm:max-w-[19.5rem] lg:h-[6.15rem] lg:max-w-[23.5rem] lg:object-center"
             />
           </Link>
 

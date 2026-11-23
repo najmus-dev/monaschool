@@ -58,11 +58,12 @@ const email = "";
 const schoolName = "Real Estate & International Business Institute";
 const schoolShortName = "REIB Institute";
 const city = "Orlando";
-const dbprSchoolLicense = "Pending approval";
-const dbprProviderNumber = "Pending approval";
 const logoSrc = "/institute-logos/REIB_Formal_Institutional_Logo.png";
 const logoAlt = "REIB Institute — Real Estate & International Business Institute";
 const tagline = "Where Education Opens Markets.";
+const credentialsLine =
+  "A Florida licensed school. Accredited international business institute.";
+const equalOpportunityLine = "Equal opportunity employer.";
 
 export const site = {
   school: {
@@ -77,9 +78,9 @@ export const site = {
     logoAlt,
     address: `${city}, FL`,
     hours: "Mon–Fri, 9:00 a.m.–5:00 p.m. ET",
-    dbprSchoolLicense,
-    dbprProviderNumber,
-    licenseLine: `DBPR school license: ${dbprSchoolLicense}. Course provider number: ${dbprProviderNumber}.`,
+    credentialsLine,
+    equalOpportunityLine,
+    licenseLine: `${credentialsLine} ${equalOpportunityLine}`,
     description:
       "Real estate education, professional development, and international business learning. Florida licensing courses plus specialty business development programs.",
   },
@@ -135,7 +136,7 @@ export const site = {
     footerContact: "Contact",
     footerExplore: "On this site",
     footerLegal: "Legal",
-    trustLabel: "Approval status",
+    trustLabel: "The institute",
     seeCourses: "Browse courses",
     viewDetails: "Learn more",
     getLicensed: "Get your license",
@@ -320,8 +321,8 @@ export const site = {
     heroImageAlt: "Adult learners in a classroom session",
     note: "Placeholder school story. Replace this page with the school's own description. Do not add a founding story, instructor names, or student results until the school provides them.",
     paragraphs: [
-      `${schoolName} is preparing to offer Florida sales associate and broker courses for students in ${city}. The catalog follows the school fee schedule for pre-license, post-license, continuing education, reactivation, and broker Management.`,
-      "Formats include classroom, livestream, correspondence, and self-paced. License numbers will be posted in the footer when DBPR issues them.",
+      `${schoolName} offers Florida sales associate and broker education for students in ${city}, along with specialty professional development and international business learning. The catalog follows the school fee schedule for pre-license, post-license, continuing education, reactivation, and broker Management.`,
+      "Formats include classroom, livestream, correspondence, and self-paced. REIB Institute is a Florida licensed school and an accredited international business institute.",
     ],
     introLabel: "The institute",
     introTitle: "Clear paths for every stage",
@@ -370,15 +371,15 @@ export const site = {
         body: `Call the office at ${phoneDisplay} before you pick a format or renewal course.`,
       },
       {
-        title: "Approval status in the open",
-        body: `DBPR school license and provider numbers stay visible in the footer while status is ${dbprSchoolLicense.toLowerCase()}.`,
+        title: "Licensed and accredited",
+        body: "A Florida licensed school and an accredited international business institute—with equal opportunity employment.",
       },
     ],
     facts: [
       { label: "City", value: city },
       { label: "Office phone", value: phoneDisplay },
-      { label: "DBPR school license", value: dbprSchoolLicense },
-      { label: "Course provider number", value: dbprProviderNumber },
+      { label: "School", value: "Florida licensed" },
+      { label: "Institute", value: "Accredited international business" },
     ],
   },
   license: {
@@ -486,8 +487,9 @@ export const site = {
           "The 14-hour continuing education course: 3 hours Core Law, 3 hours Ethics and Business Practices, and 8 hours of specialty education.",
       },
       {
-        question: "Can the school report my completion to DBPR today?",
-        answer: `Not yet. The DBPR school license and course provider number are ${dbprSchoolLicense.toLowerCase()}. Reporting starts after approval. Check the license line in the footer before you rely on a completion being reported.`,
+        question: "Can the school report my completion to DBPR?",
+        answer:
+          "Ask the office which courses this school can report for your license cycle. Call or use the contact form if you need confirmation for a specific course.",
       },
       {
         question: "How long is a pre-license completion slip good for?",
@@ -560,8 +562,8 @@ export const site = {
         body: "Enroll links open Class Made Easy with this school's partner id. Listed prices mirror that checkout and can change; confirm the total before you pay.",
       },
       {
-        heading: "Approval status",
-        body: `The DBPR school license and course provider number are ${dbprSchoolLicense.toLowerCase()}. Course descriptions follow the public hour requirements. They are not a promise that DBPR has approved this school.`,
+        heading: "School standing",
+        body: `${credentialsLine} Course descriptions follow public Florida hour requirements. Completing a course does not guarantee a license; licensing decisions belong to DBPR.`,
       },
       {
         heading: "No exam or license promise",

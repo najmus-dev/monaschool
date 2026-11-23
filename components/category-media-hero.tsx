@@ -58,7 +58,7 @@ export function CategoryMediaHero({
           aria-hidden
         />
 
-        <div className="relative mx-auto flex min-h-[22rem] w-full max-w-[90rem] items-end px-4 pb-12 pt-[calc(4.25rem+3rem)] sm:min-h-[24rem] sm:px-6 sm:pb-14 sm:pt-[calc(4.25rem+3.5rem)] md:min-h-[26rem] lg:min-h-[28rem] lg:px-8 lg:pb-16">
+        <div className="relative mx-auto flex min-h-[27rem] w-full max-w-[90rem] items-end px-4 pb-12 pt-[calc(6.25rem+4rem)] sm:min-h-[29rem] sm:px-6 sm:pb-14 sm:pt-[calc(6.5rem+4.5rem)] md:min-h-[32rem] lg:min-h-[35rem] lg:px-8 lg:pb-16">
           <div className="max-w-[42rem]">
             <nav
               data-reveal

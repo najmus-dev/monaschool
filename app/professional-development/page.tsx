@@ -62,7 +62,7 @@ export default function ProfessionalDevelopmentPage() {
               Browse published courses
             </h2>
             <p className="mt-3 text-[0.98rem] leading-7 text-[#5A6B7A]">
-              Specialty courses from school submissions. Approval and tuition
+              Specialty courses from school submissions. Tuition and schedules
               update when the school confirms them—open a class for formats and
               details.
             </p>
