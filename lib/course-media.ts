@@ -13,6 +13,8 @@ const pdImages: Record<string, string> = {
   "geopolitics-and-real-estate-investment": "/images/pd-geopolitics-invest.jpg",
   "global-clients-local-business": "/images/pd-global-clients.jpg",
   "when-businesses-cross-borders": "/images/pd-cross-borders-map.jpg",
+  "short-sales-distressed-properties": "/images/pd-short-sales.jpg",
+  "reo-default-real-estate": "/images/pd-reo-default.jpg",
 };
 
 /** Prefer real-estate relevant photography by topic / slug. */

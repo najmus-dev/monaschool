@@ -3,17 +3,13 @@ import Link from "next/link";
 export function PathNextCta({
   title,
   body,
-  primaryHref,
-  primaryLabel,
-  secondaryHref = "/contact",
-  secondaryLabel = "Contact the school",
+  href = "/contact",
+  label = "Ask a question",
 }: {
   title: string;
   body: string;
-  primaryHref: string;
-  primaryLabel: string;
-  secondaryHref?: string;
-  secondaryLabel?: string;
+  href?: string;
+  label?: string;
 }) {
   return (
     <section className="border-y border-[#d5dde6] bg-white">
@@ -26,16 +22,10 @@ export function PathNextCta({
         </div>
         <div className="flex flex-wrap gap-3">
           <Link
-            href={primaryHref}
+            href={href}
             className="inline-flex h-11 items-center justify-center rounded-[var(--radius-control)] bg-[#002448] px-5 text-[0.9rem] font-bold text-white transition-colors hover:bg-black"
           >
-            {primaryLabel}
-          </Link>
-          <Link
-            href={secondaryHref}
-            className="inline-flex h-11 items-center justify-center rounded-[var(--radius-control)] border border-[#002448]/25 bg-white px-5 text-[0.9rem] font-bold text-[#002448] transition-colors hover:border-[#002448] hover:bg-[#F4F7FA]"
-          >
-            {secondaryLabel}
+            {label}
           </Link>
         </div>
       </div>

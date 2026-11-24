@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Course, DeliveryFormat } from "@/content/site";
-import { site } from "@/content/site";
+import { coursePriceLabel, site } from "@/content/site";
 import { cardImageForCourse } from "@/lib/course-media";
 
 export function CourseCard({
@@ -18,6 +18,7 @@ export function CourseCard({
       : course.formats.map((item) => item.formatLabel).join(" · ");
   const hoursMatch = course.hoursLabel.match(/(\d+)/);
   const hoursValue = hoursMatch?.[1] ?? null;
+  const tuition = coursePriceLabel(course);
   const image = cardImageForCourse(course);
 
   return (
@@ -48,6 +49,9 @@ export function CourseCard({
         <p className="mt-3 font-sans text-[0.86rem] font-normal leading-6 text-[#8FA3B8]">
           {formatSummary}
         </p>
+        <p className="mt-2 font-sans text-[0.95rem] font-semibold tabular-nums text-[#001830]">
+          {tuition}
+        </p>
       </div>
 
       <div className="relative mt-auto overflow-hidden border-t border-[#e2eaf1]">
@@ -67,7 +71,7 @@ export function CourseCard({
             )}
           </p>
           <p className="shrink-0 font-sans text-[0.88rem] font-semibold text-[#5A6B7A]">
-            {site.ui.viewDetails}
+            {site.ui.chooseFormat}
           </p>
         </div>
 
@@ -75,14 +79,14 @@ export function CourseCard({
           className="absolute inset-x-0 bottom-0 flex translate-y-full items-center justify-center bg-[#002448] px-6 py-4 text-center font-sans text-[0.92rem] font-bold text-white transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0 sm:px-7"
           aria-hidden
         >
-          {site.ui.viewDetails}
+          {site.ui.chooseFormat}
         </div>
       </div>
 
       <Link
-        href={`/courses/${course.slug}`}
+        href={`/courses/${course.slug}#formats`}
         className="absolute inset-0 z-20"
-        aria-label={`${site.ui.viewDetails}: ${course.title}`}
+        aria-label={`${site.ui.chooseFormat}: ${course.title}`}
       />
     </article>
   );

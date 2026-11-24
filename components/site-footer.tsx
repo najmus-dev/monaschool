@@ -19,7 +19,7 @@ const companyLinks = [
 ] as const;
 
 const learnLinks = [
-  { label: "Florida Real Estate", href: "/florida-real-estate" },
+  { label: "Florida Licensing & Renewal", href: "/florida-real-estate" },
   { label: "Professional Development", href: "/professional-development" },
   { label: "International Business", href: "/international-business" },
 ] as const;

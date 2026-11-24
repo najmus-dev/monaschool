@@ -30,6 +30,7 @@ export {
   getCourse,
   getLearningCategory,
   learningCategories,
+  nextSessionForFormat,
   upcomingSessions,
 } from "@/content/catalog";
 
@@ -88,11 +89,11 @@ export const site = {
   learningCategories,
   upcomingSessions,
   headerCta: {
-    label: "Florida Real Estate",
+    label: "Florida Licensing & Renewal",
     href: "/florida-real-estate",
   },
   nav: [
-    { label: "Florida Real Estate", href: "/florida-real-estate" },
+    { label: "Florida Licensing & Renewal", href: "/florida-real-estate" },
     { label: "Professional Development", href: "/professional-development" },
     { label: "International Business", href: "/international-business" },
     { label: "About", href: "/about" },
@@ -109,6 +110,8 @@ export const site = {
     enroll: "Enroll Now",
     register: "Register",
     requestDates: "Request Next Dates",
+    getNotified: "Get Notified",
+    viewDatesEnroll: "View Dates & Enroll",
     viewCourse: "View Course",
     allCourses: "Browse Florida courses",
     sessionsTitle: "Upcoming live classes",
@@ -117,7 +120,7 @@ export const site = {
     studentLogin: "Student Login",
     studentLoginHref: partnerAccount,
     formatLabel: "Format",
-    chooseFormat: "Choose format",
+    chooseFormat: "See formats & enroll",
     fromPrice: "From",
     groupTraining: "Request Group Training",
     learnWithReib: "Learn with REIB Institute",
@@ -156,7 +159,16 @@ export const site = {
     priceIntro:
       "Tuition matches the school fee schedule (revised Nov 10, 2026). Confirm the total and format before you pay.",
     courseNumberLabel: "Course number",
-    tuitionLabel: "School tuition",
+    tuitionLabel: "Tuition (USD)",
+    languageLabel: "Language",
+    dateLabel: "Date",
+    timeZoneLabel: "Time zone",
+    deliveryLabel: "Delivery",
+    dateSelfPaced: "Start anytime after enrollment",
+    dateTba: "Dates publish when scheduled",
+    timeZoneDefault: "Eastern Time (ET)",
+    timeZoneSelfPaced: "Your local time",
+
     emptyCourses: "No courses are listed yet.",
     emptyFilterCourses: "No courses match these filters. Clear a filter and try again.",
     emptyReviews: "No sample reviews are listed yet.",

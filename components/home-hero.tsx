@@ -13,12 +13,9 @@ const MOBILE_GAP = 12;
 const pathCards = [
   {
     code: "FRE",
-    title: "Florida Real Estate",
+    title: "Florida Licensing & Renewal",
     href: "/florida-real-estate",
     video: "/videos/5529096-hd_1920_1080_30fps.mp4",
-    headline: "Florida licensing for every stage of your career",
-    body: "Pre-license, renewals, broker education, and continuing education — with formats you can compare on one page.",
-    ctaLabel: "Explore courses",
     line: "#C08430",
     lineTrack: "rgba(192, 132, 48, 0.4)",
   },
@@ -27,9 +24,6 @@ const pathCards = [
     title: "Professional Development",
     href: "/professional-development",
     video: "/videos/4428751-uhd_3840_2160_25fps.mp4",
-    headline: "Practical skills that move careers forward",
-    body: "AI for business, sales, negotiation, communication, and leadership — livestream and in person.",
-    ctaLabel: "View programs",
     line: "#002448",
     lineTrack: "rgba(0, 36, 72, 0.35)",
   },
@@ -38,9 +32,6 @@ const pathCards = [
     title: "International Business",
     href: "/international-business",
     video: "/videos/5252440-uhd_3840_2160_30fps.mp4",
-    headline: "Learn to work and sell across markets",
-    body: "Cross-cultural communication, international selling, market entry, and working with global clients.",
-    ctaLabel: "Explore IB",
     line: "#B47824",
     lineTrack: "rgba(180, 120, 36, 0.38)",
   },
@@ -57,8 +48,6 @@ export function HomeHero() {
   const [displayedCard, setDisplayedCard] = useState(0);
   const [introDone, setIntroDone] = useState(false);
   const [paused, setPaused] = useState(false);
-
-  const activeSlide = pathCards[activeCard] ?? pathCards[0];
 
   function goToCard(index: number) {
     setActiveCard(index);
@@ -251,21 +240,6 @@ export function HomeHero() {
     });
   }, [paused]);
 
-  useGSAP(
-    () => {
-      const copy = copyRef.current;
-      if (!copy || !introDone) return;
-      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (reduced) return;
-
-      gsap.fromTo(
-        copy.querySelectorAll("[data-slide-copy]"),
-        { autoAlpha: 0, y: 18 },
-        { autoAlpha: 1, y: 0, duration: 0.55, stagger: 0.06, ease: "power2.out" },
-      );
-    },
-    { dependencies: [activeCard, introDone], scope: rootRef },
-  );
 
   return (
     <section
@@ -306,27 +280,29 @@ export function HomeHero() {
         <div className="flex min-h-0 flex-1 flex-col justify-end sm:flex-none sm:justify-start">
           <div
             ref={copyRef}
-            className="w-full max-w-none pb-8 sm:max-w-[46rem] sm:pb-0 sm:pt-14 lg:max-w-[52rem] lg:pt-16"
+            className="w-full max-w-none pb-8 sm:max-w-[56rem] sm:pb-0 sm:pt-14 lg:max-w-[62rem] lg:pt-16"
             data-hero-copy
           >
-            <h1
-              data-slide-copy
-              className="w-[92%] max-w-none font-sans text-[2.15rem] font-bold uppercase leading-[1.04] tracking-[-0.03em] text-white sm:w-auto sm:max-w-[28ch] sm:text-[1.95rem] sm:font-semibold sm:leading-[1.1] sm:tracking-[-0.02em] sm:text-[#F3E6C8] md:text-[2.2rem] md:leading-[1.08] lg:text-[2.35rem]"
-            >
-              {activeSlide.headline}
+            <h1 className="w-[92%] max-w-none font-sans text-[2.35rem] font-bold uppercase leading-[1.05] tracking-[-0.03em] text-white sm:w-auto sm:max-w-[34ch] sm:text-[2.45rem] sm:font-semibold sm:leading-[1.08] sm:tracking-[-0.025em] sm:text-[#F3E6C8] md:text-[2.75rem] md:leading-[1.06] lg:max-w-[38ch] lg:text-[3.1rem]">
+              Florida Real Estate Education.
+              <span className="mt-1 block">Global Business Training.</span>
             </h1>
-            <p
-              data-slide-copy
-              className="mt-4 w-full max-w-none font-sans text-[1.05rem] font-normal leading-[1.55] text-white/90 sm:mt-4 sm:max-w-[54ch] sm:text-[1.05rem] sm:leading-[1.7] sm:text-[#E2EAF1]"
-            >
-              {activeSlide.body}
+            <p className="mt-4 w-full max-w-none font-sans text-[1.1rem] font-normal leading-[1.55] text-white/90 sm:mt-5 sm:max-w-[62ch] sm:text-[1.12rem] sm:leading-[1.7] sm:text-[#E2EAF1] lg:text-[1.18rem]">
+              Find Florida licensing and renewal courses, or explore
+              international business training — clear paths for every stage.
             </p>
-            <div data-slide-copy className="mt-6 sm:mt-5">
+            <div className="mt-6 flex w-full max-w-xl flex-col gap-3 sm:mt-5 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center">
               <Link
-                href={activeSlide.href}
-                className="inline-flex h-[2.65rem] items-center rounded-[var(--radius-control)] bg-[#C08430] px-5 text-[0.95rem] font-semibold text-[#001830] transition-colors hover:bg-[#F3E6C8] sm:h-[2.5rem] sm:text-[0.9rem]"
+                href="/florida-real-estate"
+                className="inline-flex h-[2.75rem] w-full items-center justify-center rounded-[var(--radius-control)] bg-[#C08430] px-5 text-center text-[0.95rem] font-semibold text-[#001830] transition-colors hover:bg-[#F3E6C8] sm:h-[2.5rem] sm:w-auto sm:text-[0.9rem]"
               >
-                {activeSlide.ctaLabel}
+                Find Florida Courses
+              </Link>
+              <Link
+                href="/international-business"
+                className="inline-flex h-[2.75rem] w-full items-center justify-center rounded-[var(--radius-control)] border border-white/70 bg-white/10 px-5 text-center text-[0.95rem] font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white hover:text-[#001830] sm:h-[2.5rem] sm:w-auto sm:text-[0.9rem]"
+              >
+                Explore International Business Courses
               </Link>
             </div>
           </div>

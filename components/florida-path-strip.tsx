@@ -4,17 +4,17 @@ const paths = [
   {
     title: "Get licensed",
     body: "Sales pre-license education for the Florida sales associate path.",
-    topic: "get-license",
+    href: "/florida-real-estate#get-licensed",
   },
   {
     title: "First renewal",
     body: "Post-license hours required before the initial license expires.",
-    topic: "sales-post-license",
+    href: "/florida-real-estate#first-renewal",
   },
   {
     title: "Stay current",
     body: "Continuing education, Core Law, Ethics, reactivation, and broker paths.",
-    topic: "continuing-education",
+    href: "/florida-real-estate#renew-ce",
   },
 ] as const;
 
@@ -23,13 +23,13 @@ export function FloridaPathStrip() {
     <section className="border-b border-[#d5dde6] bg-white">
       <div className="mx-auto w-full max-w-[90rem] px-4 py-11 sm:px-6 md:py-12 lg:px-8">
         <ul className="grid grid-cols-1 divide-y divide-[#d5dde6] md:grid-cols-3 md:divide-x md:divide-y-0">
-          {paths.map(({ title, body, topic }, index) => (
+          {paths.map(({ title, body, href }, index) => (
             <li
-              key={topic}
+              key={href}
               className="min-h-0 md:px-8 md:first:pl-0 md:last:pr-0"
             >
               <a
-                href={`/florida-real-estate?topic=${topic}#courses`}
+                href={href}
                 className="group flex h-full flex-col py-7 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#002448]/30 md:py-1"
               >
                 <div className="flex items-baseline gap-3">

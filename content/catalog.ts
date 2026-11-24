@@ -39,7 +39,10 @@ export type CourseFormatOption = {
 
 export type Course = {
   slug: string;
+  /** Short label for cards and menus. */
   title: string;
+  /** Google-friendly page title and main H1. */
+  seoTitle: string;
   /** One-sentence learning benefit for cards. */
   benefit: string;
   hoursLabel: string;
@@ -49,6 +52,8 @@ export type Course = {
   topicTags?: string[];
   creditLabel?: string;
   certificateNote?: string;
+  /** Teaching language shown beside enrollment (IB and specialty clarity). */
+  teachingLanguage?: string;
   audience: string;
   outcomes: string[];
   included: string[];
@@ -97,7 +102,7 @@ const pdPriceNote =
 
 function money(cents: number) {
   if (cents === 0) return "Contact for pricing";
-  return `$${Math.round(cents / 100)}`;
+  return `$${Math.round(cents / 100)} USD`;
 }
 
 function pendingPdFormats(): CourseFormatOption[] {
@@ -134,10 +139,10 @@ export const learningCategories: LearningCategory[] = [
   {
     id: "florida-real-estate",
     slug: "florida-real-estate",
-    label: "Florida Real Estate",
-    shortLabel: "Florida Real Estate",
+    label: "Florida Licensing & Renewal",
+    shortLabel: "Florida Licensing",
     cardBody: "Earn, renew or advance your Florida license.",
-    pageTitle: "Florida Real Estate",
+    pageTitle: "Florida Licensing & Renewal",
     pageLede:
       "Licensing, post-license, broker education, continuing education, and reactivation. Choose a topic, then pick self-paced, livestream, or in person.",
     allowedFormats: ["self-paced", "livestream", "classroom", "correspondence"],
@@ -159,15 +164,12 @@ export const learningCategories: LearningCategory[] = [
       "Build practical skills in AI, sales, communication and leadership.",
     pageTitle: "Professional Development",
     pageLede:
-      "Specialty and professional skills for real estate practice—communication, sales, leadership, commercial foundations, and cross-border work. Formats include self-paced, livestream, and in person. Tuition and schedules publish as the school confirms them.",
+      "Specialty courses for real estate practice—sales and communication, commercial foundations, business brokerage, and distressed-property topics. Formats include self-paced, livestream, and in person. Tuition and schedules publish as the school confirms them.",
     allowedFormats: ["self-paced", "livestream", "classroom"],
     topics: [
-      { id: "communication", label: "Communication & Presentation" },
-      { id: "sales-bd", label: "Sales & Business Development" },
-      { id: "negotiation", label: "Negotiation" },
-      { id: "leadership", label: "Leadership" },
-      { id: "commercial", label: "Commercial & Brokerage" },
-      { id: "cross-border", label: "Cross-border & Global Clients" },
+      { id: "sales-communication", label: "Sales & Communication" },
+      { id: "commercial", label: "Commercial & Business Brokerage" },
+      { id: "short-sales-reo", label: "Short Sales, REO & Default" },
     ],
   },
   {
@@ -179,13 +181,15 @@ export const learningCategories: LearningCategory[] = [
       "Learn to work, sell and negotiate across cultures and markets.",
     pageTitle: "International Business",
     pageLede:
-      "Cross-cultural communication, international selling and negotiation, market entry, and working with international clients—livestream and in person.",
+      "Cross-cultural communication, international selling and negotiation, market entry, and working with international clients. Formats include livestream and in person. Tuition and schedules publish as the school confirms them.",
     allowedFormats: ["livestream", "classroom"],
     topics: [
-      { id: "cross-cultural", label: "Cross-cultural Communication" },
+      { id: "cross-cultural", label: "Cross-Cultural Communication" },
       { id: "intl-selling", label: "International Selling & Negotiation" },
+      { id: "cross-cultural-leadership", label: "Cross-Cultural Leadership" },
+      { id: "global-re", label: "Global Real Estate" },
       { id: "market-entry", label: "Market Entry" },
-      { id: "intl-clients", label: "Working with International Clients" },
+      { id: "intl-clients", label: "Working With International Clients" },
     ],
   },
 ];
@@ -194,6 +198,7 @@ export const courses: Course[] = [
   {
     slug: "sales-pre-license",
     title: "Sales Pre-License, 63 hours",
+    seoTitle: "63-Hour Florida Real Estate Sales Associate Pre-License Course",
     benefit: "Complete the required Florida sales associate pre-license education.",
     hoursLabel: "63 hours",
     categoryIds: ["florida-real-estate"],
@@ -223,6 +228,7 @@ export const courses: Course[] = [
   {
     slug: "broker-pre-license",
     title: "Broker Pre-License, 72 hours",
+    seoTitle: "72-Hour Florida Real Estate Broker Pre-License Course",
     benefit: "Prepare for the Florida broker license with the 72-hour pre-license course.",
     hoursLabel: "72 hours",
     categoryIds: ["florida-real-estate"],
@@ -251,6 +257,7 @@ export const courses: Course[] = [
   {
     slug: "sales-post-license",
     title: "Sales Post-License, 45 hours",
+    seoTitle: "45-Hour Florida Real Estate Post-License Course",
     benefit: "Finish the required first-renewal post-license education for sales associates.",
     hoursLabel: "45 hours",
     categoryIds: ["florida-real-estate"],
@@ -279,6 +286,7 @@ export const courses: Course[] = [
   {
     slug: "continuing-education",
     title: "Continuing Education, 14 hours",
+    seoTitle: "14-Hour Florida Real Estate Continuing Education Course",
     benefit: "Complete later-renewal continuing education, including Core Law and Ethics hours.",
     hoursLabel: "14 hours",
     categoryIds: ["florida-real-estate"],
@@ -315,6 +323,7 @@ export const courses: Course[] = [
   {
     slug: "core-law",
     title: "Core Law, 3 hours",
+    seoTitle: "3-Hour Florida Real Estate Core Law Course",
     benefit: "Take the Core Law portion of continuing education on its own.",
     hoursLabel: "3 hours",
     categoryIds: ["florida-real-estate"],
@@ -336,6 +345,7 @@ export const courses: Course[] = [
   {
     slug: "ethics-business-practices",
     title: "Ethics & Business Practices, 3 hours",
+    seoTitle: "3-Hour Florida Real Estate Ethics & Business Practices Course",
     benefit: "Take the Ethics & Business Practices portion of continuing education on its own.",
     hoursLabel: "3 hours",
     categoryIds: ["florida-real-estate"],
@@ -358,6 +368,7 @@ export const courses: Course[] = [
   {
     slug: "reactivation",
     title: "Reactivation, 28 hours",
+    seoTitle: "28-Hour Florida Real Estate Reactivation Course",
     benefit: "Complete reactivation education when your Florida license status requires it.",
     hoursLabel: "28 hours",
     categoryIds: ["florida-real-estate"],
@@ -380,6 +391,7 @@ export const courses: Course[] = [
   {
     slug: "broker-post-license-management",
     title: "Broker Post-License Management",
+    seoTitle: "30-Hour Florida Broker Post-License Management Course",
     benefit:
       "Complete the standalone 30-hour Management module for broker post-license education.",
     hoursLabel: "30 hours",
@@ -431,11 +443,12 @@ export const courses: Course[] = [
   {
     slug: "the-voice-that-sells",
     title: "The Voice That Sells",
+    seoTitle: "The Voice That Sells — Real Estate Communication Specialty Course",
     benefit:
       "Make sure the person listening receives the message you intended—on the phone, in meetings, and in front of a group.",
     hoursLabel: "3 hours",
     categoryIds: ["professional-development"],
-    topicTags: ["communication"],
+    topicTags: ["sales-communication"],
     creditLabel: "Specialty CE",
     audience:
       "Florida sales associates, broker associates, and brokers who want to listen actively, choose clear words, use their voice purposefully, and check understanding in inquiry calls, client meetings, follow-ups, and public speaking.",
@@ -461,11 +474,12 @@ export const courses: Course[] = [
   {
     slug: "the-5-ws-of-selling",
     title: "The 5 W's of Selling",
+    seoTitle: "The 5 W's of Selling — Real Estate Sales Consultation Specialty Course",
     benefit:
       "Run structured buyer and seller consultations with Who, What, Where, Why, and When so recommendations rest on confirmed needs.",
     hoursLabel: "2 hours",
     categoryIds: ["professional-development"],
-    topicTags: ["sales-bd"],
+    topicTags: ["sales-communication"],
     creditLabel: "Specialty CE",
     audience:
       "Florida sales associates, broker associates, and brokers who want a repeatable consultation process before recommending properties, discussing listing strategy, or explaining brokerage services.",
@@ -492,11 +506,13 @@ export const courses: Course[] = [
   {
     slug: "leading-diverse-teams",
     title: "Leading Diverse Teams",
+    seoTitle: "Leading Diverse Teams — Cross-Cultural Leadership Specialty Course",
     benefit:
       "Make brokerage work more reliable with clear handoffs, responsible technology rollouts, and evidence-based coaching across a varied team.",
     hoursLabel: "3 hours",
-    categoryIds: ["professional-development"],
-    topicTags: ["leadership"],
+    categoryIds: ["international-business"],
+    teachingLanguage: "English",
+    topicTags: ["cross-cultural-leadership"],
     creditLabel: "Specialty CE",
     audience:
       "Florida brokers, broker associates, team leaders, and sales associates with coordination responsibilities who want to improve communication, technology adoption, and accountability in real estate workflows.",
@@ -522,11 +538,13 @@ export const courses: Course[] = [
   {
     slug: "presenting-across-cultures",
     title: "Presenting Across Cultures",
+    seoTitle: "Presenting Across Cultures — Cross-Cultural Communication Specialty Course",
     benefit:
       "Shape buyer consultations, listing presentations, and property briefings around what each audience needs to decide—without sacrificing accuracy.",
     hoursLabel: "3 hours",
-    categoryIds: ["professional-development"],
-    topicTags: ["communication"],
+    categoryIds: ["international-business"],
+    teachingLanguage: "English",
+    topicTags: ["cross-cultural"],
     creditLabel: "Specialty CE",
     audience:
       "Florida sales associates, broker associates, and brokers who present to clients with differing expectations about credibility, evidence, relationships, and participation.",
@@ -553,11 +571,13 @@ export const courses: Course[] = [
   {
     slug: "negotiating-across-cultures",
     title: "Negotiating Across Cultures",
+    seoTitle: "Negotiating Across Cultures — International Negotiation Specialty Course",
     benefit:
       "Adapt how you discuss offers, counteroffers, and deadlines to each client's decision style while keeping information accurate and the choice theirs.",
     hoursLabel: "3 hours",
-    categoryIds: ["professional-development"],
-    topicTags: ["negotiation"],
+    categoryIds: ["international-business"],
+    teachingLanguage: "English",
+    topicTags: ["intl-selling"],
     creditLabel: "Specialty CE",
     audience:
       "Florida sales associates, broker associates, and brokers who want to recognize different negotiation expectations, discover individual client preferences, and adapt communication within clear transaction procedures.",
@@ -583,6 +603,7 @@ export const courses: Course[] = [
   {
     slug: "introduction-to-commercial-real-estate",
     title: "Introduction to Commercial Real Estate",
+    seoTitle: "Introduction to Commercial Real Estate — Specialty Course",
     benefit:
       "Learn the questions, records, calculations, and professional coordination behind commercial property sales and leasing.",
     hoursLabel: "3 hours",
@@ -614,6 +635,7 @@ export const courses: Course[] = [
   {
     slug: "introduction-to-business-brokerage",
     title: "Introduction to Business Brokerage",
+    seoTitle: "Introduction to Business Brokerage — Specialty Course",
     benefit:
       "Understand what is actually being sold in a business sale, which information to request, and when specialist advice is required.",
     hoursLabel: "3 hours",
@@ -643,11 +665,14 @@ export const courses: Course[] = [
   {
     slug: "from-trade-mission-to-real-estate-opportunity",
     title: "From Trade Mission to Real Estate Opportunity",
+    seoTitle:
+      "From Trade Mission to Real Estate Opportunity — Global Real Estate Specialty Course",
     benefit:
       "Turn trade-mission conversations into qualified, permission-based real estate next steps—or a well-supported decision not to pursue them.",
     hoursLabel: "3 hours",
-    categoryIds: ["professional-development"],
-    topicTags: ["cross-border"],
+    categoryIds: ["international-business"],
+    teachingLanguage: "English",
+    topicTags: ["global-re", "market-entry"],
     creditLabel: "Specialty CE",
     audience:
       "Florida brokers, broker associates, and sales associates who want to evaluate missions, research participants, conduct purposeful discovery, and turn supported premises needs into appropriate next steps.",
@@ -673,11 +698,14 @@ export const courses: Course[] = [
   {
     slug: "geopolitics-and-real-estate-investment",
     title: "Geopolitics and Real Estate Investment",
+    seoTitle:
+      "Geopolitics and Real Estate Investment — Global Markets Specialty Course",
     benefit:
       "Translate geopolitical, currency, and strategic-geography context into the right real estate questions for a client's market-entry decision.",
     hoursLabel: "3 hours",
-    categoryIds: ["professional-development"],
-    topicTags: ["cross-border"],
+    categoryIds: ["international-business"],
+    teachingLanguage: "English",
+    topicTags: ["global-re", "market-entry"],
     creditLabel: "Specialty CE",
     audience:
       "Florida brokers, broker associates, and sales associates familiar with basic brokerage practice who want to investigate how geopolitical developments may affect a client's real estate investment or market-entry decision.",
@@ -703,11 +731,14 @@ export const courses: Course[] = [
   {
     slug: "global-clients-local-business",
     title: "Global Clients, Local Business",
+    seoTitle:
+      "Global Clients, Local Business — Working With International Buyers Specialty Course",
     benefit:
       "Serve international buyers with clear consultations, an understandable transaction map, and well-timed professional referrals—without cultural assumptions.",
     hoursLabel: "3 hours",
-    categoryIds: ["professional-development"],
-    topicTags: ["cross-border"],
+    categoryIds: ["international-business"],
+    teachingLanguage: "English",
+    topicTags: ["global-re", "intl-clients"],
     creditLabel: "Specialty CE",
     audience:
       "Florida sales associates, broker associates, and brokers who want to communicate effectively with international buyers, explain the purchase process, and coordinate competent, fair service within their professional role.",
@@ -734,11 +765,14 @@ export const courses: Course[] = [
   {
     slug: "when-businesses-cross-borders",
     title: "When Businesses Cross Borders",
+    seoTitle:
+      "When Businesses Cross Borders — Market Entry Specialty Course",
     benefit:
       "Identify and investigate the premises needs of companies entering or expanding in the United States—from business discovery to coordinated next steps.",
     hoursLabel: "3 hours",
-    categoryIds: ["professional-development"],
-    topicTags: ["cross-border"],
+    categoryIds: ["international-business"],
+    teachingLanguage: "English",
+    topicTags: ["market-entry"],
     creditLabel: "Specialty CE",
     audience:
       "Florida brokers, broker associates, and sales associates who want to connect a company's U.S. entry or expansion objectives to real estate service.",
@@ -756,6 +790,52 @@ export const courses: Course[] = [
       "Knowledge check with answers",
     ],
     prerequisites: "Basic understanding of brokerage practice and transaction stages.",
+    priceNote: pdPriceNote,
+    formats: pendingPdFormats(),
+    published: true,
+  },
+  {
+    slug: "short-sales-distressed-properties",
+    title: "Short Sales & Distressed Properties",
+    seoTitle: "Short Sales & Distressed Properties — Real Estate Specialty Course",
+    benefit:
+      "Specialty course on short sales and distressed properties. Full description, hours, and registration open when the school publishes them—get notified to stay on the list.",
+    hoursLabel: "Hours TBA",
+    categoryIds: ["professional-development"],
+    topicTags: ["short-sales-reo"],
+    creditLabel: "Specialty CE",
+    audience:
+      "Florida real estate licensees interested in short sales and distressed-property practice. Full audience details publish with the course outline.",
+    outcomes: [
+      "Course outcomes will appear here when REIB supplies the approved outline",
+    ],
+    included: [
+      "Course materials and registration details publish when the school opens enrollment",
+    ],
+    prerequisites: "To be confirmed with the course outline.",
+    priceNote: pdPriceNote,
+    formats: pendingPdFormats(),
+    published: true,
+  },
+  {
+    slug: "reo-default-real-estate",
+    title: "REO & Default Real Estate",
+    seoTitle: "REO & Default Real Estate — Specialty Course",
+    benefit:
+      "Specialty course on REO and default real estate. Full description, hours, and registration open when the school publishes them—get notified to stay on the list.",
+    hoursLabel: "Hours TBA",
+    categoryIds: ["professional-development"],
+    topicTags: ["short-sales-reo"],
+    creditLabel: "Specialty CE",
+    audience:
+      "Florida real estate licensees interested in REO and default practice. Full audience details publish with the course outline.",
+    outcomes: [
+      "Course outcomes will appear here when REIB supplies the approved outline",
+    ],
+    included: [
+      "Course materials and registration details publish when the school opens enrollment",
+    ],
+    prerequisites: "To be confirmed with the course outline.",
     priceNote: pdPriceNote,
     formats: pendingPdFormats(),
     published: true,
@@ -779,6 +859,18 @@ export function getLearningCategory(slug: string) {
 
 export function getCourse(slug: string) {
   return courses.find((course) => course.slug === slug && course.published);
+}
+
+/** Next published live session for a course format, when REIB supplies dates. */
+export function nextSessionForFormat(
+  courseSlug: string,
+  formatLabel: string,
+) {
+  return upcomingSessions.find(
+    (session) =>
+      session.courseSlug === courseSlug &&
+      session.formatLabel === formatLabel,
+  );
 }
 
 export function coursesForCategory(categoryId: LearningCategoryId) {

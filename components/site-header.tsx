@@ -51,61 +51,67 @@ const menuSections: {
 }[] = [
   {
     key: "florida-real-estate",
-    label: "Florida Real Estate",
+    label: "Florida Licensing & Renewal",
     href: "/florida-real-estate",
-    lede: "Your pathway into a Florida real estate career — and the education to keep it current.",
+    lede: "Find the right Florida license or renewal course — then compare formats and tuition on the course page.",
     hasPanel: true,
     tone: "#dce6ef",
     columns: [
       {
-        heading: "Start or advance",
+        heading: "Licensing & renewal",
         links: [
-          { label: "Get your license", href: "/courses/sales-pre-license" },
-          { label: "Sales post-license", href: "/courses/sales-post-license" },
-          { label: "Become a broker", href: "/courses/broker-pre-license" },
+          { label: "Get Licensed", href: "/courses/sales-pre-license" },
+          {
+            label: "Complete My First Renewal",
+            href: "/courses/sales-post-license",
+          },
+          {
+            label: "Renew With CE",
+            href: "/courses/continuing-education",
+          },
         ],
       },
       {
-        heading: "Stay current",
+        heading: "Broker path",
         links: [
+          { label: "Become a Broker", href: "/courses/broker-pre-license" },
           {
-            label: "Continuing education",
-            href: "/courses/continuing-education",
-          },
-          {
-            label: "Broker post-license",
+            label: "Broker First Renewal",
             href: "/courses/broker-post-license-management",
           },
-          { label: "Reactivation", href: "/courses/reactivation" },
+          {
+            label: "Reactivate My License",
+            href: "/courses/reactivation",
+          },
         ],
       },
       {
         heading: "Helpful links",
         links: [
+          { label: "Student login", href: site.ui.studentLoginHref },
           { label: "Browse all courses", href: "/florida-real-estate" },
           { label: "Core Law", href: "/courses/core-law" },
           { label: "Ethics", href: "/courses/ethics-business-practices" },
-          { label: "Student login", href: site.ui.studentLoginHref },
           { label: "Ask a question", href: "/contact" },
         ],
       },
     ],
     cta: {
-      label: "See Florida courses",
+      label: "Browse Florida courses",
       href: "/florida-real-estate",
-      body: "Browse published Florida courses, then open a class for formats and tuition.",
+      body: "See licensing and renewal courses, then open a class for formats and tuition.",
     },
   },
   {
     key: "professional-development",
     label: "Professional Development",
     href: "/professional-development",
-    lede: "Specialty skills for real estate practice—communication, sales, leadership, and more. Enrollment opens as schedules are published.",
+    lede: "Specialty skills for real estate practice—sales, communication, and commercial brokerage. Enrollment opens as schedules are published.",
     hasPanel: true,
     tone: "#ebe4d4",
     columns: [
       {
-        heading: "Featured courses",
+        heading: "Sales & Communication",
         links: [
           {
             label: "The Voice That Sells",
@@ -117,72 +123,44 @@ const menuSections: {
             href: "/courses/the-5-ws-of-selling",
             badge: "Coming soon",
           },
-          {
-            label: "Negotiating Across Cultures",
-            href: "/courses/negotiating-across-cultures",
-            badge: "Coming soon",
-          },
+        ],
+      },
+      {
+        heading: "Commercial & Business Brokerage",
+        links: [
           {
             label: "Introduction to Commercial Real Estate",
             href: "/courses/introduction-to-commercial-real-estate",
             badge: "Coming soon",
           },
           {
-            label: "Global Clients, Local Business",
-            href: "/courses/global-clients-local-business",
+            label: "Introduction to Business Brokerage",
+            href: "/courses/introduction-to-business-brokerage",
             badge: "Coming soon",
           },
         ],
       },
       {
-        heading: "Topics",
+        heading: "Short Sales, REO & Default",
         links: [
           {
-            label: "Communication & presentation",
-            href: "/professional-development?topic=communication#courses",
+            label: "Short Sales & Distressed Properties",
+            href: "/courses/short-sales-distressed-properties",
             badge: "Coming soon",
           },
           {
-            label: "Sales & business development",
-            href: "/professional-development?topic=sales-bd#courses",
+            label: "REO & Default Real Estate",
+            href: "/courses/reo-default-real-estate",
             badge: "Coming soon",
           },
           {
-            label: "Negotiation",
-            href: "/professional-development?topic=negotiation#courses",
-            badge: "Coming soon",
-          },
-          {
-            label: "Leadership",
-            href: "/professional-development?topic=leadership#courses",
-            badge: "Coming soon",
-          },
-          {
-            label: "Commercial & brokerage",
-            href: "/professional-development?topic=commercial#courses",
-            badge: "Coming soon",
-          },
-          {
-            label: "Cross-border & global clients",
-            href: "/professional-development?topic=cross-border#courses",
-            badge: "Coming soon",
-          },
-        ],
-      },
-      {
-        heading: "Helpful links",
-        links: [
-          {
-            label: "Browse all PD courses",
+            label: "Browse Specialty Courses",
             href: "/professional-development#courses",
-            badge: "Coming soon",
           },
           {
             label: "Request group training",
             href: "/contact?interest=group-training&path=professional-development",
           },
-          { label: "Ask a question", href: "/contact" },
-          { label: "Student login", href: site.ui.studentLoginHref },
         ],
       },
     ],
@@ -196,7 +174,7 @@ const menuSections: {
     key: "international-business",
     label: "International Business",
     href: "/international-business",
-    lede: "Education for cross-border work, selling, and market entry.",
+    lede: "Cross-cultural communication, international selling, market entry, and global clients.",
     hasPanel: true,
     tone: "#d4e3ee",
     columns: [
@@ -204,42 +182,75 @@ const menuSections: {
         heading: "Focus areas",
         links: [
           {
-            label: "Cross-cultural communication",
-            href: "/international-business",
+            label: "Cross-Cultural Communication",
+            href: "/international-business#cross-cultural-communication",
           },
           {
-            label: "International selling & negotiation",
-            href: "/international-business",
+            label: "International Selling & Negotiation",
+            href: "/international-business#intl-selling-negotiation",
           },
-          { label: "Market entry", href: "/international-business" },
           {
-            label: "Working with international clients",
-            href: "/international-business",
+            label: "Cross-Cultural Leadership",
+            href: "/international-business#cross-cultural-leadership",
+          },
+          {
+            label: "Global Real Estate",
+            href: "/international-business#global-real-estate",
+          },
+          {
+            label: "Market Entry",
+            href: "/international-business#market-entry",
+          },
+          {
+            label: "Working With International Clients",
+            href: "/international-business#intl-clients",
           },
         ],
       },
       {
-        heading: "Partnerships",
+        heading: "Featured courses",
         links: [
-          { label: "Contact the school", href: "/contact" },
           {
-            label: "Become an instructor",
-            href: "/instructors/apply",
+            label: "Presenting Across Cultures",
+            href: "/courses/presenting-across-cultures",
+            badge: "Coming soon",
+          },
+          {
+            label: "Negotiating Across Cultures",
+            href: "/courses/negotiating-across-cultures",
+            badge: "Coming soon",
+          },
+          {
+            label: "Global Clients, Local Business",
+            href: "/courses/global-clients-local-business",
+            badge: "Coming soon",
+          },
+          {
+            label: "When Businesses Cross Borders",
+            href: "/courses/when-businesses-cross-borders",
+            badge: "Coming soon",
           },
         ],
       },
       {
         heading: "Helpful links",
         links: [
-          { label: "Category overview", href: "/international-business" },
-          { label: "About us", href: "/about" },
+          {
+            label: "Browse all IB courses",
+            href: "/international-business#courses",
+          },
+          {
+            label: "Request group training",
+            href: "/contact?interest=group-training&path=international-business",
+          },
+          { label: "Ask a question", href: "/contact" },
         ],
       },
     ],
     cta: {
-      label: "See IB",
-      href: "/international-business",
-      body: "Programs appear here as the school confirms descriptions, instructors, dates, and fees.",
+      label: "Browse IB courses",
+      href: "/international-business#courses",
+      body: "Open a focus area for course cards. Tuition and schedules publish as the school confirms them.",
     },
   },
   {
@@ -262,7 +273,10 @@ const menuSections: {
       {
         heading: "Ways to learn",
         links: [
-          { label: "Florida Real Estate", href: "/florida-real-estate" },
+          {
+            label: "Florida Licensing & Renewal",
+            href: "/florida-real-estate",
+          },
           { label: "Professional Development", href: "/professional-development" },
           { label: "International Business", href: "/international-business" },
         ],

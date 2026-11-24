@@ -2,19 +2,19 @@ import { ArrowRightIcon } from "@phosphor-icons/react/ssr";
 
 const paths = [
   {
-    title: "Communicate & present",
-    body: "Voice, presentations, and clearer client conversations.",
-    topic: "communication",
+    title: "Sales & Communication",
+    body: "The Voice That Sells and The 5 W’s of Selling.",
+    href: "/professional-development#sales-communication",
   },
   {
-    title: "Sell & negotiate",
-    body: "Sales structure, negotiation skills, and deal conversations.",
-    topic: "sales-bd",
+    title: "Commercial & brokerage",
+    body: "Introduction to commercial real estate and business brokerage.",
+    href: "/professional-development#commercial-brokerage",
   },
   {
-    title: "Lead & go global",
-    body: "Team leadership, commercial basics, and cross-border client work.",
-    topic: "cross-border",
+    title: "Short Sales, REO & Default",
+    body: "Short sales and REO listings—get notified when registration opens.",
+    href: "/professional-development#short-sales-reo",
   },
 ] as const;
 
@@ -23,13 +23,13 @@ export function PdPathStrip() {
     <section className="border-b border-[#d5dde6] bg-white">
       <div className="mx-auto w-full max-w-[90rem] px-4 py-11 sm:px-6 md:py-12 lg:px-8">
         <ul className="grid grid-cols-1 divide-y divide-[#d5dde6] md:grid-cols-3 md:divide-x md:divide-y-0">
-          {paths.map(({ title, body, topic }, index) => (
+          {paths.map(({ title, body, href }, index) => (
             <li
-              key={topic}
+              key={href}
               className="min-h-0 md:px-8 md:first:pl-0 md:last:pr-0"
             >
               <a
-                href={`/professional-development?topic=${topic}#courses`}
+                href={href}
                 className="group flex h-full flex-col py-7 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#002448]/30 md:py-1"
               >
                 <div className="flex items-baseline gap-3">

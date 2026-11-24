@@ -1,17 +1,51 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
-import {
-  coursesForCategory,
-  getLearningCategory,
-  site,
-} from "@/content/site";
-import { CategoryCatalog } from "@/components/category-catalog";
+import { getCourse, getLearningCategory } from "@/content/site";
+import type { Course } from "@/content/site";
+import { CategoryCourseGroups } from "@/components/category-course-groups";
 import { CategoryMediaHero } from "@/components/category-media-hero";
 import { FloridaPathStrip } from "@/components/florida-path-strip";
 import { HomeQuestions } from "@/components/home-questions";
 import { PathNextCta } from "@/components/path-next-cta";
 
 const category = getLearningCategory("florida-real-estate");
+
+/** Florida paths aligned with Mona’s Licensing & Renewal menu */
+const floridaGroups = [
+  {
+    id: "get-licensed",
+    title: "Get Licensed",
+    slugs: ["sales-pre-license"],
+  },
+  {
+    id: "first-renewal",
+    title: "Complete My First Renewal",
+    slugs: ["sales-post-license"],
+  },
+  {
+    id: "renew-ce",
+    title: "Renew With CE",
+    slugs: [
+      "continuing-education",
+      "core-law",
+      "ethics-business-practices",
+    ],
+  },
+  {
+    id: "become-broker",
+    title: "Become a Broker",
+    slugs: ["broker-pre-license"],
+  },
+  {
+    id: "broker-first-renewal",
+    title: "Broker First Renewal",
+    slugs: ["broker-post-license-management"],
+  },
+  {
+    id: "reactivate",
+    title: "Reactivate My License",
+    slugs: ["reactivation"],
+  },
+] as const;
 
 export const metadata: Metadata = {
   title: category?.pageTitle ?? "Florida Real Estate",
@@ -30,17 +64,28 @@ export const metadata: Metadata = {
   },
 };
 
+function resolveGroupCourses(slugs: readonly string[]): Course[] {
+  return slugs
+    .map((slug) => getCourse(slug))
+    .filter((course): course is Course => Boolean(course));
+}
+
 export default function FloridaRealEstatePage() {
   if (!category) {
     return null;
   }
 
-  const list = coursesForCategory("florida-real-estate");
+  const groups = floridaGroups
+    .map((group) => ({
+      ...group,
+      courses: resolveGroupCourses(group.slugs),
+    }))
+    .filter((group) => group.courses.length > 0);
 
   return (
     <>
       <CategoryMediaHero
-        breadcrumb="Florida Real Estate"
+        breadcrumb="Florida Licensing & Renewal"
         label="Florida licensing"
         title={category.pageTitle}
         lede={category.pageLede}
@@ -60,23 +105,24 @@ export default function FloridaRealEstatePage() {
               Course catalog
             </p>
             <h2 className="mt-2 font-sans text-[1.75rem] font-bold tracking-[-0.02em] text-[#001830] sm:text-[2rem]">
-              Browse published courses
+              Florida Licensing Courses
             </h2>
             <p className="mt-3 text-[0.98rem] leading-7 text-[#5A6B7A]">
-              {site.ui.priceIntro}
+              Browse by path. Open a class for formats, tuition, and enrollment.
+              Cards show the same details as Professional Development and
+              International Business.
             </p>
           </div>
-          <Suspense fallback={null}>
-            <CategoryCatalog category={category} courses={list} />
-          </Suspense>
+
+          <CategoryCourseGroups groups={groups} />
         </div>
       </section>
 
       <PathNextCta
-        title="Ready to pick a course?"
-        body="Open a class for formats and tuition, or contact the office if you need a path recommendation."
-        primaryHref="#courses"
-        primaryLabel="Browse courses"
+        title="Need help picking a path?"
+        body="Ask the office which Florida course fits your license status, renewal date, or broker goals."
+        href="/contact?interest=course-question&path=florida-real-estate"
+        label="Ask a question"
       />
 
       <HomeQuestions />

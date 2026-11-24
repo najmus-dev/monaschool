@@ -21,11 +21,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "Course" };
   }
   return {
-    title: course.title,
+    title: course.seoTitle,
     description: course.benefit,
     alternates: { canonical: `/courses/${course.slug}` },
     openGraph: {
-      title: course.title,
+      title: course.seoTitle,
       description: course.benefit,
       url: `/courses/${course.slug}`,
     },

@@ -52,6 +52,9 @@ export function CourseLanding({ course }: { course: Course }) {
     { label: "Hours", value: course.hoursLabel },
     { label: "Formats", value: formatLabels },
     { label: "Tuition", value: lowest },
+    ...(course.creditLabel
+      ? [{ label: "Credit", value: course.creditLabel }]
+      : []),
   ];
 
   const aboutMeta = [
@@ -119,9 +122,9 @@ export function CourseLanding({ course }: { course: Course }) {
 
               <h1
                 data-reveal
-                className="mt-4 font-sans text-[2rem] font-bold uppercase leading-[1.05] tracking-[-0.025em] text-white sm:text-[2.55rem] md:text-[3rem]"
+                className="mt-4 font-sans text-[1.85rem] font-bold uppercase leading-[1.08] tracking-[-0.025em] text-white sm:text-[2.35rem] md:text-[2.75rem]"
               >
-                {course.title}
+                {course.seoTitle}
               </h1>
               <p
                 data-reveal
@@ -142,12 +145,14 @@ export function CourseLanding({ course }: { course: Course }) {
         </div>
       </section>
 
-      {/* 2. Facts + about — dense, no decorative side image */}
+      {/* 2. Quick facts */}
       <section data-reveal-section className="border-b border-black/8 bg-white">
         <div className="mx-auto w-full max-w-[90rem] px-4 py-10 sm:px-6 md:py-12 lg:px-8">
           <dl
             data-reveal
-            className="grid grid-cols-1 gap-px overflow-hidden rounded-[var(--radius-panel)] border border-[#d5dde6] bg-[#d5dde6] sm:grid-cols-3"
+            className={`grid grid-cols-1 gap-px overflow-hidden rounded-[var(--radius-panel)] border border-[#d5dde6] bg-[#d5dde6] sm:grid-cols-2 ${
+              facts.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"
+            }`}
           >
             {facts.map((fact) => (
               <div key={fact.label} className="bg-white px-5 py-5 sm:px-6">
@@ -160,8 +165,88 @@ export function CourseLanding({ course }: { course: Course }) {
               </div>
             ))}
           </dl>
+        </div>
+      </section>
+
+      {/* 3. Formats early — enrollment options visible without hunting */}
+      <section
+        data-reveal-section
+        id="formats"
+        className="scroll-mt-28 bg-[#F7F3EE]"
+      >
+        <div className="mx-auto w-full max-w-[90rem] px-4 py-14 sm:px-6 md:py-16 lg:px-8 lg:py-20">
+          <div data-reveal className="flex items-center gap-2.5">
+            <SectionMark />
+            <p className="text-[0.78rem] font-bold uppercase tracking-[0.12em] text-black">
+              Formats & tuition
+            </p>
+          </div>
+          <h2
+            data-reveal
+            className="mt-4 font-sans text-[2rem] font-bold tracking-[-0.02em] text-black sm:text-[2.35rem]"
+          >
+            Enroll by format
+          </h2>
+          <p
+            data-reveal
+            className="mt-3 max-w-[40rem] text-[1rem] leading-7 text-[#746C66]"
+          >
+            Use <strong className="font-semibold text-[#2A3340]">Enroll Now</strong> for
+            self-paced options,{" "}
+            <strong className="font-semibold text-[#2A3340]">
+              View Dates &amp; Enroll
+            </strong>{" "}
+            for livestream or in person, and{" "}
+            <strong className="font-semibold text-[#2A3340]">Get Notified</strong>{" "}
+            when a format is not open yet.
+          </p>
 
           <div data-reveal className="mt-10">
+            <CourseFormatCards course={course} />
+          </div>
+
+          {included.length > 0 ? (
+            <div data-reveal className="mt-12">
+              <div className="flex items-center gap-2.5">
+                <SectionMark />
+                <p className="text-[0.78rem] font-bold uppercase tracking-[0.12em] text-black">
+                  Included
+                </p>
+              </div>
+              <h3 className="mt-3 font-sans text-[1.45rem] font-bold tracking-[-0.02em] text-black sm:text-[1.6rem]">
+                {site.ui.includedTitle}
+              </h3>
+
+              <ul
+                className={`mt-6 grid grid-cols-1 gap-3 ${
+                  included.length === 1
+                    ? "max-w-2xl"
+                    : "sm:grid-cols-2"
+                }`}
+              >
+                {included.map((item) => (
+                  <li
+                    key={item}
+                    className="flex gap-3.5 rounded-[var(--radius-panel)] border border-[#e0d8ce] bg-white px-5 py-5 sm:px-6"
+                  >
+                    <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-[#F7F3EE] text-[#C08430]">
+                      <CheckIcon size={14} weight="bold" aria-hidden />
+                    </span>
+                    <span className="text-[0.98rem] font-medium leading-7 text-[#2A3340]">
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+        </div>
+      </section>
+
+      {/* 4. About */}
+      <section data-reveal-section className="border-b border-black/8 bg-white">
+        <div className="mx-auto w-full max-w-[90rem] px-4 py-10 sm:px-6 md:py-12 lg:px-8">
+          <div data-reveal>
             <div className="flex flex-wrap items-end justify-between gap-4">
               <h2 className="font-sans text-[1.45rem] font-bold tracking-[-0.02em] text-[#001830] sm:text-[1.6rem]">
                 About this course
@@ -222,76 +307,6 @@ export function CourseLanding({ course }: { course: Course }) {
               </p>
             )}
           </div>
-        </div>
-      </section>
-
-      {/* 3. Formats early — primary conversion block */}
-      <section
-        data-reveal-section
-        id="formats"
-        className="scroll-mt-28 bg-[#F7F3EE]"
-      >
-        <div className="mx-auto w-full max-w-[90rem] px-4 py-14 sm:px-6 md:py-16 lg:px-8 lg:py-20">
-          <div data-reveal className="flex items-center gap-2.5">
-            <SectionMark />
-            <p className="text-[0.78rem] font-bold uppercase tracking-[0.12em] text-black">
-              Formats & tuition
-            </p>
-          </div>
-          <h2
-            data-reveal
-            className="mt-4 font-sans text-[2rem] font-bold tracking-[-0.02em] text-black sm:text-[2.35rem]"
-          >
-            Choose how you study
-          </h2>
-          <p
-            data-reveal
-            className="mt-3 max-w-[40rem] text-[1rem] leading-7 text-[#746C66]"
-          >
-            Tuition follows the school fee schedule. Self-paced enrolls on the
-            partner site; livestream and classroom dates are requested through
-            the school.
-          </p>
-
-          <div data-reveal className="mt-10">
-            <CourseFormatCards course={course} />
-          </div>
-
-          {included.length > 0 ? (
-            <div data-reveal className="mt-12">
-              <div className="flex items-center gap-2.5">
-                <SectionMark />
-                <p className="text-[0.78rem] font-bold uppercase tracking-[0.12em] text-black">
-                  Included
-                </p>
-              </div>
-              <h3 className="mt-3 font-sans text-[1.45rem] font-bold tracking-[-0.02em] text-black sm:text-[1.6rem]">
-                {site.ui.includedTitle}
-              </h3>
-
-              <ul
-                className={`mt-6 grid grid-cols-1 gap-3 ${
-                  included.length === 1
-                    ? "max-w-2xl"
-                    : "sm:grid-cols-2"
-                }`}
-              >
-                {included.map((item) => (
-                  <li
-                    key={item}
-                    className="flex gap-3.5 rounded-[var(--radius-panel)] border border-[#e0d8ce] bg-white px-5 py-5 sm:px-6"
-                  >
-                    <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-[#F7F3EE] text-[#C08430]">
-                      <CheckIcon size={14} weight="bold" aria-hidden />
-                    </span>
-                    <span className="text-[0.98rem] font-medium leading-7 text-[#2A3340]">
-                      {item}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
         </div>
       </section>
 
